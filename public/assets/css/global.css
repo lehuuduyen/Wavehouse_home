@@ -2,6 +2,10 @@ html:not(.k-mobile) body {
     font-size: 1.3rem;
 }
 
+.w100 {
+    width: 100%;
+}
+
 body,
 html {
     margin: 0;
