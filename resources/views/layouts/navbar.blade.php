@@ -31,10 +31,10 @@
                 <a><i class="fas fa-user-friends"></i>Nhân viên</a>
             </li>
             <li>
-                <a><i class="fas fa-usd-circle"></i>Sổ quỹ</a>
+                <a><i class="fa-solid fa-dollar-sign"></i>Sổ quỹ</a>
             </li>
             <li>
-                <a><i class="fas fa-file-chart-line"></i>Báo cáo</a>
+                <a><i class="fa-solid fa-chart-simple"></i>Báo cáo</a>
             </li>
         </ul>
         <ul class="menu menu-right">

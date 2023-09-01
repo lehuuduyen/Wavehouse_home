@@ -55062,11 +55062,10 @@ tags-input .tags input {
     position: relative
 }
 
-.header-filter-search .input-group::before,
-.header-page-inline .form-header .input-group::before {
-    content: "\f002";
+
+.header-filter-search i.fa-solid {
     position: absolute;
-    top: calc(50% - 2.4rem/2);
+    top: 10px;
     left: 5px;
     color: #999
 }
@@ -68903,7 +68902,7 @@ fieldset[disabled] .radio label {
 }
 
 .prettycheckbox a:before {
-    content: "";
+    /* content: ""; */
     color: #999;
     font-weight: 300;
     position: absolute;
@@ -96429,6 +96428,7 @@ div.k-window.kv-shopee .btn-shopee:before {
 
 @media (min-width:1280px) {
     .container {
+        
         width: 100%;
         padding-left: 3rem;
         padding-right: 3rem

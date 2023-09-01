@@ -8,8 +8,13 @@
         <section class="mainRight ng-scope">
             <section class="mainWrap fll w100">
                 <article class="header-filter header-filter-product headerContent columnViewTwo">
-                    <div class="header-filter-search"><kv-mobile-new on-click-call-back="refresh()" class="ng-isolate-scope"><a href="javascript:void(0);" class="mobileIcon"></a></kv-mobile-new>
-                        <div class="input-group"><input type="text" kv-filter-search="" ng-model="filterQuickSearch" placeholder="Theo mã, tên hàng" class="form-control input-focus ng-pristine ng-untouched ng-valid ng-empty ng-hide" id="inputQuickSearch" ng-enter="quickSearch(true)" ng-show="isOpenDropdownSearch || !isSuggestProductForSearchProduct || isCombineSearch" ng-change="changeQuickSearch()">
+                    <div class="header-filter-search">
+                        <kv-mobile-new on-click-call-back="refresh()" class="ng-isolate-scope">
+                            <a href="javascript:void(0);" class="mobileIcon"></a>
+                        </kv-mobile-new>
+                        <div class="input-group">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" kv-filter-search="" ng-model="filterQuickSearch" placeholder="Theo mã, tên hàng" class="form-control input-focus ng-pristine ng-untouched ng-valid ng-empty ng-hide" id="inputQuickSearch" ng-enter="quickSearch(true)" ng-show="isOpenDropdownSearch || !isSuggestProductForSearchProduct || isCombineSearch" ng-change="changeQuickSearch()">
                             <div id="divSuggestProductForQuickSearchProduct" ng-style="{'flex': '1 1 auto', 'padding-left': '2.9rem'}" ng-show="!(isOpenDropdownSearch || !isSuggestProductForSearchProduct || isCombineSearch)" style="flex: 1 1 auto; padding-left: 2.9rem;">
                                 <kv-multi-select-search-product control-css-id="suggestProductSearch" control-css-class="form-control kv-multi-select-search" icon-remove-css-class="icon-remove-search-product" filter-ids="filterProductIds" filter-keyword="filterProductKey" filter-text="filterProductCodes" on-type="quickSearch()" is-show-on-hand="true" is-show-all-item="false" id="filterMultiSelect" ng-enter="quickSearchEmpty()" class="ng-isolate-scope"><kv-multi-select-search control-css-id="suggestProductSearch" control-css-class="form-control kv-multi-select-search" icon-remove-css-class="icon-remove-search-product" input-placeholder="Theo mã, tên hàng" option-data-text-field="Code" option-data-value-field="Id" option-item-template="itemTemplate" option-data-source="products" filter-ids="filterIds" filter-keyword="filterKeyword" filter-text="filterText" limit-filter-ids="10" message-limit-filter-ids="Bạn chỉ được chọn tối đa 10 hàng hóa" on-type="onType()" field-compare-get-first-by-enter="Code" class="ng-isolate-scope">
                                         <div class="k-widget k-multiselect k-header form-control kv-multi-select-search" unselectable="on" title="" style="">
