@@ -10,6 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="{{ asset('assets/css/global.css') }}" rel="stylesheet" type="text/css">
+    <script src="https://kit.fontawesome.com/a60e3c87cb.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -18,8 +19,10 @@
             <header class="mainHeader clearfix  posR">
                 @include('layouts.navbar')
             </header>
+            <div class="container">
+                @yield('content')
+            </div>
         </div>
-
     </div>
 </body>
 
