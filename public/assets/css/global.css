@@ -97312,3 +97312,7 @@ only screen and (min-device-pixel-ratio:2) {
         display: block
     }
 }
+
+.dropdown-toggle::after {
+    display: none !important;
+}
