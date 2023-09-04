@@ -245,7 +245,7 @@
                         </div>
                     </div>
                     <div class="k-gridNone tbl purchaseorder-tbl tbl-custom-header">
-                        <div class="kv2Left-content" style="height: 787px;">
+                        <div class="kv2Left-content" style="">
                             <div kendo-grid="" options="cartGridoption" id="cartGridoption"
                                 ng-class="cart.PurchaseOrderDetails.length == 0 || cartGridoption.dataSource.total()==0 &amp;&amp; cart.PurchaseOrderDetails.length? 'gridEmpty':''"
                                 class="k-grid k-widget gridEmpty" data-role="grid" style="">
@@ -347,7 +347,7 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="k-grid-content k-auto-scrollable">
+                                <div class="k-grid-content k-auto-scrollable" style="overflow: hidden">
                                     <table role="treegrid" style="">
                                         <colgroup>
                                             <col class="k-hierarchy-col">

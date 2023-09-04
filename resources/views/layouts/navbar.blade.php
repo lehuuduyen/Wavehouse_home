@@ -23,6 +23,12 @@
             </li>
             <li>
                 <a><i class="fas fa-exchange"></i>Giao dịch</a>
+                <ul class="sub">
+                    <li>
+                        <a href="/wavehouse"> <i class="fa-fw fa fa-th"></i>Nhập hàng</a>
+                    </li>
+               
+                </ul>
             </li>
             <li>
                 <a><i class="fas fa-user-tie"></i>Đối tác</a>

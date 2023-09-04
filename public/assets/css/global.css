@@ -83564,7 +83564,7 @@ table .cell-price-plus {
 
 .tbl .kv2Left-content {
     position: relative;
-    min-height: 400px
+    /* min-height: 400px */
 }
 
 .tbl .kv2Left-content>.k-grid {
@@ -96468,7 +96468,7 @@ div.k-window.kv-shopee .btn-shopee:before {
     }
 }
 
-@media (max-width:1280px) {
+@media (max-width:1400px) {
 
     .purchaseorder-tbl .tdMin,
     .purchasereturn-tbl .tdMin,
