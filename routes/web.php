@@ -20,4 +20,10 @@ Route::get('/', function () {
 Route::get('/products', function () {
     return view('products');
 });
+Route::get('/wavehouse', function () {
+    return view('wavehouse.list');
+});
+Route::get('/wavehouse/create', function () {
+    return view('wavehouse.create');
+});
 
