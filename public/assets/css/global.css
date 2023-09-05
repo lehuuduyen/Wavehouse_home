@@ -64125,7 +64125,7 @@ span.batchExpirePopup {
     right: 37px
 }
 
-@media (max-width:1024px) {
+@media (max-width:768px) {
     .wrapper-form:not(.hide-right-column) .header-page-inline {
         position: relative;
         padding: 0;
@@ -73516,7 +73516,7 @@ div.k-window {
 }
 
 .k-window.k-window-customer-info {
-    width: 960px !important
+    /* width: 960px !important */
 }
 
 @media screen and (min-width:1600px) {
@@ -82016,7 +82016,7 @@ span.k-numerictextbox {
     top: -40px;
     right: 0;
     width: 1px;
-    height: 200px;
+    /* height: 200px; */
     background: #65bd0b;
     z-index: 3
 }
@@ -83564,7 +83564,7 @@ table .cell-price-plus {
 
 .tbl .kv2Left-content {
     position: relative;
-    min-height: 400px
+    /* min-height: 400px */
 }
 
 .tbl .kv2Left-content>.k-grid {
@@ -96468,7 +96468,7 @@ div.k-window.kv-shopee .btn-shopee:before {
     }
 }
 
-@media (max-width:1280px) {
+@media (max-width:1400px) {
 
     .purchaseorder-tbl .tdMin,
     .purchasereturn-tbl .tdMin,
@@ -97295,11 +97295,12 @@ only screen and (min-device-pixel-ratio:2) {
     }
 }
 
-@media (min-width:769px) and (max-width:992px) {
+@media (min-width:769px)  {
     :not(.pos-setting-parameter)>.k-content:not(.setting-email).k-state-active {
-        max-width: calc(100vw - (230 + 2) * 1px) !important
+        max-width: calc(95vw - (230 + 2) * 1px) !important
     }
 }
+
 
 @media screen and (max-width:568px) {
     #k-target-banner {
