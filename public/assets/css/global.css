@@ -73516,7 +73516,7 @@ div.k-window {
 }
 
 .k-window.k-window-customer-info {
-    width: 960px !important
+    /* width: 960px !important */
 }
 
 @media screen and (min-width:1600px) {

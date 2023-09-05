@@ -1,5 +1,42 @@
 @extends('main',['pageTitle' => 'Danh mục sản phẩm'])
 @section('content')
+<style>
+    .modal {
+  display: none; /* Hidden by default */
+  left: 50%;
+  top: 50%;
+  transform: translate(-53%, -60%);
+  z-index: 1; /* Sit on top */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 300% !important;
+  z-index: 1000;
+}
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  
+  border: 1px solid #888;
+  width: 35%; /* Could be more or less, depending on screen size */
+}
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
 <script src="{{ asset('assets/js/products/index.js') }}"></script>
 <section class="container main_wrapper kma-wrapper ng-scope">
     <section class="clb main main-content ng-scope" ng-view="">

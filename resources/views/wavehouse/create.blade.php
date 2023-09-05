@@ -1233,7 +1233,7 @@
                     </section><!-- end ngIf: !isShowDebt || !supplier.Id || !canViewDebt -->
                 </form>
             </kv-supplier-form>
-        </div>
+        </div> 
     </div>
 
     <script type="text/javascript" class="ng-scope">
