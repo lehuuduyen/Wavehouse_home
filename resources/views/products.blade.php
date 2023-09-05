@@ -2,40 +2,56 @@
 @section('content')
 <style>
     .modal {
-  display: none; /* Hidden by default */
-  left: 50%;
-  top: 50%;
-  transform: translate(-53%, -60%);
-  z-index: 1; /* Sit on top */
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  width: 300% !important;
-  z-index: 1000;
-}
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  
-  border: 1px solid #888;
-  width: 35%; /* Could be more or less, depending on screen size */
-}
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        /* transform: translate(-53%, -100%); */
+        z-index: 1001;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: #aaa;
+        filter: alpha(opacity=50);
+        /* width: 300% !important; */
+        /* z-index: 1000;
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10001;
+        width: 100%;
+        height: 100%;
+        background-color: #000 ;
+        filter: alpha(opacity=50);
+        opacity: .5;
+    }
 
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
+    .modal-content {
+        background-color: #fefefe;
+        margin-top: 15%;
+        margin-right: auto;
+        margin-bottom: 15%;
+        margin-left: auto;
+        border: 1px solid #888;
+        width: 35%;
+        /* Could be more or less, depending on screen size */
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
 </style>
 <script src="{{ asset('assets/js/products/index.js') }}"></script>
 <section class="container main_wrapper kma-wrapper ng-scope">
@@ -46,12 +62,12 @@
         <section class="mainRight ng-scope">
             <section class="mainWrap fll w100">
                 <article class="header-filter header-filter-product headerContent columnViewTwo">
+                    @include('layouts.add_product')
                     <div class="header-filter-search">
                         <kv-mobile-new on-click-call-back="refresh()" class="ng-isolate-scope">
                             <a href="javascript:void(0);" class="mobileIcon"></a>
                         </kv-mobile-new>
                         <div class="input-group">
-                            <i class="fa-solid fa-magnifying-glass"></i>
                             <input type="text" kv-filter-search="" ng-model="filterQuickSearch" placeholder="Theo mã, tên hàng" class="form-control input-focus ng-pristine ng-untouched ng-valid ng-empty ng-hide" id="inputQuickSearch" ng-enter="quickSearch(true)" ng-show="isOpenDropdownSearch || !isSuggestProductForSearchProduct || isCombineSearch" ng-change="changeQuickSearch()">
                             <div id="divSuggestProductForQuickSearchProduct" ng-style="{'flex': '1 1 auto', 'padding-left': '2.9rem'}" ng-show="!(isOpenDropdownSearch || !isSuggestProductForSearchProduct || isCombineSearch)" style="flex: 1 1 auto; padding-left: 2.9rem;">
                                 <kv-multi-select-search-product control-css-id="suggestProductSearch" control-css-class="form-control kv-multi-select-search" icon-remove-css-class="icon-remove-search-product" filter-ids="filterProductIds" filter-keyword="filterProductKey" filter-text="filterProductCodes" on-type="quickSearch()" is-show-on-hand="true" is-show-all-item="false" id="filterMultiSelect" ng-enter="quickSearchEmpty()" class="ng-isolate-scope"><kv-multi-select-search control-css-id="suggestProductSearch" control-css-class="form-control kv-multi-select-search" icon-remove-css-class="icon-remove-search-product" input-placeholder="Theo mã, tên hàng" option-data-text-field="Code" option-data-value-field="Id" option-item-template="itemTemplate" option-data-source="products" filter-ids="filterIds" filter-keyword="filterKeyword" filter-text="filterText" limit-filter-ids="10" message-limit-filter-ids="Bạn chỉ được chọn tối đa 10 hàng hóa" on-type="onType()" field-compare-get-first-by-enter="Code" class="ng-isolate-scope">
@@ -1027,7 +1043,6 @@
                         </div>
                     </div>
                 </article>
-                @include('layouts.add_product')
             </section>
         </section>
     </section>
