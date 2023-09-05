@@ -27,3 +27,7 @@ Route::get('/wavehouse/create', function () {
     return view('wavehouse.create');
 });
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
