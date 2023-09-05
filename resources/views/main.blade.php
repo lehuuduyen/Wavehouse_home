@@ -19,7 +19,7 @@
     
 </head>
 
-<body>
+<body kv-body class="vn" style="left: 0px;">
     <div class="mainWrap-container">
         <div class="mainWrap ">
             <header id="mainHeader" class="mainHeader clearfix posR">

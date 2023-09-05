@@ -1,5 +1,5 @@
-<div class="modal"></div>
-<div kendo-window="myKendoWindow" id="myModal" k-options="options" modal-render="true" role="dialog" uib-modal-window="modal-window" index="0" animate="animate" class="modal ng-isolate-scope k-window-content k-content" data-role="window" tabindex="-1" style="position: absolute;">
+<div class="k-overlay modal" style="display: none; z-index: 10002; opacity: 0.5;"></div>
+<div kendo-window="myKendoWindow" id="myModal" k-options="options" modal-render="true" role="dialog" uib-modal-window="modal-window" index="0" animate="animate" class="modal k-window-addProduct k-window k-window-poup ng-isolate-scope k-window-content k-content" data-role="window" tabindex="-1" style="position: absolute; min-width: 90px; min-height: 50px; width: 960px; position: fixed; top: 50px; left: 284px; touch-action: pan-y; z-index: 10003; opacity: 1; transform: scale(1); display: none;"> 
     <div class="modal-content k-window-addProduct">
         <div class="modal-header" style="padding: 20px;  background-color: #ededed;">
             <span class="close">×</span>
