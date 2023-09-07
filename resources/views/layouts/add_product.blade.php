@@ -82,7 +82,7 @@
                                                                             <option value="558704">tai nghe</option>
                                                                         </select></span>
                                                                     <div class="input-group-append ng-scope">
-                                                                        <!-- ngIf: includeAdd --><a ng-if="includeAdd" ng-click="onAdd &amp;&amp; onAdd()" ng-enter="onAdd &amp;&amp; onAdd()" class="btn-icon ng-scope" title="Thêm nhóm hàng" tabindex="0"><i class="far fa-plus"></i></a><!-- end ngIf: includeAdd -->
+                                                                        <a id="addGroupBtn" class="btn-icon ng-scope" title="Thêm nhóm hàng" tabindex="0"><i class="far fa-plus"></i></a>
                                                                     </div>
                                                                 </kv-category-dropdownlist></div>
                                                         </div>
@@ -95,7 +95,7 @@
                                                                                 hiệu---</option>
                                                                         </select></span>
                                                                     <div class="input-group-append">
-                                                                        <!-- ngIf: tradeMarkSelectedId > 0 --> <a class="btn-icon" ng-click="openAddOrEditTrademark(false)" ng-enter="openAddOrEditTrademark(false)" tabindex="0"><i class="far fa-plus"></i></a>
+                                                                        <!-- ngIf: tradeMarkSelectedId > 0 --> <a class="btn-icon" id="addBrandBtn" tabindex="0"><i class="far fa-plus"></i></a>
                                                                     </div>
                                                                 </kv-trademark-drop-down-list>
                                                             </div>
@@ -109,7 +109,7 @@
                                                                     </div>
                                                                     <div class="input-group-append">
                                                                         <!-- ngIf: (shelvestList && shelvestList.length > 0) -->
-                                                                        <a class="btn-icon" ng-click="openAddOrEditShelves(false)" ng-enter="openAddOrEditShelves(false)" tabindex="0"><i class="far fa-plus"></i></a>
+                                                                        <a class="btn-icon" id="AddPositionBtn" tabindex="0"><i class="far fa-plus"></i></a>
                                                                     </div>
                                                                 </kv-shelves-drop-down-list></div>
                                                         </div>
@@ -521,7 +521,7 @@
                             </div>
                         </kv-tabs></section>
                     <!-- end ngIf: !isActiveGppDrugStore || product.ProductType ==3 || product.ProductType == 1 --><!-- ngIf: isActiveGppDrugStore && product.ProductType !=3 && product.ProductType != 1 -->
-                    <div class="kv-window-footer"><a ng-enter="SaveProduct()" ng-click="SaveProduct()" href="javascript:void(0);" class="btn btn-success ng-binding" kv-taga-disabled="saving"><i class="fas fa-save"></i>Lưu</a> <a ng-show="!fromPurchaseOrder &amp;&amp; !fromOrderSupplier &amp;&amp; !fromSaleChannel &amp;&amp; omniIsShowOnKv" ng-enter="SaveProductAndRelatedToEcommerce()" ng-click="SaveProductAndRelatedToEcommerce()" href="javascript:void(0);" class="btn btn-success ng-binding ng-hide" kv-taga-disabled="saving"><i class="fas fa-save"></i>Lưu &amp; Liên kết kênh bán</a> <a ng-show="(!fromPurchaseOrder &amp;&amp; !fromOrderSupplier &amp;&amp; (!fromPurchaseOrder &amp;&amp; !fromOrderSupplier) &amp;&amp; !fromSaleChannel)" ng-enter="SaveAndContinue()" ng-click="SaveAndContinue()" href="javascript:void(0);" class="btn btn-success ng-binding" kv-taga-disabled="saving"><i class="fas fa-save"></i>Lưu &amp; Thêm mới</a> <a ng-show="(!fromPurchaseOrder &amp;&amp; !fromOrderSupplier &amp;&amp; (!fromPurchaseOrder &amp;&amp; !fromOrderSupplier) &amp;&amp; !fromSaleChannel)" ng-enter="SaveAndClone()" ng-click="SaveAndClone()" href="javascript:void(0);" class="btn btn-success ng-binding" kv-taga-disabled="saving"><i class="fas fa-save"></i>Lưu &amp; Sao chép</a><a ng-click="onCancel()" ng-enter="onCancel()" href="javascript:void(0);" class="btn btn-default ng-binding"><i class="fa fa-ban"></i>Bỏ qua</a></div>
+                    <div class="kv-window-footer"><a ng-enter="SaveProduct()" ng-click="SaveProduct()" href="javascript:void(0);" class="btn btn-success ng-binding" kv-taga-disabled="saving"><i class="fas fa-save"></i>Lưu</a> <a ng-show="!fromPurchaseOrder &amp;&amp; !fromOrderSupplier &amp;&amp; !fromSaleChannel &amp;&amp; omniIsShowOnKv" ng-enter="SaveProductAndRelatedToEcommerce()" ng-click="SaveProductAndRelatedToEcommerce()" href="javascript:void(0);" class="btn btn-success ng-binding ng-hide" kv-taga-disabled="saving"><i class="fas fa-save"></i>Lưu &amp; Liên kết kênh bán</a> <a ng-show="(!fromPurchaseOrder &amp;&amp; !fromOrderSupplier &amp;&amp; (!fromPurchaseOrder &amp;&amp; !fromOrderSupplier) &amp;&amp; !fromSaleChannel)" ng-enter="SaveAndContinue()" ng-click="SaveAndContinue()" href="javascript:void(0);" class="btn btn-success ng-binding" kv-taga-disabled="saving"><i class="fas fa-save"></i>Lưu &amp; Thêm mới</a> <a ng-show="(!fromPurchaseOrder &amp;&amp; !fromOrderSupplier &amp;&amp; (!fromPurchaseOrder &amp;&amp; !fromOrderSupplier) &amp;&amp; !fromSaleChannel)" ng-enter="SaveAndClone()" ng-click="SaveAndClone()" href="javascript:void(0);" class="btn btn-success ng-binding" kv-taga-disabled="saving"><i class="fas fa-save"></i>Lưu &amp; Sao chép</a><a id="closeProductModal" href="javascript:void(0);" class="btn btn-default ng-binding"><i class="fa fa-ban"></i>Bỏ qua</a></div>
                 </form><kv-popup id="addProductHelp" class="ng-isolate-scope popupWrapper">
                     <div class="kv2Pop pop popArrow" ng-transclude="">
                         <div data-notify="showtext" class="ng-scope"></div>
