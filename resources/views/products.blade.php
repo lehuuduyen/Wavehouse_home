@@ -1,41 +1,46 @@
 @extends('main',['pageTitle' => 'Danh mục sản phẩm'])
 @section('content')
+<script type="text/javascript" class="ng-scope">
+    $('body').on('click', '#addGroupBtn, #addBrandBtn, #AddPositionBtn', function(e) {
+        var index_highest = 0;
+        var current_element = "";
+        $(".k-window-poup").each(function() {
+            // always use a radix when using parseInt
+            var index_current = parseInt($(this).css("zIndex"), 10);
+            if (index_current > index_highest) {
+                index_highest = index_current - 1;
+            }
+
+            if ($(this).css('display') == 'block') {
+                current_element = $(this).attr('id') + "Overlay";
+            }
+        });
+
+        var existsOverlay = 0;
+        $(".k-overlay").each(function() {
+            if ($(this).css("z-index") == index_highest) {
+                existsOverlay++;
+            }
+        });
+
+        console.log(index_highest)
+        if (existsOverlay == 0) {
+            $(document.body).append('<div class="k-overlay ' + current_element + '" style="display: block; opacity: 0.5; z-index: ' + index_highest + '"></div>');
+        }
+    });
+</script>
 <style>
     .modal {
         display: none;
         position: fixed;
         top: 0;
         left: 0;
-        /* transform: translate(-53%, -100%); */
         z-index: 1001;
         width: 100%;
         height: 100%;
         overflow: auto;
         background-color: #aaa;
         filter: alpha(opacity=50);
-        /* width: 300% !important; */
-        /* z-index: 1000;
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 10001;
-        width: 100%;
-        height: 100%;
-        background-color: #000 ;
-        filter: alpha(opacity=50);
-        opacity: .5;
-    }
-
-    .modal-content {
-        background-color: #fefefe;
-        margin-top: 15%;
-        margin-right: auto;
-        margin-bottom: 15%;
-        margin-left: auto;
-        border: 1px solid #888;
-        width: 35%;
-        /* Could be more or less, depending on screen size */
     }
 
     /* The Close Button */
@@ -63,6 +68,9 @@
             <section class="mainWrap fll w100">
                 <article class="header-filter header-filter-product headerContent columnViewTwo">
                     @include('layouts.add_product')
+                    @include('layouts.add_supplier')
+                    @include('layouts.add_brand')
+                    @include('layouts.add_position')
                     <div class="header-filter-search">
                         <kv-mobile-new on-click-call-back="refresh()" class="ng-isolate-scope">
                             <a href="javascript:void(0);" class="mobileIcon"></a>

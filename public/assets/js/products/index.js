@@ -1,29 +1,83 @@
 jQuery(document).ready(function () {
   var modal = document.getElementById("myModal");
-
-  // Get the button that opens the modal
   var btn = document.getElementById("addProduct");
-
-  // Get the <span> element that closes the modal
   var span = document.getElementsByClassName("close")[0];
+  var closeProductModal = document.getElementById("closeProductModal");
 
-  // When the user clicks on the button, open the modal
   btn.onclick = function () {
     document.getElementsByClassName("k-overlay")[0].style.display = "block"
     modal.style.display = "block";
   }
-
-  // When the user clicks on <span> (x), close the modal
   span.onclick = function () {
     document.getElementsByClassName("k-overlay")[0].style.display = "none"
     modal.style.display = "none";
   }
+  closeProductModal.onclick = function () {
+    document.getElementsByClassName("k-overlay")[0].style.display = "none"
+    modal.style.display = "none";
+  }
 
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function (event) {
-    if (event.target == modal) {
-      document.getElementsByClassName("k-overlay")[0].style.display = "none" 
-      modal.style.display = "none";
-    }
+  // Thêm nhóm hàng 
+  var addSupplierModal = document.getElementById("addSupplierModal");
+  var addGroupBtn = document.getElementById("addGroupBtn");
+  var spanGroup = document.getElementsByClassName("close-group")[0];
+  var closeSupplierModal = document.getElementById("closeSupplierModal");
+  addGroupBtn.onclick = function () {
+    addSupplierModal.style.display = "block";
+    addSupplierModal.style.zIndex = "10005";
+  }
+  spanGroup.onclick = function () {
+    document.getElementsByClassName("addSupplierModalOverlay")[0].remove();
+    addSupplierModal.style.display = "none";
+    addSupplierModal.style.zIndex = "0";
+  }
+
+  closeSupplierModal.onclick = function () {
+    document.getElementsByClassName("addSupplierModalOverlay")[0].remove();
+    addSupplierModal.style.display = "none";
+    addSupplierModal.style.zIndex = "0";
+  }
+
+  // Thêm thương hiệu
+  var addBrandModal = document.getElementById("addBrandModal");
+  var addBrandBtn = document.getElementById("addBrandBtn");
+  var spanBrand = document.getElementsByClassName("close-brand")[0];
+  var closeBrandModal = document.getElementById("closeBrandModal");
+  addBrandBtn.onclick = function () {
+    addBrandModal.style.display = "block";
+    addBrandModal.style.zIndex = "10021";
+
+  }
+  spanBrand.onclick = function () {
+    document.getElementsByClassName("addBrandModalOverlay")[0].remove();
+    addBrandModal.style.display = "none";
+    addBrandModal.style.zIndex = "0";
+  }
+  closeBrandModal.onclick = function () {
+    document.getElementsByClassName("addBrandModalOverlay")[0].remove();
+    addBrandModal.style.display = "none";
+    addBrandModal.style.zIndex = "0";
+  }
+
+  // Thêm vị trí
+  var addPositionModal = document.getElementById("addPositionModal");
+  var AddPositionBtn = document.getElementById("AddPositionBtn");
+  var spanPosition = document.getElementsByClassName("close-position")[0];
+  var closePositionModal = document.getElementById("closePositionModal");
+  AddPositionBtn.onclick = function () {
+    addPositionModal.style.display = "block";
+    addPositionModal.style.zIndex = "10005";
+
+  }
+  spanPosition.onclick = function () {
+    document.getElementsByClassName("addPositionModalOverlay")[0].remove();
+    addPositionModal.style.display = "none";
+    addPositionModal.style.zIndex = "0";
+  }
+
+  closePositionModal.onclick = function () {
+    document.getElementsByClassName("addPositionModalOverlay")[0].remove();
+    addPositionModal.style.display = "none";
+    addPositionModal.style.zIndex = "0";
   }
 })
