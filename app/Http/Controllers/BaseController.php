@@ -14,4 +14,27 @@ class BaseController extends Controller
         }
         return $randomString;
     }
+    function responseSuccess($result, $message,$code =200){
+        return response()->json(
+            array(
+                'status' => 'success',
+                'code' => $code,
+                'data' => $result,
+                'message'=>$message
+
+            ),
+            $code
+        );
+    }
+    function responseError($message , $code =500){
+        return response()->json(
+            array(
+                'status' => 'error',
+                'code' => $code,
+                'data' => '',
+                'message'=>$message
+            ),
+            $code
+        );
+    }
 }

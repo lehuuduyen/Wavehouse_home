@@ -88131,7 +88131,11 @@ kv-attribute-list-table td .btn-icon-trash {
         justify-content: center
     }
 }
-
+@media only screen and  (max-width:1251px) {
+    .line2{
+        height: 793px !important;
+    }
+}
 .pos-setting .k-item .k-link .icon-lazada {
     background-image: url(https://cdn-app.kiotviet.vn/retailler/Content/img/lazada-icon-inactive.png)
 }

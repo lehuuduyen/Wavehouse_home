@@ -18,6 +18,7 @@ class CreateProductTable extends Migration
             $table->string('code')->max(40);
             $table->string('barcode')->max(16);
             $table->string('name')->max(128);
+            $table->string('price_old')->max(128);
             $table->string('price_capital')->max(128);
             $table->string('price_sell')->max(128);
             $table->integer('count');

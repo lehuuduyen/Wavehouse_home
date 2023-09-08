@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class SupplierController extends BaseController
+class ProductController extends BaseController
 {
     /**
      * Display a listing of the resource.
