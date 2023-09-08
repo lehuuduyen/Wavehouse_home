@@ -58,7 +58,11 @@
         cursor: pointer;
     }
 </style>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="{{ asset('assets/js/products/index.js') }}"></script>
+<script src="{{ asset('assets/js/products/category.js') }}"></script>
 <section class="container main_wrapper kma-wrapper ng-scope">
     <section class="clb main main-content ng-scope" ng-view="">
         <section class="mainLeft ng-scope">
@@ -68,7 +72,7 @@
             <section class="mainWrap fll w100">
                 <article class="header-filter header-filter-product headerContent columnViewTwo">
                     @include('layouts.add_product')
-                    @include('layouts.add_supplier')
+                    @include('layouts.add_category')
                     @include('layouts.add_brand')
                     @include('layouts.add_position')
                     <div class="header-filter-search">
