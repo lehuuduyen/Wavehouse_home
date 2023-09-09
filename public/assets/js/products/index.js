@@ -18,24 +18,24 @@ jQuery(document).ready(function () {
   }
 
   // Thêm nhóm hàng 
-  var addSupplierModal = document.getElementById("addSupplierModal");
+  var addCategoryModal = document.getElementById("addCategoryModal");
   var addGroupBtn = document.getElementById("addGroupBtn");
   var spanGroup = document.getElementsByClassName("close-group")[0];
   var closeSupplierModal = document.getElementById("closeSupplierModal");
   addGroupBtn.onclick = function () {
-    addSupplierModal.style.display = "block";
-    addSupplierModal.style.zIndex = "10005";
+    addCategoryModal.style.display = "block";
+    addCategoryModal.style.zIndex = "10005";
   }
   spanGroup.onclick = function () {
-    document.getElementsByClassName("addSupplierModalOverlay")[0].remove();
-    addSupplierModal.style.display = "none";
-    addSupplierModal.style.zIndex = "0";
+    document.getElementsByClassName("addCategoryModalOverlay")[0].remove();
+    addCategoryModal.style.display = "none";
+    addCategoryModal.style.zIndex = "0";
   }
 
   closeSupplierModal.onclick = function () {
-    document.getElementsByClassName("addSupplierModalOverlay")[0].remove();
-    addSupplierModal.style.display = "none";
-    addSupplierModal.style.zIndex = "0";
+    document.getElementsByClassName("addCategoryModalOverlay")[0].remove();
+    addCategoryModal.style.display = "none";
+    addCategoryModal.style.zIndex = "0";
   }
 
   // Thêm thương hiệu
@@ -80,4 +80,5 @@ jQuery(document).ready(function () {
     addPositionModal.style.display = "none";
     addPositionModal.style.zIndex = "0";
   }
+
 })

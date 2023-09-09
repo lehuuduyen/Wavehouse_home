@@ -6,10 +6,15 @@
         <div uib-modal-transclude=""><kv-trademark-add-or-edit trademark-json="" on-cancel="onCancel()" on-delete="onDelete()" on-save="onSave(savedTrademark)" class="ng-scope ng-isolate-scope">
                 <div class="form-wrapper">
                     <div class="form-group"><label class="form-label control-label ng-binding">Tên thương hiệu</label>
-                        <div class="form-wrap"><input id="trademarkAddOrEdit" type="text" class="form-control ng-pristine ng-valid ng-empty ng-valid-maxlength ng-touched" ng-model="trademark.Name" maxlength="50"></div>
+                        <div class="form-wrap">
+                            <input type="text" id="brandName" maxlength="255" placeholder="" class="form-control  iptUnitName_ " id="idCategorySearchTerm" tabindex="">
+                        </div>
                     </div>
                 </div>
-                <div class="kv-window-footer"><a href="javascript:void(0);" ng-click="save()" ng-enter="save()" kv-taga-disabled="saving" class="btn btn-success ng-binding"><i class="fas fa-save"></i>Lưu</a> <a href="javascript:void(0);" id="closeBrandModal" class="btn btn-default ng-binding"><i class="fa fa-ban"></i>Bỏ qua</a> <!-- ngIf: isEdit --></div>
+                <div class="kv-window-footer">
+                    <a href="javascript:void(0);" id="saveBrand" class="btn btn-success ng-binding"><i class="fas fa-save"></i>Lưu</a>
+                    <a href="javascript:void(0);" id="closeBrandModal" class="btn btn-default ng-binding"><i class="fa fa-ban"></i>Bỏ qua</a>
+                </div>
             </kv-trademark-add-or-edit></div>
     </div>
 </div>

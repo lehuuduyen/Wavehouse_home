@@ -1,5 +1,5 @@
 <div class="k-overlay modal" style="display: none; z-index: 10002; opacity: 0.5;"></div>
-<div kendo-window="myKendoWindow" id="myModal" k-options="options" modal-render="true" role="dialog" uib-modal-window="modal-window" index="0" animate="animate" class="modal k-window-addProduct k-window k-window-poup ng-isolate-scope k-window-content k-content" data-role="window" tabindex="-1" style="position: absolute; min-width: 90px; min-height: 50px; width: 960px; position: fixed; top: 50px; left: 284px; touch-action: pan-y; z-index: 10003; opacity: 1; transform: scale(1); display: none;"> 
+<div kendo-window="myKendoWindow" id="myModal" k-options="options" modal-render="true" role="dialog" uib-modal-window="modal-window" index="0" animate="animate" class="modal k-window-addProduct k-window k-window-poup ng-isolate-scope k-window-content k-content" data-role="window" tabindex="-1" style="position: absolute; min-width: 90px; min-height: 50px; width: 960px; position: fixed; top: 50px; left: 284px; touch-action: pan-y; z-index: 10003; opacity: 1; transform: scale(1); display: none;">
     <div class="modal-content k-window-addProduct">
         <div class="modal-header" style="padding: 20px;  background-color: #ededed;">
             <span class="close">×</span>
@@ -74,30 +74,43 @@
                                                                 </autocomplete>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group"><label class="form-label control-label ng-binding">Nhóm hàng<a tabindex="-1" class="help icon" kv-tooltip="" data-toggle="tooltip" data-placement="right" data-original-title="Lựa chọn nhóm hàng cho sản phẩm"><i class="fas fa-info-circle"></i></a></label>
-                                                            <div class="form-wrap"><kv-category-dropdownlist selected-id="product.CategoryId" css-class="product-select" class="input-group ng-isolate-scope" include-add="true" on-add="EditCategory"><span title="" class="k-widget k-dropdown k-header form-control product-select" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-readonly="false" style="width: 100%;" aria-busy="false" aria-activedescendant="048588fe-2cfc-49f1-9251-0c442efabfdd"><span unselectable="on" class="k-dropdown-wrap k-state-default"><span unselectable="on" class="k-input ng-scope"> ---Lựa
-                                                                                chọn---</span><span unselectable="on" class="k-select"><span unselectable="on" class="k-icon k-i-arrow-s">select</span></span></span><select kendo-drop-down-list="" id="ddlCat2367" class="product-select form-control" k-options="categorySelectOptions" k-ng-model="selectedId" k-filter="'contains'" k-value-primitive="true" data-option-label="{Name: _l.globalSelect1,Id:null}" style="width: 100%; display: none;" data-role="dropdownlist">
-                                                                            <option value="null" selected="selected"> ---Lựa chọn---
-                                                                            </option>
+                                                        <div class="form-group">
+                                                            <label class="form-label control-label ng-binding">
+                                                                Nhóm hàng
+                                                                <a tabindex="-1" class="help icon" kv-tooltip="" data-toggle="tooltip" data-placement="right" data-original-title="Lựa chọn nhóm hàng cho sản phẩm">
+                                                                    <i class="fas fa-info-circle"></i>
+                                                                </a>
+                                                            </label>
+                                                            <div class="form-wrap ui-front">
+                                                                <div selected-id="product.CategoryId" css-class="product-select" class="input-group ng-isolate-scope" include-add="true" on-add="EditCategory">
+                                                                    <input id="categoryIdHidden" hidden>
+                                                                    <input id="category" style="width: 100%;" class="k-widget k-header form-control product-select">
+                                                                    <!-- <span title="" class="k-widget k-dropdown k-header form-control product-select" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-readonly="false" style="width: 100%;" aria-busy="false" aria-activedescendant="048588fe-2cfc-49f1-9251-0c442efabfdd">
+                                                                        <span unselectable="on" class="k-dropdown-wrap k-state-default">
+                                                                            <span unselectable="on" class="k-input ng-scope"> ---Lựa chọn---</span>
+                                                                            <span unselectable="on" class="k-select"><span unselectable="on" class="k-icon k-i-arrow-s">select</span>
+                                                                            </span></span>
+                                                                        <select kendo-drop-down-list="" id="ddlCat2367" class="product-select form-control" k-options="categorySelectOptions" k-ng-model="selectedId" k-filter="'contains'" k-value-primitive="true" data-option-label="{Name: _l.globalSelect1,Id:null}" style="width: 100%; display: none;" data-role="dropdownlist">
+                                                                            <option value="null" selected="selected"> ---Lựa chọn---</option>
                                                                             <option value="558704">tai nghe</option>
-                                                                        </select></span>
+                                                                        </select>
+                                                                    </span> -->
                                                                     <div class="input-group-append ng-scope">
                                                                         <a id="addGroupBtn" class="btn-icon ng-scope" title="Thêm nhóm hàng" tabindex="0"><i class="far fa-plus"></i></a>
                                                                     </div>
-                                                                </kv-category-dropdownlist></div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div class="form-group" ng-hide="isActiveGppDrugStore"><label class="form-label control-label ng-binding">Thương
-                                                                hiệu<a tabindex="-1" class="help icon" kv-tooltip="" data-toggle="tooltip" data-placement="right" data-original-title="Thương hiệu, nhãn hiệu của sản phẩm"><i class="fas fa-info-circle"></i></a></label>
-                                                            <div class="form-wrap" ng-class="product.TradeMarkId > 0 ? 'wrap-icon-edit': ''">
-                                                                <kv-trademark-drop-down-list trademark="TradeMark" class="input-group ng-isolate-scope" on-trademark-change="changeTrademark(trademarkId)"><span title="" class="k-widget k-dropdown k-header form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-parse" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-owns="ddlTradeMark_listbox" aria-disabled="false" aria-readonly="false" aria-busy="false" style="" aria-activedescendant="2fa10269-d141-4587-95a6-6ab553cadb04"><span unselectable="on" class="k-dropdown-wrap k-state-default"><span unselectable="on" class="k-input ng-scope">---Chọn thương
-                                                                                hiệu---</span><span unselectable="on" class="k-select"><span unselectable="on" class="k-icon k-i-arrow-s">select</span></span></span><select kendo-drop-down-list="" id="ddlTradeMark" k-data-source="tradeMarkList" k-option-label="'---Chọn thương hiệu---'" k-data-text-field="'Name'" k-data-value-field="'Id'" ng-model="tradeMarkSelectedId" k-value-primitive="true" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-parse" k-filter="'contains'" k-on-change="changeTradeMark()" height="266" data-role="dropdownlist" style="display: none;">
-                                                                            <option value="" selected="selected">---Chọn thương
-                                                                                hiệu---</option>
-                                                                        </select></span>
+                                                        <div class="form-group" ng-hide="isActiveGppDrugStore">
+                                                            <label class="form-label control-label ng-binding">Thương hiệu<a tabindex="-1" class="help icon" kv-tooltip="" data-toggle="tooltip" data-placement="right" data-original-title="Thương hiệu, nhãn hiệu của sản phẩm"><i class="fas fa-info-circle"></i></a></label>
+                                                            <div class="form-wrap ui-front">
+                                                                <div trademark="TradeMark" class="input-group ng-isolate-scope">
+                                                                    <input id="brandIdHidden" hidden>
+                                                                    <input id="brand" style="width: 100%;" class="k-widget k-header form-control product-select">
                                                                     <div class="input-group-append">
-                                                                        <!-- ngIf: tradeMarkSelectedId > 0 --> <a class="btn-icon" id="addBrandBtn" tabindex="0"><i class="far fa-plus"></i></a>
+                                                                        <a class="btn-icon" id="addBrandBtn" tabindex="0"><i class="far fa-plus"></i></a>
                                                                     </div>
-                                                                </kv-trademark-drop-down-list>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="form-group" ng-show="product.ProductType!=pTypeValue.Service"><label class="form-label control-label ng-binding">Vị trí<a tabindex="-1" class="help icon" kv-tooltip="" data-toggle="tooltip" data-placement="right" data-original-title="Sử dụng để ghi lại vị trí mà hàng hóa được cất giữ hoặc trưng bày. Ví dụ: kệ số 1, số 2..."><i class="fas fa-info-circle"></i></a></label>
