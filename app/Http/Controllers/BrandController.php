@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Brand;
 
-class CategoryController extends Controller
+class BrandController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +16,11 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         $params = $request->all()["search"];
-        $category = Category::where('name', 'LIKE', '%' . $params . '%')
+        $brand = Brand::where('name', 'LIKE', '%' . $params . '%')
             ->select('id', 'name')
             ->pluck('name', 'id');
         return response()->json(
-            $category,
+            $brand,
             200
         );
     }
@@ -48,10 +48,10 @@ class CategoryController extends Controller
             $request->validate([
                 'name' => 'required|string|max:255',
             ], [
-                'name.required' => 'Tên nhóm hàng không được để trống',
+                'name.required' => 'Tên thương hiệu không được để trống',
             ]);
             $data = $request->all();
-            $result = Category::create($data);
+            $result = Brand::create($data);
 
             return response()->json(
                 array(
@@ -68,7 +68,6 @@ class CategoryController extends Controller
             );
         }
     }
-
     /**
      * Display the specified resource.
      *

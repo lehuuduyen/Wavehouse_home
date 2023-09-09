@@ -63,6 +63,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="{{ asset('assets/js/products/index.js') }}"></script>
 <script src="{{ asset('assets/js/products/category.js') }}"></script>
+<script src="{{ asset('assets/js/products/brand.js') }}"></script>
 <section class="container main_wrapper kma-wrapper ng-scope">
     <section class="clb main main-content ng-scope" ng-view="">
         <section class="mainLeft ng-scope">

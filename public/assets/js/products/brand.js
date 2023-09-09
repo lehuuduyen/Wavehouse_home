@@ -1,13 +1,13 @@
 jQuery(document).ready(function () {
-    // Category Modal
-    $("#category").autocomplete({
+    // Brand Modal
+    $("#brand").autocomplete({
         minChars: 1,
         cache: false,
         source: function (request, response) {
             var params = {};
             params['search'] = request.term;
             $.ajax({
-                url: "api/category" + "?" + jQuery.param(params),
+                url: "api/brand" + "?" + jQuery.param(params),
                 type: 'GET',
                 dataType: "json",
                 success: function (data) {
@@ -18,13 +18,13 @@ jQuery(document).ready(function () {
                         response(noOption);
                     } else {
                         response(data);
-                    }                    
+                    }
                 },
             });
         },
         select: function (event, ui) {
-            $("#category").val(ui.item.label);
-            $("#categoryIdHidden").val(ui.item.value);
+            $("#brand").val(ui.item.label);
+            $("#brandIdHidden").val(ui.item.value);
             return false;
         },
         response: function (event, ui) {
@@ -35,23 +35,23 @@ jQuery(document).ready(function () {
         }
     });
 
-    $("#saveCategory").click(function () {
-        var categoryName = $("#categoryName").val();
+    $("#saveBrand").click(function () {
+        var brandName = $("#brandName").val();
         $.ajax({
-            url: 'api/category',
+            url: 'api/brand',
             type: 'POST',
             data: {
-                name: categoryName
+                name: brandName
             },
             dataType: 'json',
             success: function (data) {
-                $("#category").val(data.data.name);
-                $("#categoryIdHidden").val(data.data.id);
+                $("#brand").val(data.data.name);
+                $("#brandIdHidden").val(data.data.id);
                 // Close modal
-                var addCategoryModal = document.getElementById("addCategoryModal");
-                document.getElementsByClassName("addCategoryModalOverlay")[0].remove();
-                addCategoryModal.style.display = "none";
-                addCategoryModal.style.zIndex = "0";
+                var addBrandModal = document.getElementById("addBrandModal");
+                document.getElementsByClassName("addBrandModalOverlay")[0].remove();
+                addBrandModal.style.display = "none";
+                addBrandModal.style.zIndex = "0";
             }
         })
     });

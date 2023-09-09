@@ -84,7 +84,6 @@
                                                             <div class="form-wrap ui-front">
                                                                 <div selected-id="product.CategoryId" css-class="product-select" class="input-group ng-isolate-scope" include-add="true" on-add="EditCategory">
                                                                     <input id="categoryIdHidden" hidden>
-
                                                                     <input id="category" style="width: 100%;" class="k-widget k-header form-control product-select">
                                                                     <!-- <span title="" class="k-widget k-dropdown k-header form-control product-select" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-readonly="false" style="width: 100%;" aria-busy="false" aria-activedescendant="048588fe-2cfc-49f1-9251-0c442efabfdd">
                                                                         <span unselectable="on" class="k-dropdown-wrap k-state-default">
@@ -102,18 +101,16 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group" ng-hide="isActiveGppDrugStore"><label class="form-label control-label ng-binding">Thương
-                                                                hiệu<a tabindex="-1" class="help icon" kv-tooltip="" data-toggle="tooltip" data-placement="right" data-original-title="Thương hiệu, nhãn hiệu của sản phẩm"><i class="fas fa-info-circle"></i></a></label>
-                                                            <div class="form-wrap" ng-class="product.TradeMarkId > 0 ? 'wrap-icon-edit': ''">
-                                                                <kv-trademark-drop-down-list trademark="TradeMark" class="input-group ng-isolate-scope" on-trademark-change="changeTrademark(trademarkId)"><span title="" class="k-widget k-dropdown k-header form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-parse" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-owns="ddlTradeMark_listbox" aria-disabled="false" aria-readonly="false" aria-busy="false" style="" aria-activedescendant="2fa10269-d141-4587-95a6-6ab553cadb04"><span unselectable="on" class="k-dropdown-wrap k-state-default"><span unselectable="on" class="k-input ng-scope">---Chọn thương
-                                                                                hiệu---</span><span unselectable="on" class="k-select"><span unselectable="on" class="k-icon k-i-arrow-s">select</span></span></span><select kendo-drop-down-list="" id="ddlTradeMark" k-data-source="tradeMarkList" k-option-label="'---Chọn thương hiệu---'" k-data-text-field="'Name'" k-data-value-field="'Id'" ng-model="tradeMarkSelectedId" k-value-primitive="true" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-parse" k-filter="'contains'" k-on-change="changeTradeMark()" height="266" data-role="dropdownlist" style="display: none;">
-                                                                            <option value="" selected="selected">---Chọn thương
-                                                                                hiệu---</option>
-                                                                        </select></span>
+                                                        <div class="form-group" ng-hide="isActiveGppDrugStore">
+                                                            <label class="form-label control-label ng-binding">Thương hiệu<a tabindex="-1" class="help icon" kv-tooltip="" data-toggle="tooltip" data-placement="right" data-original-title="Thương hiệu, nhãn hiệu của sản phẩm"><i class="fas fa-info-circle"></i></a></label>
+                                                            <div class="form-wrap ui-front">
+                                                                <div trademark="TradeMark" class="input-group ng-isolate-scope">
+                                                                    <input id="brandIdHidden" hidden>
+                                                                    <input id="brand" style="width: 100%;" class="k-widget k-header form-control product-select">
                                                                     <div class="input-group-append">
-                                                                        <!-- ngIf: tradeMarkSelectedId > 0 --> <a class="btn-icon" id="addBrandBtn" tabindex="0"><i class="far fa-plus"></i></a>
+                                                                        <a class="btn-icon" id="addBrandBtn" tabindex="0"><i class="far fa-plus"></i></a>
                                                                     </div>
-                                                                </kv-trademark-drop-down-list>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="form-group" ng-show="product.ProductType!=pTypeValue.Service"><label class="form-label control-label ng-binding">Vị trí<a tabindex="-1" class="help icon" kv-tooltip="" data-toggle="tooltip" data-placement="right" data-original-title="Sử dụng để ghi lại vị trí mà hàng hóa được cất giữ hoặc trưng bày. Ví dụ: kệ số 1, số 2..."><i class="fas fa-info-circle"></i></a></label>
