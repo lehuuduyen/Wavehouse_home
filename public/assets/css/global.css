@@ -2051,7 +2051,7 @@ div.k-window {
     z-index: 10001;
     border-style: solid;
     border-width: 1px;
-    padding-top: 2em
+    /* padding-top: 2em */
 }
 
 .k-block>.k-header,
@@ -2094,8 +2094,8 @@ div.k-window-titleless {
 
 div.k-window-content {
     position: relative;
-    height: 100%;
-    padding: .58em;
+    /* height: 100%; */
+    /* padding: .58em; */
     overflow: auto;
     outline: 0
 }
@@ -39685,7 +39685,7 @@ button.close {
     }
 }
 
-@media (min-width :667px) {
+@media (min-width :769px) {
     .product-detail .swiper-container {
         overflow: visible
     }
@@ -41310,7 +41310,7 @@ button.close {
     }
 
     .headerContent .kv2Btn {
-        margin-left: 8px
+        /* margin-left: 8px */
     }
 
     .popup {
@@ -52176,7 +52176,7 @@ autocomplete.form-control {
 }
 
 .k-window-point div.k-window-content {
-    padding-top: 15px
+    /* padding-top: 15px */
 }
 
 .k-window-point .boxBtn button {
@@ -61790,7 +61790,7 @@ kv-warranty-order-substitute hr {
     background-color: #fff;
     border: 1px dashed #ccc;
     border-radius: 3px;
-    width: calc((100% - 60px)/ 5);
+    width: calc((100% )/ 5);
     min-height: 80px;
     float: left;
     margin-left: 15px;
@@ -64592,7 +64592,7 @@ span.batchExpirePopup {
 }
 
 .main_wrapper .kv2Left .k-grid table {
-    min-width: 926px;
+    /* min-width: 926px; */
     table-layout: auto
 }
 
@@ -78720,7 +78720,7 @@ figure .k-window-role .userList img>div ul ul li {
 }
 
 .k-window-changegroup div.k-window-content {
-    padding-top: 3.5rem
+    /* padding-top: 3.5rem */
 }
 
 .k-window-productchoose .k-grid-content {
@@ -88131,11 +88131,7 @@ kv-attribute-list-table td .btn-icon-trash {
         justify-content: center
     }
 }
-@media only screen and  (max-width:1251px) {
-    .line2{
-        height: 793px !important;
-    }
-}
+
 .pos-setting .k-item .k-link .icon-lazada {
     background-image: url(https://cdn-app.kiotviet.vn/retailler/Content/img/lazada-icon-inactive.png)
 }
@@ -90233,7 +90229,7 @@ kv-coupon-issuance-general .tooltip-custom+.tooltip .tooltip-inner {
 
 .kv2Right .form-wrapper.kv3Pay .form-group .form-wrap {
     margin-left: calc(100% - 95 * .1rem);
-    width: 95px
+    width: 98px
 }
 
 .kv2Right .form-wrapper.kv3Pay>.form-group>.form-label {
@@ -96619,7 +96615,7 @@ div.k-window.kv-shopee .btn-shopee:before {
     }
 }
 
-@media (max-width:1280px) {
+@media (max-width:1000px) {
 
     .header-filter-buttons .btn,
     .header-filter-buttons .k-window.k-window-importProduct .kv-window-footer .k-upload .k-upload-selected,
@@ -97299,11 +97295,11 @@ only screen and (min-device-pixel-ratio:2) {
     }
 }
 
-@media (min-width:769px)  {
+/* @media (min-width:769px)  {
     :not(.pos-setting-parameter)>.k-content:not(.setting-email).k-state-active {
         max-width: calc(95vw - (230 + 2) * 1px) !important
     }
-}
+} */
 
 
 @media screen and (max-width:568px) {

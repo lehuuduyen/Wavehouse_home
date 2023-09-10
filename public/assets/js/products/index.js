@@ -2,20 +2,34 @@ jQuery(document).ready(function () {
   var modal = document.getElementById("myModal");
   var btn = document.getElementById("addProduct");
   var span = document.getElementsByClassName("close")[0];
-  var closeProductModal = document.getElementById("closeProductModal");
 
   btn.onclick = function () {
     document.getElementsByClassName("k-overlay")[0].style.display = "block"
     modal.style.display = "block";
   }
+  $(document).on('click','#updateProduct',function(){
+    document.getElementsByClassName("k-overlay")[0].style.display = "block"
+    let json =$(this).data('json');
+    Object.keys(json).map(function(key){
+      if(key =="price_sell"  || key == "price_capital"){
+        
+        $(`input[name='${key}']`).val(formatCurrency(json[key]))
+
+      }else if(key =="file"){
+        $("#output").attr('src',json[key])
+      }else{
+        $(`input[name='${key}']`).val(json[key])
+
+      }
+    })
+    modal.style.display = "block";
+  })
+ 
   span.onclick = function () {
     document.getElementsByClassName("k-overlay")[0].style.display = "none"
     modal.style.display = "none";
   }
-  closeProductModal.onclick = function () {
-    document.getElementsByClassName("k-overlay")[0].style.display = "none"
-    modal.style.display = "none";
-  }
+  
 
   // Thêm nhóm hàng 
   var addSupplierModal = document.getElementById("addSupplierModal");

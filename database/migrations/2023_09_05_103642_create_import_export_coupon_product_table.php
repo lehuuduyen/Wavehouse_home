@@ -16,7 +16,8 @@ class CreateImportExportCouponProductTable extends Migration
         Schema::create('import_export_coupon_product', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->integer('product_id')->max(8);
-            $table->integer('quality');
+            $table->integer('coupon_id')->max(8);
+            $table->integer('quantity');
             $table->integer('price');
             $table->integer('warehouse_id')->max(8);
             $table->tinyInteger('status');

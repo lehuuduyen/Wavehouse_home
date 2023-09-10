@@ -1,3 +1,4 @@
+
 @extends('main', ['pageTitle' => 'Danh mục sản phẩm'])
 @section('content')
     <script type="text/javascript" class="ng-scope">
@@ -62,9 +63,7 @@
     <script src="{{ asset('assets/js/products/index.js') }}"></script>
     <section class="container main_wrapper kma-wrapper ng-scope">
         <section class="clb main main-content ng-scope" ng-view="">
-            <section class="mainLeft ng-scope">
-                @include('layouts.productleft')
-            </section>
+
             <section class="mainRight ng-scope">
                 <section class="mainWrap fll w100">
                     <article class="header-filter header-filter-product headerContent columnViewTwo">
@@ -190,128 +189,14 @@
                                 <ul ng-if="!retailer.isActiveGppDrugStore" class="ng-scope">
                                     <li><a id="addProduct"><i class="far fa-fw fa-plus"></i> Thêm hàng
                                             hóa</a></li>
-                                    <li><a ng-click="AddProduct(pTypeValue.Service)" kv-btn-scroll=""
-                                            class="ng-binding"><i class="far fa-fw fa-plus"></i> Thêm dịch
-                                            vụ</a></li>
-                                    <li><a ng-click="AddProduct(pTypeValue.Manufactured)" kv-btn-scroll=""
-                                            class="ng-binding"><i class="far fa-fw fa-plus"></i> Thêm Combo -
-                                            đóng gói</a></li>
+
                                 </ul>
-                            </div><a ng-show="_p.has('Product_Import')" title="Import" href="javascript:void(0)"
-                                ng-click="importProduct()" class="btn btn-success kv2BtnImport"><i
-                                    class="fas fa-fw fa-file-import"></i> <span
-                                    class="text-btn ng-binding">Import</span></a> <a ng-show="_p.has('Product_Export')"
-                                title="Xuất  file" href="javascript:void(0)" ng-click="exportProduct()"
-                                class="btn btn-success kv2BtnExport"><i class="fas fa-fw fa-file-export"></i> <span
-                                    class="text-btn ng-binding">Xuất
-                                    file</span></a>
+                            </div>
                             <div id="columnSelection" kv-column-selection=""
                                 class="columnView k-widget k-reset k-header k-menu k-menu-horizontal"
                                 binded-grid="bindedGrid" title="Tùy chọn" data-role="menu" role="menubar"
                                 tabindex="0">
-                                <li class="k-item k-state-default k-first k-last" role="menuitem" aria-haspopup="true">
-                                    <span class="k-link"><span class="k-icon k-i-arrow-s"></span></span>
-                                    <ul class="k-group k-menu-group" style="display:none" role="menu"
-                                        aria-hidden="true">
-                                        <li class="k-item k-state-default k-first" role="menuitem"><span
-                                                class="k-link"><label title=" "
-                                                    class="quickaction_chk undefined"><input type="checkbox"
-                                                        checked="checked" class="check_row"
-                                                        data-field="Image"><span></span>Hình ảnh</label></span>
-                                        </li>
-                                        <li class="k-item k-state-default" role="menuitem"><span class="k-link"><label
-                                                    title=" " class="quickaction_chk undefined"><input
-                                                        type="checkbox" checked="checked" class="check_row"
-                                                        data-field="Code"><span></span>Mã hàng</label></span>
-                                        </li>
-                                        <li class="k-item k-state-default" role="menuitem"><span class="k-link"><label
-                                                    title=" " class="quickaction_chk undefined"><input
-                                                        type="checkbox" checked="checked" class="check_row"
-                                                        data-field="Barcode"><span></span>Mã vạch</label></span>
-                                        </li>
-                                        <li class="k-item k-state-default" role="menuitem"><span class="k-link"><label
-                                                    title=" " class="quickaction_chk undefined"><input
-                                                        type="checkbox" checked="checked" class="check_row"
-                                                        data-field="Name"><span></span>Tên hàng</label></span>
-                                        </li>
-                                        <li class="k-item k-state-default" role="menuitem"><span class="k-link"><label
-                                                    title=" " class="quickaction_chk undefined"><input
-                                                        type="checkbox" checked="checked" class="check_row"
-                                                        data-field="CategoryName"><span></span>Nhóm
-                                                    hàng</label></span></li>
-                                        <li class="k-item k-state-default" role="menuitem"><span class="k-link"><label
-                                                    title=" " class="quickaction_chk undefined"><input
-                                                        type="checkbox" checked="checked" class="check_row"
-                                                        data-field="ProType"><span></span>Loại
-                                                    hàng</label></span></li>
-                                        <li class="k-item k-state-default" role="menuitem"><span class="k-link"><label
-                                                    title=" " class="quickaction_chk undefined"><input
-                                                        type="checkbox" checked="checked" class="check_row"
-                                                        data-field="OmniChannel"><span></span>Liên kết kênh
-                                                    bán</label></span></li>
-                                        <li class="k-item k-state-default" role="menuitem"><span class="k-link"><label
-                                                    title=" " class="quickaction_chk undefined"><input
-                                                        type="checkbox" checked="checked" class="check_row"
-                                                        data-field="BasePrice"><span></span>Giá
-                                                    bán</label></span></li>
-                                        <li class="k-item k-state-default" role="menuitem"><span class="k-link"><label
-                                                    title=" " class="quickaction_chk undefined"><input
-                                                        type="checkbox" checked="checked" class="check_row"
-                                                        data-field="Cost"><span></span>Giá vốn</label></span>
-                                        </li>
-                                        <li class="k-item k-state-default" role="menuitem"><span class="k-link"><label
-                                                    title=" " class="quickaction_chk undefined"><input
-                                                        type="checkbox" checked="checked" class="check_row"
-                                                        data-field="TradeMarkName"><span></span>Thương
-                                                    hiệu</label></span></li>
-                                        <li class="k-item k-state-default" role="menuitem"><span class="k-link"><label
-                                                    title=" " class="quickaction_chk undefined"><input
-                                                        type="checkbox" checked="checked" class="check_row"
-                                                        data-field="OnHand"><span></span>Tồn kho</label></span>
-                                        </li>
-                                        <li class="k-item k-state-default" role="menuitem"><span class="k-link"><label
-                                                    title=" " class="quickaction_chk undefined"><input
-                                                        type="checkbox" checked="checked" class="check_row"
-                                                        data-field="ProductShelvesArr"><span></span>Vị
-                                                    trí</label></span></li>
-                                        <li class="k-item k-state-default" role="menuitem"><span class="k-link"><label
-                                                    title=" " class="quickaction_chk undefined"><input
-                                                        type="checkbox" checked="checked" class="check_row"
-                                                        data-field="Reserved"><span></span>Khách
-                                                    đặt</label></span></li>
-                                        <li class="k-item k-state-default" role="menuitem"><span class="k-link"><label
-                                                    title=" " class="quickaction_chk undefined"><input
-                                                        type="checkbox" checked="checked" class="check_row"
-                                                        data-field="StockoutForecast"><span></span>Dự kiến hết
-                                                    hàng</label></span></li>
-                                        <li class="k-item k-state-default" role="menuitem"><span class="k-link"><label
-                                                    title=" " class="quickaction_chk undefined"><input
-                                                        type="checkbox" checked="checked" class="check_row"
-                                                        data-field="MinQuantity"><span></span>Định mức tồn ít
-                                                    nhất</label></span></li>
-                                        <li class="k-item k-state-default" role="menuitem"><span class="k-link"><label
-                                                    title=" " class="quickaction_chk undefined"><input
-                                                        type="checkbox" checked="checked" class="check_row"
-                                                        data-field="MaxQuantity"><span></span>Định mức tồn nhiều
-                                                    nhất</label></span></li>
-                                        <li class="k-item k-state-default" role="menuitem"><span class="k-link"><label
-                                                    title=" " class="quickaction_chk undefined"><input
-                                                        type="checkbox" checked="checked" class="check_row"
-                                                        data-field="isActive"><span></span>Trạng
-                                                    thái</label></span></li>
-                                        <li class="k-item k-state-default" role="menuitem"><span class="k-link"><label
-                                                    title=" " class="quickaction_chk undefined"><input
-                                                        type="checkbox" checked="checked" class="check_row"
-                                                        data-field="WarrantyStatus"><span></span>Bảo
-                                                    hành</label></span></li>
-                                        <li class="k-item k-state-default k-last" role="menuitem"><span
-                                                class="k-link"><label title=" "
-                                                    class="quickaction_chk undefined"><input type="checkbox"
-                                                        checked="checked" class="check_row"
-                                                        data-field="MaintenanceStatus"><span></span>Bảo
-                                                    trì</label></span></li>
-                                    </ul>
-                                </li>
+                                
                             </div>
                         </aside>
                     </article>
@@ -345,17 +230,12 @@
                                             <tr role="row">
                                                 <th class="k-hierarchy-cell k-header ng-scope" scope="col">
                                                     &nbsp;</th>
-                                                <th scope="col" role="columnheader" data-field="Id" rowspan="1"
-                                                    data-index="0" id="c09a369f-b624-49d1-9cbd-a930aad2a4d7"
-                                                    class="cell-check k-header ng-scope"><label
-                                                        class="radiocheck check"><input id="kvSelectAllItem"
-                                                            type="checkbox"><span class="chkrad"></span></label>
-                                                </th>
-                                                <th scope="col" role="columnheader" data-field="IsFavourite"
-                                                    rowspan="1" data-index="1"
+
+                                                <th scope="col" rowspan="1" data-index="1"
                                                     id="d28e8636-ab86-44fc-834e-a5288ddf1f51"
                                                     class="cell-star k-header ng-scope" data-role="columnsorter"><a
-                                                        class="k-link" href="#"><span class="starFilter"
+                                                        class="k-link" style="padding-left: 10px !important;"
+                                                        href="#"><span class="starFilter"
                                                             ng-click="sortFavouriteItem($event)"><i
                                                                 class="fal fa-star"></i></span></a></th>
                                                 <th scope="col" role="columnheader" data-field="Image" rowspan="1"
@@ -425,18 +305,6 @@
                                                     id="8e5bed37-2134-472b-8796-75030ba5a51b"
                                                     class="cell-name k-header ng-scope" style="display:none">Vị
                                                     trí</th>
-                                                <th scope="col" role="columnheader" data-field="Reserved"
-                                                    rowspan="1" data-title="Khách đặt" data-index="14"
-                                                    id="aa81aa12-8d3a-4e4c-ae67-b38944f4e231"
-                                                    class="cell-total txtR k-header ng-scope" data-role="columnsorter"><a
-                                                        class="k-link" href="#">Khách
-                                                        đặt</a></th>
-                                                <th scope="col" role="columnheader" data-field="StockoutForecast"
-                                                    rowspan="1" data-title="Dự kiến hết hàng" data-index="15"
-                                                    id="90750809-ebf8-4d4f-85df-48c7436d1665"
-                                                    class="cell-date-time k-header ng-scope th-show"
-                                                    data-role="columnsorter"><a class="k-link" href="#">Dự kiến
-                                                        hết hàng</a></th>
                                                 <th scope="col" role="columnheader" data-field="MinQuantity"
                                                     rowspan="1" data-title="Định mức tồn ít nhất" data-index="16"
                                                     id="1911a390-f1ee-4319-83a1-7d450b730807"
@@ -487,274 +355,34 @@
                                         <col>
                                         <col>
                                     </colgroup>
-                                    <tbody role="rowgroup">
-                                        <tr class="k-master-row ng-scope cssSummaryRow"
-                                            data-uid="75d607db-86e3-4497-96e6-8c8a0ae9295b" role="row"
-                                            style="background: rgb(254, 252, 237); font-weight: bold;">
-                                            <td class="k-hierarchy-cell"><a class="k-icon k-plus" href="#"
-                                                    tabindex="-1" style="display: none;"></a></td>
-                                            <td class="cell-check" role="gridcell"><label
-                                                    class="quickaction_chk dpb has-pretty-child"
-                                                    ng-click="eventStop($event)">
-                                                    <div class="clearfix prettycheckbox labelright  blue"><input
-                                                            type="checkbox"
-                                                            class="kvMultiSelect ng-scope ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty"
-                                                            checklist-change="kvOnChangeMultiSelectItem(dataItem)"
-                                                            ng-checked="productIsChecked(dataItem)"
-                                                            checklist-comparator=".Id" checklist-value="dataItem"
-                                                            kv-pretty-check="" ng-model="checked" style="display: none;"
-                                                            checklist-model="kvSelectedItems"><a href="javascript:void(0)"
-                                                            tabindex="0" class=""></a>
-                                                        <label for="undefined" class=""></label>
-                                                    </div> <span class="chkrad"></span>
-                                                </label></td>
-                                            <td class="cell-star" role="gridcell"><label class="quickaction_chk star">
-                                                    <input type="checkbox"
-                                                        class="chkrad ng-pristine ng-untouched ng-valid ng-empty"
-                                                        ng-click="onChangeFavouriteItem(dataItem)" ng-true-value="1"
-                                                        ng-false-value="0" ng-checked="dataItem.IsFavourite > 0"
-                                                        ng-model="dataItem.IsFavourite"> <span></span> </label>
-                                            </td>
-                                            <td class="tdImage" role="gridcell">
-                                                <div class="cell-img hide-summaryRow">
-                                                    <div ng-style="{'background-image': 'url(' + (dataItem.Image ? dataItem.Image : (dataItem.ProductId <= 0 ? '' : 'https://cdn-app.kiotviet.vn/retailler/Content/img/default-product.png')) + ')'}"
-                                                        ng-mouseover="showImg($event)" ng-mouseleave="hideImg($event)"
-                                                        class="img-thumb" data-code=""
-                                                        style="background-image: url(&quot;&quot;);"><img ng-src="">
-                                                    </div>
-                                                    <div ng-show="dataItem.Image" class="img-preview ng-hide">
-                                                        <img data-code="" ng-src="">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="cell-code tdCodeDoctor" role="gridcell"><span
-                                                    ng-class="{&quot;has-icon&quot;:dataItem.IsMedicineProduct &amp;&amp; (dataItem.GlobalMedicineId > 0 || dataItem.IsProductMedicineNational)}"
-                                                    data-code="-1" class="ng-binding">
-                                                    <!-- ngIf: dataItem.IsMedicineProduct && (dataItem.GlobalMedicineId > 0 || dataItem.IsProductMedicineNational) --></span>
-                                            </td>
-                                            <td class="cell-code" style="display:none" role="gridcell"><span
-                                                    ng-bind="dataItem.Barcode" class="ng-binding"></span></td>
-                                            <td class="cell-auto ng-binding" role="gridcell">
-                                                <!-- ngIf: dataItem.GroupProductType === groupProductTypes.Unit -->
-                                            </td>
-                                            <td class="cell-name" style="display:none" role="gridcell"><span
-                                                    ng-bind="dataItem.CategoryName" class="ng-binding"></span>
-                                            </td>
-                                            <td class="cell-auto" style="display:none" role="gridcell"><span
-                                                    ng-bind="dataItem.ProType" class="ng-binding"></span></td>
-                                            <td class="tdProductType" style="display:none" role="gridcell">
-                                                <div id="ChannelType-75d607db-86e3-4497-96e6-8c8a0ae9295b">
-                                                </div>
-                                            </td>
-                                            <td class="cell-total txtR" role="gridcell"></td>
-                                            <td class="cell-total txtR tdMobile" role="gridcell"></td>
-                                            <td class="cell-name" style="display:none" role="gridcell"><span
-                                                    ng-bind="dataItem.TradeMarkName" class="ng-binding"></span>
-                                            </td>
-                                            <td class="cell-total txtR ng-binding" role="gridcell">304</td>
-                                            <td class="cell-name ng-binding" style="display:none" role="gridcell"></td>
-                                            <td class="cell-total txtR onOrderReserved" role="gridcell"><span
-                                                    ng-show="false" class="ng-binding ng-hide">0</span><a
-                                                    href="#/Orders?ProductCode=undefined&amp;ForFrodFiter=1"
-                                                    ng-show="" target="_blank" class="ng-binding ng-hide">0</a><span
-                                                    ng-show="false" class="ng-binding ng-hide">0</span><span
-                                                    ng-show="true" class="ng-binding">0</span></td>
-                                            <td class="cell-date-time" role="gridcell">---</td>
-                                            <td class="cell-total-final txtR ng-binding" style="display:none"
-                                                role="gridcell"></td>
-                                            <td class="cell-total-final txtR ng-binding" style="display:none"
-                                                role="gridcell"></td>
-                                            <td class="cell-status ng-binding" style="display:none" role="gridcell"></td>
-                                            <td class="tdStatusST ng-binding" style="display:none" role="gridcell"></td>
-                                            <td class="tdStatusST ng-binding" style="display:none" role="gridcell"></td>
-                                        </tr>
+                                    <tbody id="tbody-product">
 
 
-                                        <tr class="k-master-row ng-scope table-data"
-                                            data-uid="b0db689f-4d75-4f07-bf5b-0a5487f7d19f" role="row">
-                                            <td class="k-hierarchy-cell"><a class="k-icon k-plus" href="#"
-                                                    tabindex="-1"></a></td>
-                                            <td class="cell-check" role="gridcell"><label
-                                                    class="quickaction_chk dpb has-pretty-child"
-                                                    ng-click="eventStop($event)">
-                                                    <div class="clearfix prettycheckbox labelright  blue"><input
-                                                            type="checkbox"
-                                                            class="kvMultiSelect ng-scope ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty"
-                                                            checklist-change="kvOnChangeMultiSelectItem(dataItem)"
-                                                            ng-checked="productIsChecked(dataItem)"
-                                                            checklist-comparator=".Id" checklist-value="dataItem"
-                                                            kv-pretty-check="" ng-model="checked" style="display: none;"
-                                                            checklist-model="kvSelectedItems"><a href="javascript:void(0)"
-                                                            tabindex="0" class=""></a>
-                                                        <label for="undefined" class=""></label>
-                                                    </div> <span class="chkrad"></span>
-                                                </label></td>
-                                            <td class="cell-star" role="gridcell"><label class="quickaction_chk star">
-                                                    <input type="checkbox"
-                                                        class="chkrad ng-pristine ng-untouched ng-valid ng-empty"
-                                                        ng-click="onChangeFavouriteItem(dataItem)" ng-true-value="1"
-                                                        ng-false-value="0" ng-checked="dataItem.IsFavourite > 0"
-                                                        ng-model="dataItem.IsFavourite"> <span></span> </label>
-                                            </td>
-                                            <td class="tdImage" role="gridcell">
-                                                <div class="cell-img hide-summaryRow">
-                                                    <div ng-style="{'background-image': 'url(' + (dataItem.Image ? dataItem.Image : (dataItem.ProductId <= 0 ? '' : 'https://cdn-app.kiotviet.vn/retailler/Content/img/default-product.png')) + ')'}"
-                                                        ng-mouseover="showImg($event)" ng-mouseleave="hideImg($event)"
-                                                        class="img-thumb" data-code=""
-                                                        style="background-image: url(&quot;https://cdn-app.kiotviet.vn/sample/machine/19.png&quot;);">
-                                                        <img ng-src="https://cdn-app.kiotviet.vn/sample/machine/19.png"
-                                                            src="https://cdn-app.kiotviet.vn/sample/machine/19.png">
-                                                    </div>
-                                                    <div ng-show="dataItem.Image" class="img-preview"><img
-                                                            data-code="https://cdn-app.kiotviet.vn/sample/machine/19.png"
-                                                            ng-src="https://cdn-app.kiotviet.vn/sample/machine/19.png"
-                                                            src="https://cdn-app.kiotviet.vn/sample/machine/19.png">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="cell-code tdCodeDoctor" role="gridcell"><span
-                                                    ng-class="{&quot;has-icon&quot;:dataItem.IsMedicineProduct &amp;&amp; (dataItem.GlobalMedicineId > 0 || dataItem.IsProductMedicineNational)}"
-                                                    data-code="17386671" class="ng-binding">TBDCN003
-                                                    <!-- ngIf: dataItem.IsMedicineProduct && (dataItem.GlobalMedicineId > 0 || dataItem.IsProductMedicineNational) --></span>
-                                            </td>
-                                            <td class="cell-code" style="display:none" role="gridcell"><span
-                                                    ng-bind="dataItem.Barcode" class="ng-binding"></span></td>
-                                            <td class="cell-auto ng-binding" role="gridcell">Máy phát điện
-                                                Elemax<!-- ngIf: dataItem.GroupProductType === groupProductTypes.Unit -->
-                                            </td>
-                                            <td class="cell-name" style="display:none" role="gridcell"><span
-                                                    ng-bind="dataItem.CategoryName" class="ng-binding">Điện công
-                                                    nghiệp</span></td>
-                                            <td class="cell-auto" style="display:none" role="gridcell"><span
-                                                    ng-bind="dataItem.ProType" class="ng-binding">Hàng
-                                                    hóa</span></td>
-                                            <td class="tdProductType" style="display:none" role="gridcell">
-                                                <div id="ChannelType-b0db689f-4d75-4f07-bf5b-0a5487f7d19f">
-                                                </div>
-                                            </td>
-                                            <td class="cell-total txtR ng-binding" role="gridcell"> 37,200,000
-                                            </td>
-                                            <td class="cell-total txtR tdMobile ng-binding" role="gridcell">
-                                                20,100,000</td>
-                                            <td class="cell-name" style="display:none" role="gridcell"><span
-                                                    ng-bind="dataItem.TradeMarkName" class="ng-binding"></span>
-                                            </td>
-                                            <td class="cell-total txtR ng-binding" role="gridcell">97</td>
-                                            <td class="cell-name ng-binding" style="display:none" role="gridcell"></td>
-                                            <td class="cell-total txtR onOrderReserved" role="gridcell"><span
-                                                    ng-show="false" class="ng-binding ng-hide">0</span><a
-                                                    href="#/Orders?ProductCode=TBDCN003&amp;ForFrodFiter=1"
-                                                    ng-show="false" target="_blank" class="ng-binding ng-hide">0</a><span
-                                                    ng-show="false" class="ng-binding ng-hide">0</span><span
-                                                    ng-show="true" class="ng-binding">0</span></td>
-                                            <td class="cell-date-time" role="gridcell">---</td>
-                                            <td class="cell-total-final txtR ng-binding" style="display:none"
-                                                role="gridcell">0</td>
-                                            <td class="cell-total-final txtR ng-binding" style="display:none"
-                                                role="gridcell">10</td>
-                                            <td class="cell-status ng-binding" style="display:none" role="gridcell">Cho
-                                                phép kinh doanh</td>
-                                            <td class="tdStatusST ng-binding" style="display:none" role="gridcell">Không
-                                                bảo hành</td>
-                                            <td class="tdStatusST ng-binding" style="display:none" role="gridcell">Không
-                                                bảo trì</td>
-                                        </tr>
-                                        <tr class="k-master-row ng-scope table-data"
-                                            data-uid="e92c9cdd-3e71-49a3-911b-d740b35ad86b" role="row">
-                                            <td class="k-hierarchy-cell"><a class="k-icon k-plus" href="#"
-                                                    tabindex="-1"></a></td>
-                                            <td class="cell-check" role="gridcell"><label
-                                                    class="quickaction_chk dpb has-pretty-child"
-                                                    ng-click="eventStop($event)">
-                                                    <div class="clearfix prettycheckbox labelright  blue"><input
-                                                            type="checkbox"
-                                                            class="kvMultiSelect ng-scope ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty"
-                                                            checklist-change="kvOnChangeMultiSelectItem(dataItem)"
-                                                            ng-checked="productIsChecked(dataItem)"
-                                                            checklist-comparator=".Id" checklist-value="dataItem"
-                                                            kv-pretty-check="" ng-model="checked" style="display: none;"
-                                                            checklist-model="kvSelectedItems"><a href="javascript:void(0)"
-                                                            tabindex="0" class=""></a>
-                                                        <label for="undefined" class=""></label>
-                                                    </div> <span class="chkrad"></span>
-                                                </label></td>
-                                            <td class="cell-star" role="gridcell"><label class="quickaction_chk star">
-                                                    <input type="checkbox"
-                                                        class="chkrad ng-pristine ng-untouched ng-valid ng-empty"
-                                                        ng-click="onChangeFavouriteItem(dataItem)" ng-true-value="1"
-                                                        ng-false-value="0" ng-checked="dataItem.IsFavourite > 0"
-                                                        ng-model="dataItem.IsFavourite"> <span></span> </label>
-                                            </td>
-                                            <td class="tdImage" role="gridcell">
-                                                <div class="cell-img hide-summaryRow">
-                                                    <div ng-style="{'background-image': 'url(' + (dataItem.Image ? dataItem.Image : (dataItem.ProductId <= 0 ? '' : 'https://cdn-app.kiotviet.vn/retailler/Content/img/default-product.png')) + ')'}"
-                                                        ng-mouseover="showImg($event)" ng-mouseleave="hideImg($event)"
-                                                        class="img-thumb" data-code=""
-                                                        style="background-image: url(&quot;https://cdn-app.kiotviet.vn/sample/machine/18.png&quot;);">
-                                                        <img ng-src="https://cdn-app.kiotviet.vn/sample/machine/18.png"
-                                                            src="https://cdn-app.kiotviet.vn/sample/machine/18.png">
-                                                    </div>
-                                                    <div ng-show="dataItem.Image" class="img-preview"><img
-                                                            data-code="https://cdn-app.kiotviet.vn/sample/machine/18.png"
-                                                            ng-src="https://cdn-app.kiotviet.vn/sample/machine/18.png"
-                                                            src="https://cdn-app.kiotviet.vn/sample/machine/18.png">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="cell-code tdCodeDoctor" role="gridcell"><span
-                                                    ng-class="{&quot;has-icon&quot;:dataItem.IsMedicineProduct &amp;&amp; (dataItem.GlobalMedicineId > 0 || dataItem.IsProductMedicineNational)}"
-                                                    data-code="17386670" class="ng-binding">TBDCN002
-                                                    <!-- ngIf: dataItem.IsMedicineProduct && (dataItem.GlobalMedicineId > 0 || dataItem.IsProductMedicineNational) --></span>
-                                            </td>
-                                            <td class="cell-code" style="display:none" role="gridcell"><span
-                                                    ng-bind="dataItem.Barcode" class="ng-binding"></span></td>
-                                            <td class="cell-auto ng-binding" role="gridcell">Máy phát điện
-                                                Hyundai
-                                                DHY9KSEM<!-- ngIf: dataItem.GroupProductType === groupProductTypes.Unit -->
-                                            </td>
-                                            <td class="cell-name" style="display:none" role="gridcell"><span
-                                                    ng-bind="dataItem.CategoryName" class="ng-binding">Điện công
-                                                    nghiệp</span></td>
-                                            <td class="cell-auto" style="display:none" role="gridcell"><span
-                                                    ng-bind="dataItem.ProType" class="ng-binding">Hàng
-                                                    hóa</span></td>
-                                            <td class="tdProductType" style="display:none" role="gridcell">
-                                                <div id="ChannelType-e92c9cdd-3e71-49a3-911b-d740b35ad86b">
-                                                </div>
-                                            </td>
-                                            <td class="cell-total txtR ng-binding" role="gridcell"> 170,800,000
-                                            </td>
-                                            <td class="cell-total txtR tdMobile ng-binding" role="gridcell">
-                                                112,000,000</td>
-                                            <td class="cell-name" style="display:none" role="gridcell"><span
-                                                    ng-bind="dataItem.TradeMarkName" class="ng-binding"></span>
-                                            </td>
-                                            <td class="cell-total txtR ng-binding" role="gridcell">0</td>
-                                            <td class="cell-name ng-binding" style="display:none" role="gridcell"></td>
-                                            <td class="cell-total txtR onOrderReserved" role="gridcell"><span
-                                                    ng-show="false" class="ng-binding ng-hide">0</span><a
-                                                    href="#/Orders?ProductCode=TBDCN002&amp;ForFrodFiter=1"
-                                                    ng-show="false" target="_blank"
-                                                    class="ng-binding ng-hide">0</a><span ng-show="false"
-                                                    class="ng-binding ng-hide">0</span><span ng-show="true"
-                                                    class="ng-binding">0</span></td>
-                                            <td class="cell-date-time" role="gridcell">---</td>
-                                            <td class="cell-total-final txtR ng-binding" style="display:none"
-                                                role="gridcell">0</td>
-                                            <td class="cell-total-final txtR ng-binding" style="display:none"
-                                                role="gridcell">10</td>
-                                            <td class="cell-status ng-binding" style="display:none" role="gridcell">
-                                                Cho phép kinh doanh</td>
-                                            <td class="tdStatusST ng-binding" style="display:none" role="gridcell">
-                                                Không bảo hành</td>
-                                            <td class="tdStatusST ng-binding" style="display:none" role="gridcell">
-                                                Không bảo trì</td>
-                                        </tr>
-                                        <tr class="k-detail-row k-alt ng-scope" style="display: table-row;">
+
+
+
+
+                                    </tbody>
+                                </table>
+                                <span class="line"></span>
+                                <span class="line line2" style=""></span>
+                            </div>
+                          
+                        </div>
+                    </article>
+                </section>
+            </section>
+        </section>
+    </section>
+    <script>
+        let temp = 0
+        $(document).on("click", ".table-data", function() {
+            let stt = $(this).data('stt')
+            let json = $(this).data('json')
+            let descriptionData = `
+            <tr class="k-detail-row k-alt" id="detail-row" data-stt="${stt}" style="display: table-row;">
                                             <td class="k-hierarchy-cell"></td>
                                             <td class="k-detail-cell" colspan="10">
-                                                <!-- ngIf: dataItem.GroupProductType === groupProductTypes.Attribute -->
-                                                <!-- ngIf: dataItem.GroupProductType !== groupProductTypes.Attribute -->
                                                 <div ng-if="dataItem.GroupProductType !== groupProductTypes.Attribute"
                                                     class="k-detail-sub ng-scope">
                                                     <div class="k-tabstrip-wrapper">
@@ -816,9 +444,9 @@
                                                             </ul>
                                                             <div id="tabstrip-1" class="k-content k-state-active"
                                                                 role="tabpanel" aria-expanded="true"
-                                                                style="display: block; width: 633px;">
+                                                                style="display: block; ">
                                                                 <div class="product-detail form-wrapper content-list">
-                                                                    <h3 class="title ng-binding">aaaaaaaa</h3>
+                                                                    <h3 class="title ng-binding">${json.name}</h3>
                                                                     <ul>
                                                                         <li class="ng-binding"><i
                                                                                 class="fa fa-check txtGreen"></i>Bán trực
@@ -832,9 +460,7 @@
                                                                         <div class="col-lg-4 col-sm-6 image-detail"> <img
                                                                                 class="img-responsive"
                                                                                 title="Xem ảnh phóng to"
-                                                                                ng-click="zoom(dataItem.viewImage,dataItem.listImage)"
-                                                                                ng-src="https://cdn-app.kiotviet.vn/retailler/Content/default-product.png"
-                                                                                src="https://cdn-app.kiotviet.vn/retailler/Content/default-product.png">
+                                                                                src="${json.file}">
                                                                             <article class="proListImg uln ng-scope"
                                                                                 ng-controller="ProductImageListCtrl"
                                                                                 data="dataItem"> <kv-swiper
@@ -846,32 +472,7 @@
                                                                                     swiper-name="productSwiper"
                                                                                     kv-item-selected="changeImage"
                                                                                     class="ng-isolate-scope">
-                                                                                    <div
-                                                                                        class="swiper-container swiperList">
-                                                                                        <div class="swiper-wrapper"
-                                                                                            style="height: 240px; width: 60px;">
-                                                                                            <!-- ngRepeat: slide in slides track by slide.Id -->
-                                                                                            <div class="swiper-slide ng-scope"
-                                                                                                ng-repeat="slide in slides track by slide.Id"
-                                                                                                kv-swiper-slide=""
-                                                                                                style="width: 60px; height: 240px;">
-                                                                                                <ul> <!-- ngRepeat: p in slide.items track by p.Id -->
-                                                                                                    <li ng-class="{active : activeIcon === p}"
-                                                                                                        ng-repeat="p in slide.items track by p.Id"
-                                                                                                        class="ng-scope">
-                                                                                                        <img ng-src="https://cdn-app.kiotviet.vn/retailler/Content/default-product.png"
-                                                                                                            src="https://cdn-app.kiotviet.vn/retailler/Content/default-product.png">
-                                                                                                        <a class="imgDel icon"
-                                                                                                            ng-show="p.Id !== -9999"
-                                                                                                            title=""
-                                                                                                            ng-click="itemClicked(p, $event)"></a>
-                                                                                                    </li>
-                                                                                                    <!-- end ngRepeat: p in slide.items track by p.Id -->
-                                                                                                </ul>
-                                                                                            </div>
-                                                                                            <!-- end ngRepeat: slide in slides track by slide.Id -->
-                                                                                        </div>
-                                                                                    </div>
+                                                                                    
                                                                                 </kv-swiper> </article>
                                                                         </div>
                                                                         <!-- ngIf: !isActiveGppDrugStore || dataItem.ProductType == 3 || dataItem.ProductType == 1 -->
@@ -883,7 +484,7 @@
                                                                                 <div
                                                                                     class="form-wrap form-control-static">
                                                                                     <strong
-                                                                                        class="ng-binding">dddddddddddd</strong>
+                                                                                        class="ng-binding">${json.code}</strong>
                                                                                 </div>
                                                                             </div> <!--Barcode-->
                                                                             <div class="form-group"
@@ -892,48 +493,16 @@
                                                                                     vạch:</label>
                                                                                 <div
                                                                                     class="form-wrap form-control-static ng-binding">
+                                                                                    ${json.barcode}
                                                                                 </div>
                                                                             </div> <!--End Barcode-->
-                                                                            <div class="form-group"> <label
-                                                                                    class="form-label control-label ng-binding">Nhóm
-                                                                                    hàng:</label>
-                                                                                <div
-                                                                                    class="form-wrap form-control-static ng-binding">
-                                                                                    tai nghe</div>
-                                                                            </div>
-                                                                            <div class="form-group"> <label
-                                                                                    class="form-label control-label ng-binding">Loại
-                                                                                    hàng:</label>
-                                                                                <div
-                                                                                    class="form-wrap form-control-static ng-binding">
-                                                                                    Hàng hóa</div>
-                                                                            </div> <!--Trademark-->
-                                                                            <!-- ngIf: !isActiveGppDrugStore -->
-                                                                            <div class="form-group ng-scope"
-                                                                                ng-if="!isActiveGppDrugStore"> <label
-                                                                                    class="form-label control-label ng-binding">Thương
-                                                                                    hiệu:</label>
-                                                                                <div
-                                                                                    class="form-wrap form-control-static ng-binding">
-                                                                                </div>
-                                                                            </div><!-- end ngIf: !isActiveGppDrugStore -->
-                                                                            <!--End Trademark-->
-                                                                            <div class="form-group"
-                                                                                ng-show="dataItem.ProductType==pTypeValue.Purchased &amp;&amp; (!dataItem.MasterUnitId || dataItem.MasterUnitId === 0)">
-                                                                                <label
-                                                                                    class="form-label control-label ng-binding">Định
-                                                                                    mức tồn:</label>
-                                                                                <div
-                                                                                    class="form-wrap form-control-static ng-binding">
-                                                                                    0 <i class="fa fa-angle-right"></i>
-                                                                                    999,999,999</div>
-                                                                            </div>
+                                                                           
                                                                             <div class="form-group"> <label
                                                                                     class="form-label control-label ng-binding">Giá
                                                                                     bán:</label>
                                                                                 <div
                                                                                     class="form-wrap form-control-static ng-binding">
-                                                                                    0</div>
+                                                                                    ${formatCurrency(json.price_sell)}</div>
                                                                             </div>
                                                                             <div class="form-group"
                                                                                 ng-show="(!dataItem.MasterUnitId || dataItem.MasterUnitId === 0) &amp;&amp; rights.viewCost">
@@ -942,126 +511,28 @@
                                                                                     vốn:</label>
                                                                                 <div
                                                                                     class="form-wrap form-control-static ng-binding">
-                                                                                    0</div>
+                                                                                    ${formatCurrency(json.price_capital)}</div>
                                                                             </div>
-                                                                            <!-- KR2-19650 : Hiển thị thêm trường Trọng lượng ở ngoài MHQL đối với gian VLXD không bật giao hàng (hiển thị rõ kg/gram) -->
-                                                                            <div class="form-group ng-hide"
-                                                                                ng-show="dataItem.ProductType!=pTypeValue.Service &amp;&amp; dataItem.isShowConstructionMaterial">
-                                                                                <label
-                                                                                    class="form-label control-label ng-binding">Trọng
-                                                                                    lượng:</label>
-                                                                                <div ng-show="dataItem.Weight >= 0"
-                                                                                    class="form-wrap form-control-static ng-binding ng-hide">
-                                                                                    0 </div>
-                                                                            </div>
-                                                                            <div class="form-group"
-                                                                                ng-show="dataItem.ProductType!=pTypeValue.Service &amp;&amp; appSetting.UseCod &amp;&amp; !dataItem.isShowConstructionMaterial">
-                                                                                <label
-                                                                                    class="form-label control-label ng-binding">Trọng
-                                                                                    lượng:</label>
-                                                                                <div ng-show="dataItem.Weight >= 0"
-                                                                                    class="form-wrap form-control-static ng-binding ng-hide">
-                                                                                    0</div>
-                                                                            </div>
-                                                                            <div class="form-group uln ng-hide"
-                                                                                ng-show="appSetting.RewardPoint &amp;&amp; appSetting.RewardPoint_Type == _rewardPointType.Product &amp;&amp; dataItem.IsRewardPoint">
-                                                                                <label
-                                                                                    class="form-label control-label ng-binding">Điểm
-                                                                                    thưởng:</label>
-                                                                                <div
-                                                                                    class="form-wrap form-control-static ng-binding">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="form-group uln "
-                                                                                ng-show="dataItem.ProductType!=pTypeValue.Service">
-                                                                                <label
-                                                                                    class="form-label control-label ng-binding">Vị
-                                                                                    trí:</label>
-                                                                                <div
-                                                                                    class="form-wrap form-control-static form-product-shelves">
-                                                                                    <!-- ngIf: dataItem.ProductShelvesArr && dataItem.ProductShelvesArr.length > 0 -->
-                                                                                </div>
-                                                                            </div>
+                                                                           
                                                                         </div>
-                                                                        <!-- end ngIf: !isActiveGppDrugStore || dataItem.ProductType == 3 || dataItem.ProductType == 1 -->
-                                                                        <!-- ngIf: isActiveGppDrugStore && dataItem.ProductType != 3 && dataItem.ProductType != 1 -->
-                                                                        <!-- ngIf: isActiveGppDrugStore && dataItem.ProductType != 3 && dataItem.ProductType != 1 -->
-                                                                        <!-- ngIf: !isActiveGppDrugStore || dataItem.ProductType == 3 || dataItem.ProductType == 1 -->
-                                                                        <div class="col-lg-4 col-md-4 col-sm-12 description-detail ng-scope"
-                                                                            ng-if="!isActiveGppDrugStore || dataItem.ProductType == 3 || dataItem.ProductType == 1">
-                                                                            <div class="form-group"> <label
-                                                                                    class="form-label control-label lk-color ng-binding">Mô
-                                                                                    tả</label> </div>
-                                                                            <div class="form-control-static">
-                                                                                <p ng-bind-html="dataItem.Description || ''"
-                                                                                    class="ng-binding"></p>
-                                                                            </div>
-                                                                            <div class="form-group"> <label
-                                                                                    class="form-label control-label lk-color ng-binding">Ghi
-                                                                                    chú đặt hàng</label> </div>
-                                                                            <div class="form-control-static">
-                                                                                <p style="white-space:pre-wrap;"
-                                                                                    class="ng-binding"></p>
-                                                                            </div>
-                                                                            <div class="form-group"
-                                                                                ng-show="_p.has('Supplier_Read')"> <label
-                                                                                    class="form-label control-label lk-color ng-binding">Nhà
-                                                                                    cung cấp</label> </div>
-                                                                            <!-- ngIf: dataItem.Suppliers && dataItem.Suppliers.length > 0 -->
-                                                                        </div>
-                                                                        <!-- end ngIf: !isActiveGppDrugStore || dataItem.ProductType == 3 || dataItem.ProductType == 1 -->
+                                                                     
+                                                                    
                                                                     </div>
                                                                 </div>
-                                                                <div class="kv-group-btn"> <a
-                                                                        ng-click="UpdateProduct(dataItem)"
+                                                                <div class="kv-group-btn"> <a id="updateProduct"
+                                                                        data-json='${JSON.stringify(json)}'
                                                                         class="btn btn-success ng-binding"
                                                                         ng-show="_p.has('Product_Update')"><i
                                                                             class="fa fa-check-square"></i> Cập nhật</a>
-                                                                    <a ng-click="ActiveProduct(dataItem)"
-                                                                        class="btn btn-success ng-binding ng-hide"
-                                                                        ng-show="_p.has('Product_Update') &amp;&amp; !dataItem.isActiveValue"><i
-                                                                            class="fa fa-check"></i> Cho phép kinh
-                                                                        doanh</a> <a ng-click="PrintProduct(dataItem)"
+                                                                    <a target="_blank" href="/print?code=${json.barcode}"
                                                                         class="btn btn-default ng-binding"><i
-                                                                            class="fa fa-barcode"></i> In tem mã</a> <a
-                                                                        ng-click="AddProduct(dataItem.ProductType, true, dataItem.Id, dataItem.Code, dataItem.Unit, false, dataItem)"
-                                                                        ng-show="_p.has('Product_Create')"
-                                                                        class="btn btn-success ng-binding"><i
-                                                                            class="far fa-clone"></i> Sao chép</a> <a
-                                                                        ng-click="ActiveProduct(dataItem)"
-                                                                        class="btn btn-danger ng-binding"
-                                                                        ng-show="_p.has('Product_Update') &amp;&amp; dataItem.isActiveValue"><i
-                                                                            class="fa fa-lock"></i> Ngừng kinh doanh</a>
-                                                                    <a ng-click="DeleteProduct(dataItem)"
-                                                                        class="btn btn-danger ng-binding"
-                                                                        ng-show="_p.has('Product_Delete')"><i
-                                                                            class="far fa-trash-alt"></i> Xóa</a>
-                                                                    <!--<a ng-click="AddRelateProduct((dataItem.MasterProductId!=null&&dataItem.MasterProductId!=0)?dataItem.MasterProductId: dataItem.Id)" ng-if="dataItem.HasVariants && appSetting.UseVariants" class="btn btn-primary"><i class="far fa-plus"></i> Thêm hàng hóa cùng loại</a>-->
-                                                                    <!-- ngIf: dataItem.HasVariants && appSetting.UseVariants -->
-                                                                    <div class="dropup btn-group"
-                                                                        ng-show="(_p.has('OrderSupplier_Create') || _p.has('PurchaseOrder_Create')) &amp;&amp; isActivePurchaseProduct(dataItem)">
-                                                                        <a class="btn btn-more dropdown-toggle"
-                                                                            data-toggle="dropdown" aria-haspopup="true"
-                                                                            aria-expanded="false"><i
-                                                                                class="far fa-ellipsis-v mr-0"></i></a>
-                                                                        <ul class="dropdown-menu dropdown-menu-right">
-                                                                            <li><a ng-click="makePurchaseOrder(dataItem)"
-                                                                                    class="dropdown-item ng-binding"
-                                                                                    ng-show="_p.has('OrderSupplier_Create') &amp;&amp; isActivePurchaseProduct(dataItem)"><i
-                                                                                        class="far fa-inbox-in"></i> Đặt
-                                                                                    hàng nhập</a></li>
-                                                                            <li><a ng-click="makePurchaseReciept(dataItem)"
-                                                                                    class="dropdown-item ng-binding"
-                                                                                    ng-show="_p.has('PurchaseOrder_Create') &amp;&amp; isActivePurchaseProduct(dataItem)"><i
-                                                                                        class="far fa-dolly-flatbed-alt"></i>
-                                                                                    Nhập hàng</a></li>
-                                                                        </ul>
-                                                                    </div>
+                                                                            class="fa fa-barcode"></i> In tem mã</a> 
+                                                                    
                                                                 </div>
                                                             </div>
                                                             <div class="k-content" id="tabstrip-2" role="tabpanel"
                                                                 aria-hidden="true" aria-expanded="false"
-                                                                style="width: 633px;">
+                                                                style="width: 100%;">
                                                                 <article class="clb ovh"> <span
                                                                         class="dpb mb10 ng-binding ng-hide"
                                                                         ng-show="dataItem.MasterUnitId!=null">Lưu ý: Thẻ
@@ -1079,13 +550,13 @@
                                                             </div>
                                                             <div class="tblOnHand k-content" id="tabstrip-3"
                                                                 role="tabpanel" aria-hidden="true"
-                                                                aria-expanded="false" style="width: 633px;">
+                                                                aria-expanded="false" style="width: 100%;">
                                                                 <div id="tblOnHand-20337528" class="k-grid-noscroll">
                                                                 </div>
                                                             </div>
                                                             <div id="tabstrip-4" class="productSame k-content"
                                                                 role="tabpanel" aria-hidden="true"
-                                                                aria-expanded="false" style="width: 633px;">
+                                                                aria-expanded="false" style="width: 100%;">
                                                                 <article class="clb posR ovh"> <a
                                                                         ng-show="viewOrderSupplier" tabindex="-1"
                                                                         class="help icon posA helpSamePro help-totalqty ng-hide"
@@ -1196,7 +667,7 @@
                                                             </div>
                                                             <div class="k-content" id="tabstrip-5" role="tabpanel"
                                                                 aria-hidden="true" aria-expanded="false"
-                                                                style="width: 633px;">
+                                                                style="width: 100%;">
                                                                 <article class="clb ovh">
                                                                     <div id="tblFormula" class="k-grid-noscroll"></div>
                                                                     <article class="kv-group-btn"> <button
@@ -1214,7 +685,7 @@
                                                             </div>
                                                             <div class="k-content" id="tabstrip-6" role="tabpanel"
                                                                 aria-hidden="true" aria-expanded="false"
-                                                                style="width: 633px;">
+                                                                style="width: 100%;">
                                                                 <div id="tblSerial" class="k-grid-noscroll"></div>
                                                                 <article class="kv-group-btn ng-hide"
                                                                     ng-show="dataItem.hasSerialExport"> <button
@@ -1225,7 +696,7 @@
                                                             </div>
                                                             <div class="k-content" id="tabstrip-7" role="tabpanel"
                                                                 aria-hidden="true" aria-expanded="false"
-                                                                style="width: 633px;">
+                                                                style="width: 100%;">
                                                                 <div id="tblBatchExpire" class="k-grid-noscroll"></div>
                                                                 <article class="kv-group-btn"> <a
                                                                         ng-click="exportBatchExpire()"
@@ -1235,7 +706,7 @@
                                                             </div>
                                                             <div class="k-content" id="tabstrip-8" role="tabpanel"
                                                                 aria-hidden="true" aria-expanded="false"
-                                                                style="width: 633px;">
+                                                                style="width: 100%;">
                                                                 <!-- ngIf: appSetting.Warranty --><kv-warranty-details
                                                                     ng-if="appSetting.Warranty" product="dataItem"
                                                                     invoice-id="777" on-update-product="UpdateProduct"
@@ -1257,7 +728,7 @@
                                                             </div>
                                                             <div class="k-content" id="tabstrip-9" role="tabpanel"
                                                                 aria-hidden="true" aria-expanded="false"
-                                                                style="width: 633px;">
+                                                                style="width: 100%;">
                                                                 <!-- ngRepeat: channelType in channelTypes -->
                                                                 <div ng-repeat="channelType in channelTypes"
                                                                     class="clb kv-channelType ng-scope">
@@ -1311,40 +782,103 @@
                                                 </div>
                                                 <!-- end ngIf: dataItem.GroupProductType !== groupProductTypes.Attribute -->
                                             </td>
-                                        </tr>
+                                        </tr>              `
 
-                                    </tbody>
-                                </table>
-                                <span class="line"></span>
-                                <span class="line line2" style=""></span>
-                            </div>
-                            <div class="paging-box">
-                                <div class="k-pager-wrap k-grid-pager k-widget k-floatwrap" data-role="pager"><a
-                                        href="#" title="Trang đầu"
-                                        class="k-link k-pager-nav k-pager-first k-state-disabled" data-page="1"
-                                        tabindex="-1"><span class="k-icon k-i-seek-w">Trang đầu</span></a><a
-                                        href="#" title="Trang trước"
-                                        class="k-link k-pager-nav  k-state-disabled" data-page="1"
-                                        tabindex="-1"><span class="k-icon k-i-arrow-w">Trang trước</span></a>
-                                    <ul class="k-pager-numbers k-reset">
-                                        <li class="k-current-page"><span class="k-link k-pager-nav">1</span>
-                                        </li>
-                                        <li><span class="k-state-selected">1</span></li>
-                                        <li><a tabindex="-1" href="#" class="k-link" data-page="2">2</a>
-                                        </li>
-                                    </ul><a href="#" title="Trang sau" class="k-link k-pager-nav"
-                                        data-page="2" tabindex="-1"><span class="k-icon k-i-arrow-e">Trang
-                                            sau</span></a><a href="#" title="Trang cuối"
-                                        class="k-link k-pager-nav k-pager-last" data-page="2" tabindex="-1"><span
-                                            class="k-icon k-i-seek-e">Trang
-                                            cuối</span></a><span class="k-pager-info k-label">Hiển thị 1 - 15 /
-                                        Tổng số 25 hàng hóa</span>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                </section>
-            </section>
-        </section>
-    </section>
+
+
+
+
+
+            let position = 86.9969 + (stt - 1) * 83.7
+            $('.table-data').each(function(i, obj) {
+                $(this).removeClass('k-alt k-master-state');
+            });
+            if (stt != $('#detail-row').data('stt')) {
+                $('.k-detail-row').remove()
+
+                $(this).addClass('k-master-state k-alt');
+                $(this).after(descriptionData)
+                $('.line').css('top', position + 'px')
+                temp = stt
+            } else {
+                $('.k-detail-row').remove()
+                $('.line').css('top', '')
+                $('.line').css('height', '')
+            }
+
+
+        });
+        getProducts()
+
+      
+
+        function getProducts(s = "") {
+            let html = ``;
+            $.ajax({
+                url: "/api/product?s=" + s,
+                type: "get",
+                success: function(response) {
+                    let data = response.data
+                    if (data) {
+                        data.map(function(val, key) {
+                            let stt = key + 1
+
+                            html += `
+                            <tr class="k-master-row ng-scope table-data" data-stt="${stt}" data-id="${val.id}" data-json='${JSON.stringify(val)}'>
+                                            <td class="k-hierarchy-cell"><a class="k-icon k-plus" href="#"
+                                                    tabindex="-1"></a></td>
+                                            
+                                            <td class="cell-star" role="gridcell"><label class="quickaction_chk star">
+                                                    <input type="checkbox"
+                                                        class="chkrad ng-pristine ng-untouched ng-valid ng-empty"
+                                                        ng-click="onChangeFavouriteItem(dataItem)" ng-true-value="1"
+                                                        ng-false-value="0" ng-checked="dataItem.IsFavourite > 0"
+                                                        ng-model="dataItem.IsFavourite"> <span></span> </label>
+                                            </td>
+                                            <td class="tdImage" role="gridcell">
+                                                <div class="cell-img hide-summaryRow">
+                                                    <div ng-style="{'background-image': 'url(' + (dataItem.Image ? dataItem.Image : (dataItem.ProductId <= 0 ? '' : 'https://cdn-app.kiotviet.vn/retailler/Content/img/default-product.png')) + ')'}"
+                                                        ng-mouseover="showImg($event)" ng-mouseleave="hideImg($event)"
+                                                        class="img-thumb" data-code=""
+                                                        style="background-image: url(&quot;${val.file}&quot;);">
+                                                        <img ng-src="${val.file}"
+                                                            src="${val.file}">
+                                                    </div>
+                                                    <div ng-show="dataItem.Image" class="img-preview"><img
+                                                            data-code="${val.file}"
+                                                            ng-src="${val.file}"
+                                                            src="${val.file}">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="cell-code tdCodeDoctor" role="gridcell"><span
+                                                    ng-class="{&quot;has-icon&quot;:dataItem.IsMedicineProduct &amp;&amp; (dataItem.GlobalMedicineId > 0 || dataItem.IsProductMedicineNational)}"
+                                                    data-code="17386671" class="ng-binding">${val.code}
+                                                    <!-- ngIf: dataItem.IsMedicineProduct && (dataItem.GlobalMedicineId > 0 || dataItem.IsProductMedicineNational) --></span>
+                                            </td>
+                                            <td class="cell-code" style="display:none" role="gridcell"><span
+                                                    ng-bind="dataItem.Barcode" class="ng-binding"></span></td>
+                                            <td class="cell-auto ng-binding" role="gridcell">${val.name}
+                                            </td>
+                                          
+                                            <td class="cell-total txtR ng-binding" role="gridcell"> ${formatCurrency(val.price_sell)}
+                                            </td>
+                                            <td class="cell-total txtR tdMobile ng-binding" role="gridcell">
+                                                ${formatCurrency(val.price_capital)}</td>
+                                          
+                                            <td class="cell-total txtR ng-binding" role="gridcell">${val.count}</td>
+                                           
+                                           
+                                        </tr>
+                                        `
+                        })
+                        $('#tbody-product').html(html)
+                    }
+
+                }
+            });
+        }
+
+    
+    </script>
 @endsection

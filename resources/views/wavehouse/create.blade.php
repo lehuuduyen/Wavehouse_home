@@ -4,6 +4,7 @@
         .select2-selection__arrow {
             display: none !important;
         }
+
         select {
             -webkit-appearance: none;
         }
@@ -20,33 +21,9 @@
                         <h1 class="ng-binding">Nhập hàng</h1>
                         <div class="form-header">
                             <div class="form-header-content">
-                                <div class="input-group">
+                                <select class="search-product" multiple="multiple" style="width: 100%">
 
-                                    <div class="autocomplete " id=""><i class="fa fa-search"></i><input
-                                            type="text" autocomplete="off" ng-model="searchParam" maxlength=""
-                                            ng-change="onInputChange(searchParam)"
-                                            placeholder="Tìm hàng hóa theo mã hoặc tên (F3)"
-                                            class="form-control form-control-kv productSearchInput iptUnitName_  ng-empty ng-valid-maxlength ng-touched"
-                                            id="productSearchInput" tabindex="1" ng-disabled="kvDisable"
-                                            kv-filter-search="">
-
-                                    </div>
-                                    <div class="input-group-append"><a href="javascript:void(0)"
-                                            ng-show="settings.UseElectronicScales" class="btn-icon btn-can ng-hide"
-                                            title="Chế độ sử dụng cân điện tử" ng-enter="toggleUseElectronicScales()"
-                                            ng-click="toggleUseElectronicScales()"><i></i></a> <a href="javascript:void(0)"
-                                            id="grpChooserBtn" class="btn-icon" title="Chọn nhóm hàng"
-                                            ng-enter="addByCategory()" ng-click="addByCategory()" tabindex="2"><i
-                                                class="fas fa-list"></i></a> <a ng-show="canAddProduct" id="prdAddBtn"
-                                            ng-click="QuickAddProduct()" ng-enter="QuickAddProduct()"
-                                            href="javascript:void(0)" class="btn-icon" title="Thêm hàng hóa mới"
-                                            tabindex="2"><i class="far fa-plus"></i></a> <a
-                                            ng-show="canAddProduct &amp;&amp; isActiveGppDrugStore" id="prdAddMedicineBtn"
-                                            ng-click="QuickAddProduct(true)" ng-enter="QuickAddProduct(true)"
-                                            href="javascript:void(0)" class="kv-icon md btn-icon i-medical ng-hide"
-                                            title="Thêm thuốc mới" tabindex="2"><i
-                                                class="far fa-briefcase-medical"></i></a></div>
-                                </div>
+                                </select>
                                 <div class="header-fast ng-hide"
                                     ng-show="isNormalMode &amp;&amp; !$scope.isUseElectronicScales"><input
                                         id="purchaseOderProductCount" tabindex="3"
@@ -252,11 +229,7 @@
                                                 <tr role="row">
                                                     <th class="k-hierarchy-cell k-header ng-scope" scope="col">&nbsp;
                                                     </th>
-                                                    <th scope="col" role="columnheader" data-field="ProductId"
-                                                        rowspan="1" data-title=" " data-index="0"
-                                                        id="c9fcf5ff-1b3f-4f37-be24-15c18de8277e"
-                                                        class="cell-del k-header ng-scope" data-role="columnsorter"><a
-                                                            class="k-link" href="#"> </a></th>
+
                                                     <th scope="col" role="columnheader" data-field="ViewIndex"
                                                         rowspan="1" data-title="STT" data-index="1"
                                                         id="d6354df3-e12f-4274-a625-ec397f882cf4"
@@ -302,12 +275,7 @@
                                                         class="txtR cell-total k-header ng-scope"
                                                         data-role="columnsorter"><a class="k-link" href="#">Đơn
                                                             giá</a></th>
-                                                    <th scope="col" role="columnheader" data-field="Discount"
-                                                        rowspan="1" data-title="Giảm giá" data-index="9"
-                                                        id="105b79f6-c148-4b06-9175-1622cb85bd35"
-                                                        class="txtR cell-total k-header ng-scope"
-                                                        data-role="columnsorter"><a class="k-link" href="#">Giảm
-                                                            giá</a></th>
+
                                                     <th scope="col" role="columnheader" data-field="TotalValue"
                                                         rowspan="1" data-title="Thành tiền" data-index="10"
                                                         id="336a504d-88fe-4793-b6ec-eace81e06152"
@@ -328,122 +296,8 @@
                                                             class="k-link" href="#"> </a></th>
                                                 </tr>
                                             </thead>
-                                            <tbody role="rowgroup">
-                                                <tr class="k-master-row ng-scope productMaster"
-                                                    data-uid="5639ffe3-98e5-4483-bf18-c07d30113ee3" role="row">
-                                                    <td class="k-hierarchy-cell"><a class="k-icon k-minus" href="#"
-                                                            tabindex="-1"></a></td>
-                                                    <td class="txtC cell-del" role="gridcell"><a title="Xóa"
-                                                            kv-focus-item="productSearchInput" tabindex="100"
-                                                            ng-click="removeItem(dataItem)"
-                                                            ng-enter="removeItem(dataItem)"
-                                                            class="btn-icon btn-icon-trash"
-                                                            ng-show="dataItem.MasterProductId == null"><i
-                                                                class="far fa-trash-alt"></i></a></td>
-                                                    <td class="cell-order txtC" role="gridcell"><span
-                                                            ng-show="dataItem.MasterProductId == null"
-                                                            class="ng-binding">1</span></td>
-                                                    <td class="tdImage" style="display:none;display:none"
-                                                        role="gridcell">
-                                                        <div class="cell-img">
-                                                            <div ng-style="{'background-image': 'url(' + (dataItem.Image ? dataItem.Image : 'https://cdn-app.kiotviet.vn/retailler/Content/img/default-product.png') + ')'}"
-                                                                ng-mouseover="showImg($event)"
-                                                                ng-mouseleave="hideImg($event)" class="img-thumb"
-                                                                data-code=""
-                                                                style="background-image: url(&quot;https://cdn-app.kiotviet.vn/retailler/Content/img/default-product.png&quot;);">
-                                                                <img ng-src="https://cdn-app.kiotviet.vn/retailler/Content/img/default-product.png"
-                                                                    src="https://cdn-app.kiotviet.vn/retailler/Content/img/default-product.png">
-                                                            </div>
-                                                            <div ng-show="dataItem.Image" class="img-preview ng-hide"><img
-                                                                    data-code=""></div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="cell-code"
-                                                        title="Tồn: 92 - KH đặt: 0 
-                                                    "
-                                                        role="gridcell"><a ng-show="dataItem.MasterProductId == null"
-                                                            href="#/Products?Code=SP000001" target="_blank"
-                                                            class="ng-binding">SP000001</a></td>
-                                                    <td class="cell-auto" role="gridcell"><span
-                                                            ng-show="!dataItem.MasterProductId"
-                                                            title="Tồn: 92 - KH đặt: 0">airpod</span><a
-                                                            class="txtN txtI dpb fs11 txtGray " tabindex="100"
-                                                            id="itmDescription1" kv-focus-item="iptNote"
-                                                            href="javascript:void(0)" title="Cập nhật ghi chú"
-                                                            kv-popup-anchor="desTemplate" kv-placement="bottom"
-                                                            ng-click="setCurrentRow($event)"
-                                                            ng-enter="setCurrentRow($event)"><span
-                                                                class="veaM ng-binding">Ghi
-                                                                chú...<span class="icon edit"><i
-                                                                        class="fa fa-pencil"></i></span></span></a></td>
-                                                    <td class="cell-dvt un-nowrap" role="gridcell"><span
-                                                            ng-show="dataItem.MasterProductId == null"> <span
-                                                                class="slcUnit slcUnit2 txtL ng-binding"></span> </span>
-                                                    </td>
-                                                    <td class="cell-dvt un-nowrap txtR" style="display:none;display:none"
-                                                        role="gridcell"><span ng-show="dataItem.MasterProductId == null"
-                                                            class="ng-binding">92</span></td>
-                                                    <td class="cell-qty-numb txtR" role="gridcell">
-                                                        <div class="qtyBox"><input
-                                                                ng-disabled="dataItem.Product &amp;&amp; (dataItem.Product.IsLotSerialControl || (dataItem.Product.IsBatchExpireControl &amp;&amp; dataItem.ProductBatchExpireList &amp;&amp; dataItem.ProductBatchExpireList.length > 1))"
-                                                                tabindex="100" type="text" kv-select-text=""
-                                                                kv-select-text-quantity=""
-                                                                kv-auto-numeric="{isQuantity:!(dataItem.Product.IsLotSerialControl || (dataItem.Product.IsBatchExpireControl &amp;&amp; dataItem.ProductBatchExpireList &amp;&amp; dataItem.ProductBatchExpireList.length > 1)), vMin:0, mDec:3, vMax: int.MaxValue,  isCheckEnter : true}"
-                                                                id="row-qty-number-19171940"
-                                                                class="isQuantity form-control form-control-sm ng-pristine ng-untouched ng-valid ng-not-empty"
-                                                                ng-class="dataItem.Product &amp;&amp; (dataItem.Product.IsLotSerialControl || (dataItem.Product.IsBatchExpireControl &amp;&amp; dataItem.ProductBatchExpireList &amp;&amp; dataItem.ProductBatchExpireList.length > 1)) ? 'disable-input':''"
-                                                                ng-change="UpdateItemCart(dataItem)"
-                                                                ng-model="dataItem.Quantity"></div>
-                                                        <div class="qtyBox2"><span
-                                                                ng-show="FromOrderSupplier &amp;&amp; dataItem.OrderQuantity != null &amp;&amp; dataItem.OrderQuantity != 0"
-                                                                class="ng-binding ng-hide">/</span></div>
-                                                    </td>
-                                                    <td class="txtR cell-total" role="gridcell"><input type="text"
-                                                            tabindex="100" kv-select-text=""
-                                                            kv-auto-numeric="{isProductPrice: true, vMin:0}"
-                                                            ng-model="dataItem.Price"
-                                                            ng-class="{txtRed :(dataItem.Price > dataItem.BasePrice)}"
-                                                            class="txtR form-control form-control-sm purchase-order-price ng-pristine ng-untouched ng-valid ng-not-empty"
-                                                            kv-tooltip="" data-toggle="tooltip" data-placement="bottom"
-                                                            data-original-title="Cao hơn giá bán"
-                                                            ng-change="ChangePrice(dataItem)"></td>
-                                                    <td class="txtR cell-total" role="gridcell">
-                                                        <div class="proPrice posR"><button
-                                                                class="txtR form-control form-control-sm ng-binding"
-                                                                tabindex="100" id="itmDiscount1_"
-                                                                kv-popup-anchor="productPrice" kv-placement="bottomright"
-                                                                kv-focus-item="iptPrice" ng-click="setCurrentRow($event)"
-                                                                ng-enter="setCurrentRow($event)">0</button></div>
-                                                    </td>
-                                                    <td class="cell-total txtR" role="gridcell">
-                                                        <!-- ngIf: !toogleActionVM.toggleChangePriceEnabled -->
-                                                        <!-- ngIf: toogleActionVM.toggleChangePriceEnabled -->
-                                                        <div class="proPrice posR ng-scope"
-                                                            ng-if="toogleActionVM.toggleChangePriceEnabled"><button
-                                                                class="txtR form-control form-control-sm ng-binding"
-                                                                tabindex="100" id="itmChangeprice1_"
-                                                                kv-popup-anchor-price="productChangePrice"
-                                                                kv-placement="bottomright" kv-focus-item="iptChangePrice"
-                                                                ng-click="setCurrentRow($event)"
-                                                                ng-enter="setCurrentRow($event)">50,000</button></div>
-                                                        <!-- end ngIf: toogleActionVM.toggleChangePriceEnabled -->
-                                                    </td>
-                                                    <td class="cell-adddel" style="display:none;display:none"
-                                                        role="gridcell"><a title="Thêm hàng hóa" tabindex="100"
-                                                            ng-click="AddCartChild(dataItem)"
-                                                            ng-enter="AddCartChild(dataItem)"
-                                                            ng-show="toogleActionVM.toggleMultiLineEnabled &amp;&amp; (dataItem.subItems == null || dataItem.subItems.length < 19) "
-                                                            class="btn-icon ng-hide" ng-focus="closePopping(true)"><i
-                                                                class="far fa-plus"></i></a></td>
-                                                    <td class="cell-addbook" style="display:none;display:none"
-                                                        role="gridcell"><a title="Thiết lập giá"
-                                                            ng-show="toogleActionVM.toggleSetPriceBookEnabled &amp;&amp; dataItem.MasterProductId == null"
-                                                            class="btn-icon  ng-hide" tabindex="100"
-                                                            ng-click="addPricebook(dataItem)"
-                                                            ng-enter="addPricebook(dataItem)"
-                                                            ng-focus="closePopping(true)"><i class="fas fa-tag"></i></a>
-                                                    </td>
-                                                </tr>
+                                            <tbody id="add-product">
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -681,44 +535,42 @@
                                         </label></div>
                                     <div class="form-group"><label class="form-label control-label ng-binding">Mã phiếu
                                             nhập</label>
-                                        <div class="form-wrap"><input tabindex="100004"
+                                        <div class="form-wrap"><input name="code" tabindex="100004"
                                                 ng-disabled="!IsUpdatePurchaseOrder" type="text" title=""
                                                 ng-change="UpdateCart()" placeholder="Mã phiếu tự động"
                                                 ng-model="cart.Code"
                                                 class="form-control codeAuto ng-pristine ng-untouched ng-valid ng-empty"
                                                 kv-valid-special-chars="Mã phiếu nhập"></div>
                                     </div>
-                                    <div class="form-group mb10"><label class="form-label control-label ng-binding">Mã đặt
-                                            hàng nhập</label>
-                                        <div class="form-wrap form-control-static"><a
-                                                ng-href="#/OrderSupplier?Code=undefined" target="_blank"
-                                                ng-bind="cart.OrderSupplierCode" class="ng-binding"
-                                                href="#/OrderSupplier?Code=undefined"></a></div>
-                                    </div>
+
                                     <div class="form-group mb10"><label class="form-label control-label ng-binding">Trạng
                                             thái</label>
-                                        <div class="form-wrap form-control-static ng-binding">Phiếu tạm</div>
+                                        <div class="form-wrap form-control-static ng-binding" style="font-weight: 700">
+                                            Phiếu nhập</div>
                                     </div>
                                 </div>
                                 <div class="form-wrapper kv3Pay">
                                     <div class="form-group"><label class="form-label control-label ng-binding">Tổng tiền
-                                            hàng <span ng-show="settings.UseTotalQuantity"
-                                                class="qty ng-binding">0</span></label>
-                                        <div class="form-wrap form-control-static ng-binding" ng-show="viewPrice">0</div>
+                                            hàng
+                                            {{-- <span ng-show="settings.UseTotalQuantity"
+                                                class="qty ng-binding">0</span> --}}
+                                        </label>
+                                        <div class="form-wrap form-control-static ng-binding sum-total"
+                                            ng-show="viewPrice">0</div>
                                     </div>
-                                    <div class="form-group" ng-show="viewPrice &amp;&amp; !isHideDiscount"><label
+                                    {{-- <div class="form-group" ng-show="viewPrice &amp;&amp; !isHideDiscount"><label
                                             class="form-label control-label ng-binding">Giảm giá</label>
                                         <div class="form-wrap"><a id="idDiscountOnOrder" tabindex="100005"
                                                 kv-popup-anchor="discountOnOrder" kv-placement="left"
                                                 kv-focus-item="iptDiscount" class="form-control ng-binding">0</a></div>
-                                    </div>
-                                    <div class="form-group ng-hide" ng-show="viewPrice &amp;&amp; viewExpensesOther">
+                                    </div> --}}
+                                    {{-- <div class="form-group ng-hide" ng-show="viewPrice &amp;&amp; viewExpensesOther">
                                         <label class="form-label control-label ng-binding">Chi phí nhập trả NCC
                                             <!-- ngIf: cart.ExpensesOthersTitle.length > 1 --></label>
                                         <div class="form-wrap"><a href="" class="form-control iptPay ng-binding"
                                                 tabindex="100009" ng-click="showExpensesOther(0)"
                                                 ng-enter="showExpensesOther(0)" kv-placement="left">0</a></div>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-group ng-hide" ng-show="viewPrice &amp;&amp; cart.PaidAmount > 0">
                                         <label class="form-label control-label ng-binding">Đã trả nhà cung cấp</label>
                                         <div class="form-wrap"><input id="idPaidCustomer" type="text"
@@ -729,14 +581,14 @@
                                                 ng-readonly="true" ng-focus="closePopping(true)" readonly="readonly">
                                         </div>
                                     </div>
-                                    <div class="form-group ng-hide"
+                                    {{-- <div class="form-group ng-hide"
                                         ng-show="viewPrice &amp;&amp; cart.PaidAmount < cart.Total"><strong
                                             class="ng-binding">Cần trả nhà cung cấp</strong> <span
                                             class="txtCurr txtB flr payOrder ng-binding">0</span></div>
                                     <div class="form-group"
                                         ng-show="viewPrice &amp;&amp; cart.PaidAmount >= (cart.Total)"><strong
                                             class="ng-binding">Cần trả nhà cung cấp</strong> <span
-                                            class="txtCurr txtB payOrder flr ng-binding">0</span></div>
+                                            class="txtCurr txtB payOrder flr ng-binding">0</span></div> --}}
                                     <div class="form-group ng-hide"
                                         ng-show="viewPrice &amp;&amp; cart.PaidAmount > (cart.Total) &amp;&amp; cart.PaidAmount > 0">
                                         <label class="form-label control-label ng-binding">Hoàn lại tạm ứng</label>
@@ -816,15 +668,8 @@
                         </div>
                     </article>
                     <div class="wrap-button">
-                        <!-- ngIf: !(FromOrderSupplier || cart.OrderSupplierCode) && !IsUpdatePurchaseOrderComplete --><a
-                            tabindex="100015" ng-enter="saveData(false)" ng-click="saveData(false)"
-                            kv-taga-disabled="saving"
-                            ng-show="cart.Status==orderMap.Draft &amp;&amp; !IsUpdatePurchaseOrderComplete"
-                            ng-if="!(FromOrderSupplier || cart.OrderSupplierCode) &amp;&amp; !IsUpdatePurchaseOrderComplete"
-                            class="btn btn-primary btn-font--medium ng-binding ng-scope"><i class="fas fa-save"></i>Lưu
-                            tạm</a><!-- end ngIf: !(FromOrderSupplier || cart.OrderSupplierCode) && !IsUpdatePurchaseOrderComplete -->
-                        <a tabindex="100016" ng-enter="saveData(true)" ng-click="saveData(true)"
-                            kv-taga-disabled="saving" class="btn btn-success btn-font--medium ng-binding ng-isolate-scope"
+                        <a tabindex="100016" onclick="submit()"
+                            class="btn btn-success btn-font--medium ng-binding ng-isolate-scope"
                             kv-next-focus="productSearchInput"><i class="fas fa-check"></i>Hoàn thành</a>
                     </div>
                 </section><kv-popup id="discountOrderHelp" class="ng-isolate-scope popupWrapper">
@@ -870,7 +715,7 @@
                         class="ng-isolate-scope">
                     </kv-category-form>
                 </div>
-                <div ng-controller="SupplierFormPopupCtrl" class="ng-scope"></div><kv-popup id="desTemplate"
+                <div ng-controller="formPopupCtrl" class="ng-scope"></div><kv-popup id="desTemplate"
                     class="desPop ng-isolate-scope popupWrapper" focus-on-close="row-qty-number-">
                     <div class="kv2Pop pop popArrow" ng-transclude="">
                         <div ng-controller="DesCtrl" class="fr ng-scope">
@@ -1005,7 +850,6 @@
 
 
 
-    <div class="k-overlay" style="display: none; z-index: 10002; opacity: 0.5;"></div>
     <div class="click-modal k-widget k-window k-window-poup k-window-supplieriorder kv-window k-window-customer-info"
         data-role="draggable"
         style="display: none;padding-top: 62px; min-width: 90px; min-height: 50px; width: 100%;  top: 260px; left: 48.5px; position: fixed; touch-action: pan-y; z-index: 10005; transform: scale(1); opacity: 1;">
@@ -1015,11 +859,11 @@
                     class="k-window-action k-link"><span role="presentation" class="k-icon k-i-close">Close</span></a>
             </div>
         </div>
-        <div kendo-window="supplierWindow" k-visible="false" k-resizable="false" k-draggable="true"
-            k-pinned="true" k-width="780" k-modal="true" k-on-deactivate="focusEditSupplier()" data-role="window"
+        <div kendo-window="supplierWindow" k-visible="false" k-resizable="false" k-draggable="true" k-pinned="true"
+            k-width="780" k-modal="true" k-on-deactivate="focusEditSupplier()" data-role="window"
             class="k-window-content k-content" style="display: block;" tabindex="0"><kv-supplier-form
                 form-name="supplierForm" kv-width="780" class="ng-isolate-scope">
-                <form name="supplierFormInsert" id="supplier-info" class="ng-pristine ng-valid ng-valid-maxlength">
+                <form name="formInsert" id="supplier-info" class="ng-pristine ng-valid ng-valid-maxlength">
                     <!-- ngIf: isShowDebt && supplier.Id && canViewDebt --><!-- ngIf: !isShowDebt || !supplier.Id || !canViewDebt -->
                     <section ng-if="!isShowDebt || !supplier.Id || !canViewDebt" class="ng-scope">
                         <div class="form-wrapper">
@@ -1028,26 +872,28 @@
                                     <div class="form-group"><label class="form-label control-label ng-binding">Mã nhà
                                             cung cấp</label>
                                         <div class="form-wrap"><input type="text" name="code"
-                                                class="form-control supplierFormInsert  iptFocus ng-pristine ng-valid ng-empty ng-touched"
+                                                class="form-control formInsert  iptFocus ng-pristine ng-valid ng-empty ng-touched"
                                                 ng-model="supplier.Code" placeholder="Mã mặc định"></div>
                                     </div>
                                     <div class="form-group"><label class="form-label control-label ng-binding">Tên nhà
-                                            cung cấp</label>
+                                            cung cấp <span style="color: red">*</span></label>
                                         <div class="form-wrap"><input name="name" type="text"
-                                                class="form-control supplierFormInsert ng-pristine ng-untouched ng-valid ng-empty"
+                                                class="form-control formInsert ng-pristine ng-untouched ng-valid ng-empty"
                                                 ng-model="supplier.Name"></div>
                                     </div>
                                     <div class="form-group"><label class="form-label control-label ng-binding">Điện
                                             thoại</label>
-                                        <div class="form-wrap"><input name="sdt" type="text"
-                                                class="form-control supplierFormInsert ng-pristine ng-untouched ng-valid ng-empty"
+                                        <div class="form-wrap"><input name="sdt"
+                                                onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;"
+                                                type="text"
+                                                class="form-control formInsert ng-pristine ng-untouched ng-valid ng-empty"
                                                 ng-model="supplier.Phone" ng-trim="false"></div>
                                     </div>
                                     <div class="form-group"><label class="form-label control-label ng-binding">Địa
                                             chỉ</label>
                                         <div class="form-wrap">
                                             <textarea type="text" name="address"
-                                                class="form-control supplierFormInsert ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength"
+                                                class="form-control formInsert ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength"
                                                 ng-model="supplier.Address" maxlength="255"></textarea>
                                         </div>
 
@@ -1069,22 +915,14 @@
 
     <script type="text/javascript" class="ng-scope">
         getSupplier()
+        getProducts()
         $('b[role="presentation"]').hide();
 
-        function closePopupSupplier() {
-            $(".k-overlay,.click-modal").css('display', 'none')
-            let array_container = document.querySelectorAll('.supplierFormInsert');
-            const inputs = document.querySelectorAll('.supplierFormInsert');
-            inputs.forEach(input => {
-                input.value = '';
-            });
-        }
+
         $(document).on("click", "#idAddSupplier", function() {
             $(".k-overlay,.click-modal").css('display', 'block')
         })
-        $(document).on("click", ".k-overlay,.k-i-close", function() {
-            closePopupSupplier()
-        })
+
         // 
         function getSupplier() {
             let html = `<option selected="selected" value="">Chọn nhà cung cấp...</option>`;
@@ -1104,8 +942,143 @@
                 }
             });
         }
+
+        function getProducts() {
+            let html = ``;
+            $.ajax({
+                url: "/api/product",
+                type: "get",
+                success: function(response) {
+                    let data = response.data
+                    if (data) {
+                        data.map(function(val, key) {
+                            html += `<option code="${val.code}" value="${val.id}">${val.name}</option>`
+                        })
+                        $('.search-product').html(html)
+                        $('.search-product').select2({
+                            closeOnSelect: false,
+                            placeholder: "Chọn sản phảm",
+                        });
+                    }
+
+                }
+            });
+        }
+        $(document).on('change', '.search-product', function() {
+            let html = ""
+            let list = $(this).select2('data')
+
+            list.map(function(val, key) {
+                let stt = key + 1
+                let code = val.element.getAttribute('code')
+                html += `
+                            <tr class="k-master-row ng-scope productMaster" data-id="${val.id}"
+                                                    data-uid="5639ffe3-98e5-4483-bf18-c07d30113ee3" role="row">
+                                                    <td class="k-hierarchy-cell"><a class="k-icon k-minus" href="#"
+                                                            tabindex="-1"></a></td>
+                                              
+                                                    <td class="cell-order txtC" role="gridcell"><span
+                                                            ng-show="dataItem.MasterProductId == null"
+                                                            class="ng-binding">${stt}</span></td>
+                                                
+                                                    <td class="cell-code"
+                                                        title="Tồn: 92 - KH đặt: 0 
+                                                    "
+                                                        role="gridcell"><a ng-show="dataItem.MasterProductId == null"
+                                                            href="#/Products?Code=SP000001" target="_blank"
+                                                            class="ng-binding">${code}</a></td>
+                                                    <td class="cell-auto" role="gridcell"><span
+                                                            ng-show="!dataItem.MasterProductId"
+                                                            title="Tồn: 92 - KH đặt: 0">${val.text}</span><a
+                                                            class="txtN txtI dpb fs11 txtGray " tabindex="100"
+                                                            id="itmDescription1" kv-focus-item="iptNote"
+                                                            href="javascript:void(0)" title="Cập nhật ghi chú"
+                                                            kv-popup-anchor="desTemplate" kv-placement="bottom"
+                                                            ng-click="setCurrentRow($event)"
+                                                            ng-enter="setCurrentRow($event)"></a></td>
+                                                    <td class="cell-dvt un-nowrap" role="gridcell"><span
+                                                            ng-show="dataItem.MasterProductId == null"> Cái <span
+                                                                class="slcUnit slcUnit2 txtL ng-binding"></span> </span>
+                                                    </td>
+                                                  
+                                                    <td class="cell-qty-numb txtR" role="gridcell">
+                                                        <div class="qtyBox">
+                                                            <input
+                                                                tabindex="100" type="text" kv-select-text=""
+                                                                class="quantity form-control form-control-sm ng-pristine ng-untouched ng-valid ng-not-empty" onchange="ChangePrice(this)"></div>
+                                                        <div class="qtyBox2"><span
+                                                                ng-show="FromOrderSupplier &amp;&amp; dataItem.OrderQuantity != null &amp;&amp; dataItem.OrderQuantity != 0"
+                                                                class="ng-binding ng-hide">/</span></div>
+                                                    </td>
+                                                    <td class="txtR cell-total" role="gridcell"><input data-type='currency' type="text"
+                                                            tabindex="100" 
+                                                            class="txtR price-sell  form-control form-control-sm purchase-order-price ng-pristine ng-untouched ng-valid ng-not-empty"
+                                                            kv-tooltip="" data-toggle="tooltip" data-placement="bottom"
+                                                            data-original-title="Cao hơn giá bán"
+                                                            onchange="ChangePrice(this)"></td>
+                                               
+                                                    <td class="cell-total txtR" role="gridcell">
+                                                     
+                                                        <div class="proPrice posR ng-scope"
+                                                            ng-if="toogleActionVM.toggleChangePriceEnabled"><button
+                                                                class="txtR total form-control form-control-sm ng-binding"
+                                                                tabindex="100" >0</button></div>
+                                                    </td>
+                                                    <td class="cell-adddel" style="display:none;display:none"
+                                                        role="gridcell"><a title="Thêm hàng hóa" tabindex="100"
+                                                            ng-click="AddCartChild(dataItem)"
+                                                            ng-enter="AddCartChild(dataItem)"
+                                                            ng-show="toogleActionVM.toggleMultiLineEnabled &amp;&amp; (dataItem.subItems == null || dataItem.subItems.length < 19) "
+                                                            class="btn-icon ng-hide" ng-focus="closePopping(true)"><i
+                                                                class="far fa-plus"></i></a></td>
+                                                    <td class="cell-addbook" style="display:none;display:none"
+                                                        role="gridcell"><a title="Thiết lập giá"
+                                                            ng-show="toogleActionVM.toggleSetPriceBookEnabled &amp;&amp; dataItem.MasterProductId == null"
+                                                            class="btn-icon  ng-hide" tabindex="100"
+                                                            ng-click="addPricebook(dataItem)"
+                                                            ng-enter="addPricebook(dataItem)"
+                                                            ng-focus="closePopping(true)"><i class="fas fa-tag"></i></a>
+                                                    </td>
+                                                </tr>
+                            
+                            
+                            `
+            })
+            $('#add-product').html(html)
+        })
+
+        function ChangePrice(_this) {
+            let elem = $(_this)
+
+            let tr = elem.closest('tr')
+            let quantity = tr.find('.quantity').val()
+            let price = tr.find('.price-sell').val()
+            let priceFormat = 0
+            if (price != "") {
+                priceFormat = price.replace('$', '')
+                priceFormat = priceFormat.replaceAll(',', '')
+            }
+            let total = priceFormat * quantity
+
+            tr.find('.total').html(formatCurrency(total))
+            let sumTotal = 0
+
+            $(".total").map(function(key, elm) {
+                let total = elm.innerHTML
+                let temp = 0
+                if (total != "") {
+                    temp = total.replace('$', '')
+                    temp = temp.replaceAll(',', '')
+                }
+
+                sumTotal = Number(sumTotal) + Number(temp)
+            })
+            console.log(sumTotal);
+            $(".sum-total").html(formatCurrency(sumTotal))
+            // sum-total
+        }
         $(document).on("click", "#insert-click", function() {
-            let values = $("form[name='supplierFormInsert']").serialize()
+            let values = $("form[name='formInsert']").serialize()
             let _this = this
             BtnLoading(_this)
 
@@ -1129,5 +1102,48 @@
             });
 
         })
+
+        function submit() {
+            let _this = this
+
+            let supplier = $('.search-supplier').val()
+            let code = $('input[name="code"]').val()
+            let des = $("#purchaseOrderDes").val()
+            let sum = $(".sum-total").html()
+            let listProduct = []
+            $(".productMaster").map(function(key, elm) {
+                let id = $(elm).data('id')
+                let quantity = $(elm).find('.quantity').val()
+                let priceSell = $(elm).find('.price-sell').val()
+                let temp = {
+                    'id': id,
+                    'quantity': quantity,
+                    'priceSell': priceSell,
+                }
+                listProduct.push(temp)
+            })
+            $.ajax({
+                url: "/api/coupon",
+                type: "post",
+                data: {
+                    'supplier_id': supplier,
+                    'code': code,
+                    'name': des,
+                    'sum': sum,
+                    'listProduct': JSON.stringify(listProduct),
+                },
+                success: function(response) {
+                    BtnReset(_this)
+                    toastr.success(response.message)
+                    document.location="/wavehouse"
+                    
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    BtnReset(_this)
+                    toastr.error(jqXHR.responseJSON.message)
+
+                }
+            });
+        }
     </script>
 @endsection

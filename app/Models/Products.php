@@ -22,6 +22,7 @@ class Products extends Model
         "price_old",
         "price_capital",
         "price_sell",
+        "file",
         "count"
     ];
 }

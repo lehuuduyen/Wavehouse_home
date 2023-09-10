@@ -14,5 +14,14 @@ class ImportExportCoupon extends Model
      *
      * @var string
      */
-    protected $table = 'import_export_coupon_product';
+    protected $table = 'import_export_coupon';
+    protected $fillable = [
+        "code",
+        "price",
+        "name",
+        "supplier_id",
+        "warehouse_id",
+        "status",
+        "user_id",
+    ];
 }

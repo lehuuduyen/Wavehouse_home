@@ -26,7 +26,9 @@ Route::get('/wavehouse', function () {
 Route::get('/wavehouse/create', function () {
     return view('wavehouse.create');
 });
-
+Route::get('/print', function () {
+    return view('layouts.print');
+});
 
 Auth::routes();
 

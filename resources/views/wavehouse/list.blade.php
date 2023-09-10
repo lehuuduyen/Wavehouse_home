@@ -4,286 +4,7 @@
     <section class="container main_wrapper kma-wrapper ng-scope" ng-if="$root.isAuthenticated === true">
         <!-- ngView:  -->
         <section class="clb main main-content ng-scope" ng-view="">
-            <section class="mainLeft ng-scope">
-                <h1 class="heading-page"><span class="ng-binding">Phiếu nhập hàng</span></h1><kv-order-filter>
-                    <div id="kVCWidgetPurchaseOrder" ng-show="isShowKVCWidgetPurchaseOrder" class="" data-v-app="">
-                        <!---->
-                    </div>
-                    <article class="boxLeft ng-hide" ng-show="isShowKfinTouch">
-                        <h3 class="leftTitle"><img src="https://logo.kiotviet.vn/Kiotviet-Finance-Logo-Horizontal.svg"
-                                height="24" alt=""> <a class="showhideicon" ng-click="hideKfinTouch()"><i
-                                    class="fa fa-chevron-circle-up"></i></a></h3>
-                        <aside class="boxLeftC" ng-hide="showKfinTouch">
-                            <div id="kfin-touch-point-order-chart"></div>
-                        </aside>
-                    </article>
-                    <article class="boxLeft uln sortBranch branchLeft ng-hide" ng-show="branches.Data.length>1">
-                        <h3 class="leftTitle ng-binding">Chi nhánh <a class="showhideicon"
-                                ng-click="showOrderBranch = !showOrderBranch"><i class="fa fa-chevron-circle-up"></i></a>
-                        </h3>
-                        <aside class="boxLeftC" ng-hide="showOrderBranch">
-                            <div class="form-group">
-                                <div class="k-widget k-multiselect k-header form-control" unselectable="on" title=""
-                                    style="">
-                                    <div class="k-multiselect-wrap k-floatwrap" unselectable="on">
-                                        <ul role="listbox" unselectable="on" class="k-reset" id="sortBranch_taglist">
-                                            <li class="k-button ng-scope" unselectable="on"><span unselectable="on">Chi
-                                                    nhánh trung tâm</span><span unselectable="on" class="k-select"><span
-                                                        unselectable="on" class="k-icon k-i-close">delete</span></span></li>
-                                        </ul><input class="k-input" style="width: 25px;" accesskey="" autocomplete="off"
-                                            role="listbox" aria-expanded="false" tabindex="0"
-                                            aria-owns="sortBranch_taglist sortBranch_listbox" aria-disabled="false"
-                                            aria-readonly="false" aria-busy="false"
-                                            aria-activedescendant="4a71a404-86e3-4490-a41e-a67a3ed8862b"><span
-                                            class="k-icon k-loading k-loading-hidden"></span>
-                                    </div><select k-data-source="branches.Data" auto-close="false" k-filter="'contains'"
-                                        class="form-control" data-placeholder="_l.lblBranchFilterHolder"
-                                        k-data-text-field="'Name'" k-data-value-field="'Id'" k-on-change="filterbyBranch()"
-                                        k-ng-model="branchids" id="sortBranch" k-value-primitive="true"
-                                        kendo-multi-select="" data-role="multiselect" multiple="multiple"
-                                        aria-disabled="false" aria-readonly="false" style="display: none;">
-                                        <option value="61820" selected="selected">Chi nhánh trung tâm</option>
-                                    </select><span
-                                        style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-stretch: 100%; font-style: normal; font-weight: 400; letter-spacing: normal; text-transform: none; line-height: 17.03px; position: absolute; visibility: hidden; top: -3333px; left: -3333px;"></span>
-                                </div>
-                            </div>
-                        </aside>
-                    </article>
-
-                    <article class="boxLeft uln sortDeliveryPartner ng-hide" ng-show="userList.length > 1">
-                        <h3 class="leftTitle ng-binding">Người tạo<a class="showhideicon"
-                                ng-click="showCreatedBy = !showCreatedBy"><i class="fa fa-chevron-circle-up"></i></a></h3>
-                        <aside class="boxLeftC" ng-hide="showCreatedBy">
-                            <div class="form-group">
-                                <div class="k-widget k-multiselect k-header form-control" unselectable="on" title=""
-                                    style="">
-                                    <div class="k-multiselect-wrap k-floatwrap" unselectable="on">
-                                        <ul role="listbox" unselectable="on" class="k-reset" id="sortUserCreate_taglist">
-                                        </ul><input class="k-input k-readonly" style="width: 116px;" accesskey=""
-                                            autocomplete="off" role="listbox" aria-expanded="false" tabindex="0"
-                                            aria-owns="sortUserCreate_taglist sortUserCreate_listbox"
-                                            aria-disabled="false" aria-readonly="false" aria-busy="false"
-                                            aria-activedescendant="91cabd89-00db-4239-ad00-9c4b02f89bd6"><span
-                                            class="k-icon k-loading k-loading-hidden"></span>
-                                    </div><select k-data-source="userList" data-placeholder="_l.lblCreatedByFilterHolder"
-                                        k-data-text-field="'GivenName'" k-data-value-field="'Id'"
-                                        k-ng-model="userCreateIds" class="form-control" k-filter="'contains'"
-                                        k-value-primitive="true" k-on-change="userFilterUpdated()" id="sortUserCreate"
-                                        auto-close="false" kendo-multi-select="" data-role="multiselect"
-                                        multiple="multiple" aria-disabled="false" aria-readonly="false"
-                                        style="display: none;">
-                                        <option value="125057">admin</option>
-                                    </select><span
-                                        style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-stretch: 100%; font-style: normal; font-weight: 400; letter-spacing: normal; text-transform: none; line-height: 17.03px; position: absolute; visibility: hidden; top: -3333px; left: -3333px;">Chọn
-                                        người tạo</span>
-                                </div>
-                            </div>
-                        </aside>
-                    </article>
-                    <article class="boxLeft uln sortDeliveryPartner ng-hide"
-                        ng-show="!isPurchaseOrder &amp;&amp; userList.length > 1">
-                        <h3 class="leftTitle ng-binding">Người nhận đặt<a class="showhideicon"
-                                ng-click="showEmployeeOrder = !showEmployeeOrder"><i
-                                    class="fa fa-chevron-circle-up"></i></a></h3>
-                        <aside class="boxLeftC" ng-hide="showEmployeeOrder">
-                            <div class="form-group">
-                                <div class="k-widget k-multiselect k-header form-control" unselectable="on"
-                                    title="" style="">
-                                    <div class="k-multiselect-wrap k-floatwrap" unselectable="on">
-                                        <ul role="listbox" unselectable="on" class="k-reset"
-                                            id="sortUserCreate_taglist"></ul><input class="k-input k-readonly"
-                                            style="width: 148px;" accesskey="" autocomplete="off" role="listbox"
-                                            aria-expanded="false" tabindex="0"
-                                            aria-owns="sortUserCreate_taglist sortUserCreate_listbox"
-                                            aria-disabled="false" aria-readonly="false" aria-busy="false"
-                                            aria-activedescendant="be8976a8-64aa-4dd2-b784-5f7893ac245c"><span
-                                            class="k-icon k-loading k-loading-hidden"></span>
-                                    </div><select k-data-source="userList" data-placeholder="_l.choose_employeeOrder"
-                                        k-data-text-field="'GivenName'" k-data-value-field="'Id'"
-                                        k-ng-model="userEmployeeOrderIds" class="form-control" k-filter="'contains'"
-                                        k-value-primitive="true" k-on-change="userEmployeeOrderFilterUpdated()"
-                                        id="sortUserCreate" auto-close="false" kendo-multi-select=""
-                                        data-role="multiselect" multiple="multiple" aria-disabled="false"
-                                        aria-readonly="false" style="display: none;">
-                                        <option value="125057">admin</option>
-                                    </select><span
-                                        style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-stretch: 100%; font-style: normal; font-weight: 400; letter-spacing: normal; text-transform: none; line-height: 17.03px; position: absolute; visibility: hidden; top: -3333px; left: -3333px;">Chọn
-                                        người nhận đặt</span>
-                                </div>
-                            </div>
-                        </aside>
-                    </article>
-                    <article class="boxLeft uln sortDeliveryPartner ng-hide"
-                        ng-show="isPurchaseOrder &amp;&amp; userList.length > 1">
-                        <h3 class="leftTitle ng-binding">Người nhập<a class="showhideicon"
-                                ng-click="showEmployeeOrder = !showEmployeeOrder"><i
-                                    class="fa fa-chevron-circle-up"></i></a></h3>
-                        <aside class="boxLeftC" ng-hide="showEmployeeOrder">
-                            <div class="form-group">
-                                <div class="k-widget k-multiselect k-header form-control" unselectable="on"
-                                    title="" style="">
-                                    <div class="k-multiselect-wrap k-floatwrap" unselectable="on">
-                                        <ul role="listbox" unselectable="on" class="k-reset"
-                                            id="sortUserCreate_taglist"></ul><input class="k-input k-readonly"
-                                            style="width: 127px;" accesskey="" autocomplete="off" role="listbox"
-                                            aria-expanded="false" tabindex="0"
-                                            aria-owns="sortUserCreate_taglist sortUserCreate_listbox"
-                                            aria-disabled="false" aria-readonly="false" aria-busy="false"
-                                            aria-activedescendant="13fed30d-ed46-4d10-bd59-11fe440b7ea3"><span
-                                            class="k-icon k-loading k-loading-hidden"></span>
-                                    </div><select k-data-source="userList" data-placeholder="_l.choose_purchaseOrder"
-                                        k-data-text-field="'GivenName'" k-data-value-field="'Id'"
-                                        k-ng-model="userPurchaseOrderIds" class="form-control" k-filter="'contains'"
-                                        k-value-primitive="true" k-on-change="userPurchaseOrderFilterUpdated()"
-                                        id="sortUserCreate" auto-close="false" kendo-multi-select=""
-                                        data-role="multiselect" multiple="multiple" aria-disabled="false"
-                                        aria-readonly="false" style="display: none;">
-                                        <option value="125057">admin</option>
-                                    </select><span
-                                        style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-stretch: 100%; font-style: normal; font-weight: 400; letter-spacing: normal; text-transform: none; line-height: 17.03px; position: absolute; visibility: hidden; top: -3333px; left: -3333px;">Chọn
-                                        người nhập</span>
-                                </div>
-                            </div>
-                        </aside>
-                    </article>
-                    <div ng-hide="isPurchaseOrder" class="ng-hide"><kv-sale-channel-filter
-                            on-selected="filterbySaleChannel" is-purchase-order="isPurchaseOrder"
-                            class="ng-isolate-scope">
-                            <article class="boxLeft uln sortTime proGroup sortView posR">
-                                <div ng-show="isHideButton" class="ng-hide">
-                                    <h3 class="leftTitle ng-binding">Kênh bán</h3>
-                                </div>
-                                <div ng-show="!isHideButton">
-                                    <h3 class="leftTitle ng-binding">Kênh bán <span class="left-group-btn"><a
-                                                ng-click="EditSaleChannel()" href="javascript:void(0)" class="btn-icon"
-                                                title="Thêm kênh bán" ng-hide="isHideButton"><i
-                                                    class="far fa-plus-circle"></i></a> <a class="showhideicon"
-                                                ng-click="showGroup = !showGroup"><i
-                                                    class="fa fa-chevron-circle-up"></i></a></span></h3>
-                                </div>
-                                <aside class="boxLeftC" ng-hide="showGroup">
-                                    <div class="form-group">
-                                        <div class="k-widget k-multiselect k-header form-control ng-scope"
-                                            unselectable="on" title="" style="">
-                                            <div class="k-multiselect-wrap k-floatwrap" unselectable="on">
-                                                <ul role="listbox" unselectable="on" class="k-reset"
-                                                    id="SaleChannel_taglist"></ul><input class="k-input k-readonly"
-                                                    style="width: 113px;" accesskey="" autocomplete="off"
-                                                    role="listbox" aria-expanded="false" tabindex="0"
-                                                    aria-owns="SaleChannel_taglist SaleChannel_listbox"
-                                                    aria-disabled="false" aria-readonly="false"
-                                                    aria-activedescendant="1ef2b8a3-b644-4dba-ad3a-cb7c5efa4b62"
-                                                    aria-busy="false"><span
-                                                    class="k-icon k-loading k-loading-hidden"></span>
-                                            </div><select k-data-source="salechannels.Data" k-filter="'contains'"
-                                                data-placeholder="_l.sc_selectChannel" k-data-text-field="'Name'"
-                                                k-data-value-field="'Id'" k-on-change="filterbySaleChannel()"
-                                                k-ng-model="salechannelids" id="SaleChannel"
-                                                class="form-control ng-scope" k-value-primitive="true"
-                                                k-options="multiselectOption" kendo-multi-select="" auto-close="false"
-                                                k-rebind="salechannels.Data" k-item-template="mutilSelectTemplate"
-                                                data-role="multiselect" multiple="multiple" aria-disabled="false"
-                                                aria-readonly="false" style="display: none;">
-                                                <option value="0">Bán trực tiếp</option>
-                                                <option value="65918">Khác</option>
-                                            </select><span
-                                                style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-stretch: 100%; font-style: normal; font-weight: 400; letter-spacing: normal; text-transform: none; line-height: 17.03px; position: absolute; visibility: hidden; top: -3333px; left: -3333px;">Chọn
-                                                kênh bán</span>
-                                        </div>
-                                    </div>
-                                </aside>
-                            </article><kv-sale-channel-form form-name="saleChannelForm"
-                                on-save-channel="onSaveChannelFormPopup" class="ng-isolate-scope"></kv-sale-channel-form>
-                        </kv-sale-channel-filter></div>
-                    <article class="boxLeft uln sortDeliveryPartner ng-hide"
-                        ng-show="settings.UseCod &amp;&amp; !notShowDeliveryFilter">
-                        <h3 class="leftTitle ng-binding">Đối tác giao hàng<a class="showhideicon"
-                                ng-click="showDeliveryPartner = !showDeliveryPartner"><i
-                                    class="fa fa-chevron-circle-up"></i></a></h3>
-                        <aside class="boxLeftC" ng-hide="showDeliveryPartner">
-                            <div class="form-group"><select k-data-source="deliveries"
-                                    data-placeholder="_l.lblDeliveryFilterHolder" k-data-text-field="'Name'"
-                                    k-data-value-field="'Id'" k-on-change="deliveryFilterUpdated()"
-                                    k-ng-model="deliveryIds" class="form-control" k-filter="'contains'"
-                                    k-options="deliveryOptions" auto-close="false" id="sortDeliveryPartner"
-                                    kendo-multi-select=""></select></div>
-                        </aside>
-                    </article><!-- ngIf: expectedDeliveryFilter -->
-                    <article class="boxLeft uln ng-hide" ng-show="!isPurchaseOrder &amp;&amp; settings.UseCod">
-                        <h3 class="leftTitle ng-binding">Khu vực giao hàng<a class="showhideicon"
-                                ng-click="showLocation = !showLocation"><i class="fa fa-chevron-circle-up"></i></a></h3>
-                        <aside class="boxLeftC" ng-hide="showLocation">
-                            <div class="form-group"><select id="mulSelOrderLocation"
-                                    data-placeholder="_l.lblLocationPlace" kendo-multi-select=""
-                                    k-options="comboLocation" class="groupselect form-control" k-ng-model="LocationIds"
-                                    k-on-change="filterByLocation()" auto-close="false" k-filter="'contains'"></select>
-                            </div>
-                        </aside>
-                    </article>
-                    <article class="boxLeft uln sortDeliveryPartner ng-hide" ng-hide="isPurchaseOrder">
-                        <h3 class="leftTitle ng-binding">Phương thức<a class="showhideicon"
-                                ng-click="showPaymentMethod = !showPaymentMethod"><i
-                                    class="fa fa-chevron-circle-up"></i></a></h3>
-                        <aside class="boxLeftC" ng-hide="showPaymentMethod">
-                            <div class="form-group">
-                                <div class="k-widget k-multiselect k-header form-control" unselectable="on"
-                                    title="" style="">
-                                    <div class="k-multiselect-wrap k-floatwrap" unselectable="on">
-                                        <ul role="listbox" unselectable="on" class="k-reset"
-                                            id="sortPaymentMethod_taglist"></ul><input class="k-input k-readonly"
-                                            style="width: 211px;" accesskey="" autocomplete="off" role="listbox"
-                                            aria-expanded="false" tabindex="0"
-                                            aria-owns="sortPaymentMethod_taglist sortPaymentMethod_listbox"
-                                            aria-disabled="false" aria-readonly="false" aria-busy="false"><span
-                                            class="k-icon k-loading k-loading-hidden"></span>
-                                    </div><select k-data-source="paymentMethods"
-                                        data-placeholder="_l.lblPaymentMethodHolder" k-data-text-field="'Name'"
-                                        k-data-value-field="'Key'" k-on-change="paymentMethodFilterUpdated()"
-                                        k-ng-model="PaymentMethods" class="form-control" auto-close="false"
-                                        id="sortPaymentMethod" kendo-multi-select="" data-role="multiselect"
-                                        multiple="multiple" aria-disabled="false" aria-readonly="false"
-                                        style="display: none;"></select><span
-                                        style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-stretch: 100%; font-style: normal; font-weight: 400; letter-spacing: normal; text-transform: none; line-height: 17.03px; position: absolute; visibility: hidden; top: -3333px; left: -3333px;">Chọn
-                                        phương thức thanh toán...</span>
-                                </div>
-                            </div>
-                        </aside>
-                    </article>
-                    <article class="boxLeft uln sortDeliveryPartner ng-hide"
-                        ng-show="settings.ExpensesOther &amp;&amp; isPurchaseOrder &amp;&amp; viewPrice">
-                        <h3 class="leftTitle ng-binding">Chi phí nhập trả NCC<a class="showhideicon"
-                                ng-click="showExpensesOtherFilter = !showExpensesOtherFilter"><i
-                                    class="fa fa-chevron-circle-up"></i></a></h3>
-                        <aside class="boxLeftC" ng-hide="showExpensesOtherFilter">
-                            <div class="form-group">
-                                <div class="k-widget k-multiselect k-header form-control" unselectable="on"
-                                    title="" style="">
-                                    <div class="k-multiselect-wrap k-floatwrap" unselectable="on">
-                                        <ul role="listbox" unselectable="on" class="k-reset"
-                                            id="multiExpensesOther_taglist"></ul><input class="k-input k-readonly"
-                                            style="width: 216px;" accesskey="" autocomplete="off" role="listbox"
-                                            aria-expanded="false" tabindex="0"
-                                            aria-owns="multiExpensesOther_taglist multiExpensesOther_listbox"
-                                            aria-disabled="false" aria-readonly="false" aria-busy="false"><span
-                                            class="k-icon k-loading k-loading-hidden"></span>
-                                    </div><select k-data-source="expensesOthers" k-data-text-field="'Name'"
-                                        k-data-value-field="'Id'" k-on-change="filterbyExpensesOther()"
-                                        k-ng-model="expensesOthersIds" class="form-control" k-filter="'contains'"
-                                        data-placeholder="_l.purchaseOrder_ExpensesOtherLbl" auto-close="false"
-                                        id="multiExpensesOther" kendo-multi-select="" data-role="multiselect"
-                                        multiple="multiple" aria-disabled="false" aria-readonly="false"
-                                        style="display: none;"></select><span
-                                        style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-stretch: 100%; font-style: normal; font-weight: 400; letter-spacing: normal; text-transform: none; line-height: 17.03px; position: absolute; visibility: hidden; top: -3333px; left: -3333px;">Chọn
-                                        loại chi phí nhập trả NCC...</span>
-                                </div>
-                            </div>
-                        </aside>
-                    </article>
-
-                </kv-order-filter>
-                <div class="wrap-button-footer"><button kv-mobile="" type="button" class="kv2Btn">Hoàn
-                        tất</button></div>
-            </section>
+           
             <section class="mainRight ng-scope">
                 <section class="mainWrap fll w100" ng-class="{ 'has-expire' : showExpireMessage.isActive === true}"
                     style="position: relative; top: auto; bottom: auto; width: auto;">
@@ -584,206 +305,11 @@
                                         <col>
                                         <col>
                                     </colgroup>
-                                    <tbody role="rowgroup">
-                                        <tr class="k-master-row ng-scope cssSummaryRow k-master-prev"
-                                            data-uid="caba277f-1236-4e7c-87d7-7808046491e5" role="row"
-                                            style="background: rgb(254, 252, 237); font-weight: bold;">
-                                            <td class="k-hierarchy-cell"><a class="k-icon k-plus" href="#"
-                                                    tabindex="-1" style="display: none;"></a></td>
-                                            <td class="cell-check" role="gridcell"><label
-                                                    class="quickaction_chk dpb has-pretty-child"
-                                                    ng-click="eventStop($event)">
-                                                    <div class="clearfix prettycheckbox labelright  blue">
-                                                        <input type="checkbox" checklist-comparator=".Id"
-                                                            checklist-value="dataItem" kv-pretty-check=""
-                                                            kv-data-label="" ng-model="checked"
-                                                            class="ng-scope ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty"
-                                                            style="display: none;"
-                                                            checklist-model="selectedPurchaseOrder"><a
-                                                            href="javascript:void(0)" tabindex="0" class=""></a>
-                                                        <label for="undefined" class=""></label>
-                                                    </div>
-                                                </label></td>
-                                            <td class="cell-star" role="gridcell"><label
-                                                    class="quickaction_chk star"><input type="checkbox"
-                                                        class="chkrad ng-pristine ng-untouched ng-valid ng-empty"
-                                                        ng-click="onChangeFavouriteItem(dataItem)" ng-true-value="1"
-                                                        ng-false-value="0" ng-checked="dataItem.IsFavourite > 0"
-                                                        ng-model="dataItem.IsFavourite"><span></span></label>
-                                            </td>
-                                            <td class="cell-code" role="gridcell"><span class="ng-binding"
-                                                    data-code=""> <i class="fa fa-envelope ng-hide"
-                                                        ng-show="undefined"></i></span></td>
-                                            <td class="cell-code" style="display:none" role="gridcell">
-                                                <span ng-bind="dataItem.ReturnCode" class="ng-binding"></span>
-                                            </td>
-                                            <td class="cell-date-time" role="gridcell"></td>
-                                            <td class="cell-date-time" style="display:none" role="gridcell"></td>
-                                            <td class="cell-date-time" style="display:none" role="gridcell"></td>
-                                            <td class="cell-auto" role="gridcell"><span ng-bind="dataItem.Supplier.Name"
-                                                    class="ng-binding"></span></td>
-                                            <td class="cell-unit" style="display:none" role="gridcell">
-                                                <span ng-bind="dataItem.Branch.Name" class="ng-binding"></span>
-                                            </td>
-                                            <td class="cell-name" style="display:none" role="gridcell">
-                                                <span ng-bind="dataItem.User.GivenName" class="ng-binding"></span>
-                                            </td>
-                                            <td class="cell-name" style="display:none" role="gridcell">
-                                                <span ng-bind="dataItem.User1.GivenName" class="ng-binding"></span>
-                                            </td>
-                                            <td class="cell-total txtR" style="display:none" role="gridcell">11.00
-                                            </td>
-                                            <td class="cell-total-final txtR" style="display:none" role="gridcell">
-                                                <span ng-bind="dataItem.TotalProductType" class="ng-binding"></span>
-                                            </td>
-                                            <td class="cell-total txtR ng-binding" style="display:none" role="gridcell">
-                                                550,000</td>
-                                            <td class="cell-total txtR ng-binding" style="display:none" role="gridcell">0
-                                            </td>
-                                            <td class="cell-total-final txtR ng-binding" role="gridcell">
-                                                550,000</td>
-                                            <td class="cell-total-final txtR ng-binding" style="display:none"
-                                                role="gridcell">0</td>
-                                            <td class="cell-description" style="display:none" role="gridcell"><span
-                                                    ng-bind="dataItem.ShortDescription" class="ng-binding"></span></td>
-                                            <td class="cell-status" role="gridcell"><span ng-bind="dataItem.Status"
-                                                    class="ng-binding"></span>
-                                            </td>
-                                        </tr>
-                                        <tr class=" k-master-row ng-scope table-data " data-stt="1"
-                                            data-uid="2d800645-b0de-47c5-a67e-9b929cfd1137" role="row">
-                                            <td class="k-hierarchy-cell"><a class="k-icon k-minus" href="#"
-                                                    tabindex="-1"></a></td>
-                                            <td class="cell-check" role="gridcell"><label
-                                                    class="quickaction_chk dpb has-pretty-child"
-                                                    ng-click="eventStop($event)">
-                                                    <div class="clearfix prettycheckbox labelright  blue">
-                                                        <input type="checkbox" checklist-comparator=".Id"
-                                                            checklist-value="dataItem" kv-pretty-check=""
-                                                            kv-data-label="" ng-model="checked"
-                                                            class="ng-scope ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty"
-                                                            style="display: none;"
-                                                            checklist-model="selectedPurchaseOrder"><a
-                                                            href="javascript:void(0)" tabindex="0"
-                                                            class=""></a>
-                                                        <label for="undefined" class=""></label>
-                                                    </div>
-                                                </label></td>
-                                            <td class="cell-star" role="gridcell"><label
-                                                    class="quickaction_chk star"><input type="checkbox"
-                                                        class="chkrad ng-pristine ng-untouched ng-valid ng-empty"
-                                                        ng-click="onChangeFavouriteItem(dataItem)" ng-true-value="1"
-                                                        ng-false-value="0" ng-checked="dataItem.IsFavourite > 0"
-                                                        ng-model="dataItem.IsFavourite"><span></span></label>
-                                            </td>
-                                            <td class="cell-code" role="gridcell"><span class="ng-binding"
-                                                    data-code="PN000003">PN000003 <i class="fa fa-envelope ng-hide"
-                                                        ng-show="undefined"></i></span></td>
-                                            <td class="cell-code" style="display:none" role="gridcell">
-                                                <span ng-bind="dataItem.ReturnCode" class="ng-binding"></span>
-                                            </td>
-                                            <td class="cell-date-time" role="gridcell">01/09/2023 17:18</td>
-                                            <td class="cell-date-time" style="display:none" role="gridcell">01/09/2023
-                                                17:18</td>
-                                            <td class="cell-date-time" style="display:none" role="gridcell"></td>
-                                            <td class="cell-auto" role="gridcell"><span
-                                                    ng-bind="dataItem.Supplier.Name" class="ng-binding">nha
-                                                    cung cap</span></td>
-                                            <td class="cell-unit" style="display:none" role="gridcell">
-                                                <span ng-bind="dataItem.Branch.Name" class="ng-binding">Chi
-                                                    nhánh trung tâm</span>
-                                            </td>
-                                            <td class="cell-name" style="display:none" role="gridcell">
-                                                <span ng-bind="dataItem.User.GivenName" class="ng-binding">admin</span>
-                                            </td>
-                                            <td class="cell-name" style="display:none" role="gridcell">
-                                                <span ng-bind="dataItem.User1.GivenName" class="ng-binding">admin</span>
-                                            </td>
-                                            <td class="cell-total txtR" style="display:none" role="gridcell">5.00</td>
-                                            <td class="cell-total-final txtR" style="display:none" role="gridcell">
-                                                <span ng-bind="dataItem.TotalProductType" class="ng-binding">1</span>
-                                            </td>
-                                            <td class="cell-total txtR ng-binding" style="display:none"
-                                                role="gridcell">250,000</td>
-                                            <td class="cell-total txtR ng-binding" style="display:none"
-                                                role="gridcell">0</td>
-                                            <td class="cell-total-final txtR ng-binding" role="gridcell">
-                                                250,000</td>
-                                            <td class="cell-total-final txtR ng-binding"
-                                                style="display: none; color: rgb(255, 0, 0);" role="gridcell">0</td>
-                                            <td class="cell-description" style="display:none" role="gridcell"><span
-                                                    ng-bind="dataItem.ShortDescription" class="ng-binding"></span></td>
-                                            <td class="cell-status" role="gridcell"><span ng-bind="dataItem.Status"
-                                                    class="ng-binding">Đã nhập
-                                                    hàng</span></td>
-                                        </tr>
+                                    <tbody id="tbody-coupon">
+                                        
+                                        
 
-                                        <tr class="k-master-row ng-scope table-data "data-stt="2"
-                                            data-uid="5067cf23-f038-44c9-9ddc-d0112caf8f9e" role="row">
-                                            <td class="k-hierarchy-cell"><a class="k-icon k-plus" href="#"
-                                                    tabindex="-1"></a></td>
-                                            <td class="cell-check" role="gridcell"><label
-                                                    class="quickaction_chk dpb has-pretty-child"
-                                                    ng-click="eventStop($event)">
-                                                    <div class="clearfix prettycheckbox labelright  blue">
-                                                        <input type="checkbox" checklist-comparator=".Id"
-                                                            checklist-value="dataItem" kv-pretty-check=""
-                                                            kv-data-label="" ng-model="checked"
-                                                            class="ng-scope ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty"
-                                                            style="display: none;"
-                                                            checklist-model="selectedPurchaseOrder"><a
-                                                            href="javascript:void(0)" tabindex="0"
-                                                            class=""></a>
-                                                        <label for="undefined" class=""></label>
-                                                    </div>
-                                                </label></td>
-                                            <td class="cell-star" role="gridcell"><label
-                                                    class="quickaction_chk star"><input type="checkbox"
-                                                        class="chkrad ng-pristine ng-untouched ng-valid ng-empty"
-                                                        ng-click="onChangeFavouriteItem(dataItem)" ng-true-value="1"
-                                                        ng-false-value="0" ng-checked="dataItem.IsFavourite > 0"
-                                                        ng-model="dataItem.IsFavourite"><span></span></label>
-                                            </td>
-                                            <td class="cell-code" role="gridcell"><span class="ng-binding"
-                                                    data-code="PN000002">PN000002 <i class="fa fa-envelope ng-hide"
-                                                        ng-show="undefined"></i></span></td>
-                                            <td class="cell-code" style="display:none" role="gridcell">
-                                                <span ng-bind="dataItem.ReturnCode" class="ng-binding"></span>
-                                            </td>
-                                            <td class="cell-date-time" role="gridcell">01/09/2023 17:00</td>
-                                            <td class="cell-date-time" style="display:none" role="gridcell">01/09/2023
-                                                17:00</td>
-                                            <td class="cell-date-time" style="display:none" role="gridcell"></td>
-                                            <td class="cell-auto" role="gridcell"><span
-                                                    ng-bind="dataItem.Supplier.Name" class="ng-binding"></span></td>
-                                            <td class="cell-unit" style="display:none" role="gridcell">
-                                                <span ng-bind="dataItem.Branch.Name" class="ng-binding">Chi
-                                                    nhánh trung tâm</span>
-                                            </td>
-                                            <td class="cell-name" style="display:none" role="gridcell">
-                                                <span ng-bind="dataItem.User.GivenName" class="ng-binding">admin</span>
-                                            </td>
-                                            <td class="cell-name" style="display:none" role="gridcell">
-                                                <span ng-bind="dataItem.User1.GivenName" class="ng-binding">admin</span>
-                                            </td>
-                                            <td class="cell-total txtR" style="display:none" role="gridcell">1.00</td>
-                                            <td class="cell-total-final txtR" style="display:none" role="gridcell">
-                                                <span ng-bind="dataItem.TotalProductType" class="ng-binding">1</span>
-                                            </td>
-                                            <td class="cell-total txtR ng-binding" style="display:none"
-                                                role="gridcell">50,000</td>
-                                            <td class="cell-total txtR ng-binding" style="display:none"
-                                                role="gridcell">0</td>
-                                            <td class="cell-total-final txtR ng-binding" role="gridcell">
-                                                50,000</td>
-                                            <td class="cell-total-final txtR ng-binding"
-                                                style="display: none; color: rgb(255, 0, 0);" role="gridcell">0</td>
-                                            <td class="cell-description" style="display:none" role="gridcell"><span
-                                                    ng-bind="dataItem.ShortDescription" class="ng-binding"></span></td>
-                                            <td class="cell-status" role="gridcell"><span ng-bind="dataItem.Status"
-                                                    class="ng-binding">Đã nhập
-                                                    hàng</span></td>
-                                        </tr>
+                                       
 
                                         {{-- <tr class="k-alt k-master-row ng-scope"
                                                         data-uid="495d90d1-6f2f-48d2-b9c1-06f4f88b1c6c" role="row">
@@ -1378,7 +904,7 @@
                                                                                                 </tr>
                                                                                             </tbody>
                                                                                         </table><span class="line"
-                                                                                            style="height: 727px; top: 86.7969px;"></span><span
+                                                                                            style=" top: 86.7969px;"></span><span
                                                                                             class="line line2"
                                                                                             style="height: 727px; top: 86.7969px;"></span>
                                                                                     </div>
@@ -1889,7 +1415,6 @@
                 $(this).addClass('k-master-state k-alt');
                 $(this).after(descriptionData)
                 $('.line').css('top', position + 'px')
-                $('.line').css('height', '785px')
                 temp = stt
             } else {
                 $('.k-detail-row').remove()
@@ -1899,5 +1424,74 @@
 
 
         });
+        getCoupon()
+        function getCoupon(s = "") {
+            let html = ``;
+            $.ajax({
+                url: "/api/coupon?s=" + s,
+                type: "get",
+                success: function(response) {
+                    let data = response.data
+                    if (data) {
+                        data.map(function(val, key) {
+                            let stt = key + 1
+
+                            html += `
+                            <tr class=" k-master-row ng-scope table-data " data-stt="1"
+                                            data-uid="2d800645-b0de-47c5-a67e-9b929cfd1137" role="row">
+                                            <td class="k-hierarchy-cell"><a class="k-icon k-minus" href="#"
+                                                    tabindex="-1"></a></td>
+                                            <td class="cell-check" role="gridcell"><label
+                                                    class="quickaction_chk dpb has-pretty-child"
+                                                    ng-click="eventStop($event)">
+                                                    <div class="clearfix prettycheckbox labelright  blue">
+                                                        <input type="checkbox" checklist-comparator=".Id"
+                                                            checklist-value="dataItem" kv-pretty-check=""
+                                                            kv-data-label="" ng-model="checked"
+                                                            class="ng-scope ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty"
+                                                            style="display: none;"
+                                                            checklist-model="selectedPurchaseOrder"><a
+                                                            href="javascript:void(0)" tabindex="0"
+                                                            class=""></a>
+                                                        <label for="undefined" class=""></label>
+                                                    </div>
+                                                </label></td>
+                                            <td class="cell-star" role="gridcell"><label
+                                                    class="quickaction_chk star"><input type="checkbox"
+                                                        class="chkrad ng-pristine ng-untouched ng-valid ng-empty"
+                                                        ng-click="onChangeFavouriteItem(dataItem)" ng-true-value="1"
+                                                        ng-false-value="0" ng-checked="dataItem.IsFavourite > 0"
+                                                        ng-model="dataItem.IsFavourite"><span></span></label>
+                                            </td>
+                                            <td class="cell-code" role="gridcell"><span class="ng-binding"
+                                                    data-code="PN000003">${val.code} <i class="fa fa-envelope ng-hide"
+                                                        ng-show="undefined"></i></span></td>
+                                            <td class="cell-code" style="display:none" role="gridcell">
+                                                <span ng-bind="dataItem.ReturnCode" class="ng-binding"></span>
+                                            </td>
+                                            <td class="cell-date-time" role="gridcell">01/09/2023 17:18</td>
+                                           
+                                            <td class="cell-auto" role="gridcell"><span
+                                                    ng-bind="dataItem.Supplier.Name" class="ng-binding">nha cung cap</span></td>
+                                            
+                                            
+                                            <td class="cell-total-final txtR ng-binding" role="gridcell">
+                                                ${formatCurrency(val.price)}</td>
+                                            <td class="cell-total-final txtR ng-binding"
+                                                style="display: none; color: rgb(255, 0, 0);" role="gridcell">0</td>
+                                            <td class="cell-description" style="display:none" role="gridcell"><span
+                                                    ng-bind="dataItem.ShortDescription" class="ng-binding"></span></td>
+                                            <td class="cell-status" role="gridcell"><span ng-bind="dataItem.Status"
+                                                    class="ng-binding">Đã nhập
+                                                    hàng</span></td>
+                                        </tr>
+                                        `
+                        })
+                        $('#tbody-coupon').html(html)
+                    }
+
+                }
+            });
+        }
     </script>
 @endsection

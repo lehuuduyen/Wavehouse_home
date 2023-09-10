@@ -18,10 +18,11 @@ class CreateProductTable extends Migration
             $table->string('code')->max(40);
             $table->string('barcode')->max(16);
             $table->string('name')->max(128);
-            $table->string('price_old')->max(128);
-            $table->string('price_capital')->max(128);
-            $table->string('price_sell')->max(128);
-            $table->integer('count');
+            $table->string('price_old')->default(0);
+            $table->string('price_capital')->default(0);
+            $table->string('price_sell')->default(0);
+            $table->integer('count')->default(0);
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }
