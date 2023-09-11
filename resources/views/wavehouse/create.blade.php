@@ -668,9 +668,9 @@
                         </div>
                     </article>
                     <div class="wrap-button">
-                        <a tabindex="100016" onclick="submit()"
+                        <button tabindex="100016" onclick="submit(this)"
                             class="btn btn-success btn-font--medium ng-binding ng-isolate-scope"
-                            kv-next-focus="productSearchInput"><i class="fas fa-check"></i>Hoàn thành</a>
+                            kv-next-focus="productSearchInput"><i class="fas fa-check"></i>Hoàn thành</button>
                     </div>
                 </section><kv-popup id="discountOrderHelp" class="ng-isolate-scope popupWrapper">
                     <div class="kv2Pop pop popArrow" ng-transclude="">
@@ -1103,8 +1103,8 @@
 
         })
 
-        function submit() {
-            let _this = this
+        function submit(_this) {
+            BtnLoading(_this)
 
             let supplier = $('.search-supplier').val()
             let code = $('input[name="code"]').val()

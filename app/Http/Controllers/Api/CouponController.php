@@ -22,7 +22,7 @@ class CouponController extends BaseController
         if ($param) {
             $ImportExportCoupon = ImportExportCoupon::where('name', 'like', '%' . $param . '%')->orWhere('code', 'like', '%' . $param . '%')->get();
         } else {
-            $ImportExportCoupon = ImportExportCoupon::get();
+            $ImportExportCoupon = ImportExportCoupon::with('Supplier')->get();
         }
         return response()->json(
             array(

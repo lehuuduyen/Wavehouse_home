@@ -1469,10 +1469,10 @@
                                             <td class="cell-code" style="display:none" role="gridcell">
                                                 <span ng-bind="dataItem.ReturnCode" class="ng-binding"></span>
                                             </td>
-                                            <td class="cell-date-time" role="gridcell">01/09/2023 17:18</td>
+                                            <td class="cell-date-time" role="gridcell">${val.created_at}</td>
                                            
                                             <td class="cell-auto" role="gridcell"><span
-                                                    ng-bind="dataItem.Supplier.Name" class="ng-binding">nha cung cap</span></td>
+                                                    ng-bind="dataItem.Supplier.Name" class="ng-binding">${val.supplier.name}</span></td>
                                             
                                             
                                             <td class="cell-total-final txtR ng-binding" role="gridcell">

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,4 +25,13 @@ class ImportExportCoupon extends Model
         "status",
         "user_id",
     ];
+    public function getCreatedAtAttribute($value)
+    {
+        $date = Carbon::parse($value);
+        return $date->format('d-m-Y H:i:s');
+    }
+    public function Supplier()
+    {
+        return $this->hasOne('App\Models\Supplier', 'id', 'supplier_id');
+    }
 }
