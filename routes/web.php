@@ -23,6 +23,9 @@ Route::get('/products', function () {
 Route::get('/wavehouse', function () {
     return view('wavehouse.list');
 });
+Route::get('/kho', function () {
+    return view('kho.list');
+});
 Route::get('/wavehouse/create', function () {
     return view('wavehouse.create');
 });

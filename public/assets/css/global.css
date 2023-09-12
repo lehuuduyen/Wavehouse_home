@@ -2795,7 +2795,7 @@ ul.k-menu-vertical .k-separator {
     font-weight: 400;
     white-space: nowrap;
     text-overflow: ellipsis;
-    text-align: left
+    /* text-align: left */
 }
 
 .k-grid-header th.k-header {
@@ -82892,9 +82892,9 @@ table .cell-qty-numb .receive {
 }
 
 table .cell-unit {
-    width: 110px;
-    min-width: 110px;
-    max-width: 110px
+    width: 154px;
+    min-width: 154px;
+    max-width: 154px
 }
 
 table .cell-status {

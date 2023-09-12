@@ -19,8 +19,12 @@ class ImportExportCouponProduct extends Model
         "product_id",
         "quantity",
         "price",
-        "warehouse_id",
+        "wavehouse_id",
         "coupon_id",
         "status",
     ];
+    public function Product()
+    {
+        return $this->hasOne('App\Models\Products', 'id', 'product_id');
+    }
 }

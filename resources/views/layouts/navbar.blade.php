@@ -31,9 +31,9 @@
                 </ul>
             </li>
             <li>
-                <a><i class="fas fa-user-tie"></i>Đối tác</a>
+                <a href="/kho"><i class="fas fa-warehouse"></i>Kho</a>
             </li>
-            <li>
+            {{-- <li>
                 <a><i class="fas fa-user-friends"></i>Nhân viên</a>
             </li>
             <li>
@@ -41,7 +41,7 @@
             </li>
             <li>
                 <a><i class="fa-solid fa-chart-simple"></i>Báo cáo</a>
-            </li>
+            </li> --}}
         </ul>
         <ul class="menu menu-right">
             <li class="ng-scope">

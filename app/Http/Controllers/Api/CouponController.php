@@ -20,9 +20,9 @@ class CouponController extends BaseController
     {
         $param = (isset($_GET['s'])) ? $_GET['s'] : "";
         if ($param) {
-            $ImportExportCoupon = ImportExportCoupon::where('name', 'like', '%' . $param . '%')->orWhere('code', 'like', '%' . $param . '%')->get();
+            $ImportExportCoupon = ImportExportCoupon::with('CouponProduct')->with('Supplier')->with('Wavehouse')->where('name', 'like', '%' . $param . '%')->orWhere('code', 'like', '%' . $param . '%')->get();
         } else {
-            $ImportExportCoupon = ImportExportCoupon::with('Supplier')->get();
+            $ImportExportCoupon = ImportExportCoupon::with('CouponProduct')->with('Supplier')->with('Wavehouse')->get();
         }
         return response()->json(
             array(
@@ -73,7 +73,7 @@ class CouponController extends BaseController
                 $data['price'] = str_replace('$',"",$data['sum']);
                 $data['price'] = str_replace(',',"",$data['price']);
             }
-            $data['warehouse_id'] =1;
+            $data['wavehouse_id'] =1;
             $data['status'] =1;
             $data['user_id'] =1;
             $coupon = ImportExportCoupon::create($data);
@@ -85,7 +85,7 @@ class CouponController extends BaseController
                     'quantity' => $value->quantity,
                     'price' => $priceSell,
                     'coupon_id' => $coupon->id,
-                    'warehouse_id' => 1,
+                    'wavehouse_id' => 1,
                     'status' => 1,
                 ]);
                 

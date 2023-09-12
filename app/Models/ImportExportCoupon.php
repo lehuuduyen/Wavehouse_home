@@ -21,7 +21,7 @@ class ImportExportCoupon extends Model
         "price",
         "name",
         "supplier_id",
-        "warehouse_id",
+        "wavehouse_id",
         "status",
         "user_id",
     ];
@@ -33,5 +33,13 @@ class ImportExportCoupon extends Model
     public function Supplier()
     {
         return $this->hasOne('App\Models\Supplier', 'id', 'supplier_id');
+    }
+    public function Wavehouse()
+    {
+        return $this->hasOne('App\Models\Wavehouse', 'id', 'wavehouse_id');
+    }
+    public function CouponProduct()
+    {
+        return $this->hasMany('App\Models\ImportExportCouponProduct', 'coupon_id', 'id')->with('product');
     }
 }

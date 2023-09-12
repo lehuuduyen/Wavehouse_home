@@ -4,7 +4,7 @@
     <section class="container main_wrapper kma-wrapper ng-scope" ng-if="$root.isAuthenticated === true">
         <!-- ngView:  -->
         <section class="clb main main-content ng-scope" ng-view="">
-           
+
             <section class="mainRight ng-scope">
                 <section class="mainWrap fll w100" ng-class="{ 'has-expire' : showExpireMessage.isActive === true}"
                     style="position: relative; top: auto; bottom: auto; width: auto;">
@@ -47,11 +47,11 @@
                                                         control-css-id="suggestProductSearch"
                                                         control-css-class="form-control kv-multi-select-search"
                                                         icon-remove-css-class="icon-remove-search-product"
-                                                        input-placeholder="Theo mã, tên hàng"
-                                                        option-data-text-field="Code" option-data-value-field="Id"
-                                                        option-item-template="itemTemplate" option-data-source="products"
-                                                        filter-ids="filterIds" filter-keyword="filterKeyword"
-                                                        filter-text="filterText" limit-filter-ids="10"
+                                                        input-placeholder="Theo mã, tên hàng" option-data-text-field="Code"
+                                                        option-data-value-field="Id" option-item-template="itemTemplate"
+                                                        option-data-source="products" filter-ids="filterIds"
+                                                        filter-keyword="filterKeyword" filter-text="filterText"
+                                                        limit-filter-ids="10"
                                                         message-limit-filter-ids="Bạn chỉ được chọn tối đa 10 hàng hóa"
                                                         on-type="onType()" field-compare-get-first-by-enter="Code"
                                                         class="ng-isolate-scope">
@@ -92,7 +92,8 @@
                                                 <input ng-enter="quickSearch()"
                                                     class="form-control ng-pristine ng-untouched ng-valid ng-empty"
                                                     type="text" ng-model="filterSerial" placeholder="Theo Serial/IMEI"
-                                                    kv-select-text=""></div>
+                                                    kv-select-text="">
+                                            </div>
                                             <div class="form-group ng-hide"
                                                 ng-show="showInput &amp;&amp; settings.UseBatchExpire &amp;&amp; isPurchaseOrder">
                                                 <input ng-enter="quickSearch()"
@@ -197,91 +198,28 @@
                                                             ng-click="sortFavouriteItem($event)"><i
                                                                 class="fal fa-star"></i></span></a></th>
                                                 <th scope="col" role="columnheader" data-field="Code" rowspan="1"
-                                                    data-title="Mã nhập hàng" data-index="2"
+                                                    data-title="Mã kho" data-index="2"
                                                     id="72c2eeed-fc4f-4b97-afa9-96519a48fbb0"
                                                     class="cell-code k-header ng-scope" data-role="columnsorter"><a
-                                                        class="k-link" href="#">Mã nhập hàng</a></th>
-                                                <th scope="col" role="columnheader" data-field="ReturnCode"
-                                                    rowspan="1" data-title="Mã trả hàng nhập" data-index="3"
-                                                    id="3619fa4c-3312-41cf-be80-0ebc9a40bf25"
-                                                    class="cell-code k-header ng-scope" style="display:none">Mã trả hàng
-                                                    nhập</th>
+                                                        class="k-link" href="#">Mã kho</a></th>
+
                                                 <th scope="col" role="columnheader" data-field="PurchaseDate"
                                                     rowspan="1" data-title="Thời gian" data-index="4"
                                                     id="c3c34fb6-b918-41d2-917f-194fb79460bb"
                                                     class="cell-date-time k-header ng-scope" data-role="columnsorter"><a
                                                         class="k-link" href="#">Thời gian</a></th>
-                                                <th scope="col" role="columnheader" data-field="CreatedDate"
-                                                    rowspan="1" data-title="Thời gian tạo" data-index="5"
-                                                    id="015f06f9-f4c2-48cb-891b-7fa991e95925"
-                                                    class="cell-date-time k-header ng-scope" style="display:none"
-                                                    data-role="columnsorter"><a class="k-link" href="#">Thời
-                                                        gian tạo</a></th>
-                                                <th scope="col" role="columnheader" data-field="ModifiedDate"
-                                                    rowspan="1" data-title="Ngày cập nhật" data-index="6"
-                                                    id="142778ef-c8fb-4506-8997-173ebe8dd303"
-                                                    class="cell-date-time k-header ng-scope" style="display:none"
-                                                    data-role="columnsorter"><a class="k-link" href="#">Ngày cập
-                                                        nhật</a></th>
+                                                <th scope="col" role="columnheader" data-field="Branch.Name"
+                                                    rowspan="1" data-title="Chi nhánh" data-index="8"
+                                                    id="4c3a2ccd-9e9e-437d-90f2-8ad1ddd31df7"
+                                                    class="cell-unit k-header ng-scope" 
+                                                    data-role="columnsorter"><a class="k-link" href="#">Tên kho</a>
+                                                </th>
                                                 <th scope="col" role="columnheader" data-field="Supplier.Name"
                                                     rowspan="1" data-title="Nhà cung cấp" data-index="7"
                                                     id="3392e826-7699-42b4-98ec-cae2b62368f7"
                                                     class="cell-auto k-header ng-scope" data-role="columnsorter"><a
-                                                        class="k-link" href="#">Nhà cung cấp</a></th>
-                                                <th scope="col" role="columnheader" data-field="Branch.Name"
-                                                    rowspan="1" data-title="Chi nhánh" data-index="8"
-                                                    id="4c3a2ccd-9e9e-437d-90f2-8ad1ddd31df7"
-                                                    class="cell-unit k-header ng-scope" style="display:none"
-                                                    data-role="columnsorter"><a class="k-link" href="#">Chi
-                                                        nhánh</a></th>
-                                                <th scope="col" role="columnheader" data-field="User.GivenName"
-                                                    rowspan="1" data-title="Người nhập" data-index="9"
-                                                    id="bcaa4557-d664-4739-98a5-4b9201f675ec"
-                                                    class="cell-name k-header ng-scope" style="display:none"
-                                                    data-role="columnsorter"><a class="k-link" href="#">Người
-                                                        nhập</a></th>
-                                                <th scope="col" role="columnheader" data-field="User1.GivenName"
-                                                    rowspan="1" data-title="Người tạo" data-index="10"
-                                                    id="72d2c8e3-ccb3-4e08-9bde-a4ddb4c9fa46"
-                                                    class="cell-name k-header ng-scope" style="display:none"
-                                                    data-role="columnsorter"><a class="k-link" href="#">Người
-                                                        tạo</a></th>
-                                                <th scope="col" role="columnheader" data-field="TotalQuantity"
-                                                    rowspan="1" data-title="Tổng số lượng" data-index="11"
-                                                    id="5816b154-6f93-4457-b26e-f5980df8c8e3"
-                                                    class="cell-total txtR k-header ng-scope" style="display:none">Tổng
-                                                    số lượng</th>
-                                                <th scope="col" role="columnheader" data-field="TotalProductType"
-                                                    rowspan="1" data-title="Tổng số mặt hàng" data-index="12"
-                                                    id="7639de60-b126-456a-aba6-bde4f04ae101"
-                                                    class="cell-total-final txtR k-header ng-scope" style="display:none">
-                                                    Tổng số mặt hàng</th>
-                                                <th scope="col" role="columnheader" data-field="SubTotal"
-                                                    rowspan="1" data-title="Tổng tiền hàng" data-index="13"
-                                                    id="cb713f02-6a38-48b2-97d9-9136c1c7732e"
-                                                    class="cell-total txtR k-header ng-scope" style="display:none">Tổng
-                                                    tiền hàng</th>
-                                                <th scope="col" role="columnheader" data-field="Discount"
-                                                    rowspan="1" data-title="Giảm giá" data-index="14"
-                                                    id="c681a308-a4a8-4d59-9ad8-77a93ed045c8"
-                                                    class="cell-total txtR k-header ng-scope" style="display:none"
-                                                    data-role="columnsorter"><a class="k-link" href="#">Giảm
-                                                        giá</a></th>
-                                                <th scope="col" role="columnheader" data-field="Total" rowspan="1"
-                                                    data-title="Cần trả NCC" data-index="15"
-                                                    id="2c892bb1-2ad3-45da-9d77-0e0c722bbc87"
-                                                    class="cell-total-final txtR k-header ng-scope">Cần trả
-                                                    NCC</th>
-                                                <th scope="col" role="columnheader" data-field="PaidAmount"
-                                                    rowspan="1" data-title="Tiền đã trả NCC" data-index="16"
-                                                    id="5f6dc51f-54b2-491e-aefe-a374f1821e84"
-                                                    class="cell-total-final txtR k-header ng-scope" style="display:none">
-                                                    Tiền đã trả NCC</th>
-                                                <th scope="col" role="columnheader" data-field="ShortDescription"
-                                                    rowspan="1" data-title="Ghi chú" data-index="17"
-                                                    id="c1d1aaf2-39ce-42a7-b9e5-4c294193f2b8"
-                                                    class="cell-description k-header ng-scope" style="display:none">Ghi
-                                                    chú</th>
+                                                        class="k-link" href="#">Địa chỉ</a></th>
+
                                                 <th scope="col" role="columnheader" data-field="Status"
                                                     rowspan="1" data-title="Trạng thái" data-index="18"
                                                     id="06de29c1-e310-4a72-9288-30cde8c85619"
@@ -306,10 +244,10 @@
                                         <col>
                                     </colgroup>
                                     <tbody id="tbody-coupon">
-                                        
-                                        
 
-                                       
+
+
+
 
                                         {{-- <tr class="k-alt k-master-row ng-scope"
                                                         data-uid="495d90d1-6f2f-48d2-b9c1-06f4f88b1c6c" role="row">
@@ -392,16 +330,15 @@
                                         href="#" title="Trang đầu"
                                         class="k-link k-pager-nav k-pager-first k-state-disabled" data-page="1"
                                         tabindex="-1"><span class="k-icon k-i-seek-w">Trang đầu</span></a><a
-                                        href="#" title="Trang trước"
-                                        class="k-link k-pager-nav  k-state-disabled" data-page="1"
-                                        tabindex="-1"><span class="k-icon k-i-arrow-w">Trang trước</span></a>
+                                        href="#" title="Trang trước" class="k-link k-pager-nav  k-state-disabled"
+                                        data-page="1" tabindex="-1"><span class="k-icon k-i-arrow-w">Trang
+                                            trước</span></a>
                                     <ul class="k-pager-numbers k-reset">
                                         <li class="k-current-page"><span class="k-link k-pager-nav">1</span>
                                         </li>
                                         <li><span class="k-state-selected">1</span></li>
-                                    </ul><a href="#" title="Trang sau"
-                                        class="k-link k-pager-nav  k-state-disabled" data-page="1"
-                                        tabindex="-1"><span class="k-icon k-i-arrow-e">Trang
+                                    </ul><a href="#" title="Trang sau" class="k-link k-pager-nav  k-state-disabled"
+                                        data-page="1" tabindex="-1"><span class="k-icon k-i-arrow-e">Trang
                                             sau</span></a><a href="#" title="Trang cuối"
                                         class="k-link k-pager-nav k-pager-last k-state-disabled" data-page="1"
                                         tabindex="-1"><span class="k-icon k-i-seek-e">Trang cuối</span></a><span
@@ -412,9 +349,9 @@
                         </div>
                     </article><kv-empty-grid-filter-all class="ng-isolate-scope">
                         <div hidden="hidden" id="empty-grid-filter-alltime" class="no-data"><span><span
-                                    id="empty-grid-head"></span><a href="javascript:void(0);"
-                                    style="font-weight: bold;" ng-click="filterbyRange('alltime')"
-                                    class="ng-binding">&nbsp;vào đây&nbsp;</a><span id="empty-grid-last"></span></span>
+                                    id="empty-grid-head"></span><a href="javascript:void(0);" style="font-weight: bold;"
+                                    ng-click="filterbyRange('alltime')" class="ng-binding">&nbsp;vào đây&nbsp;</a><span
+                                    id="empty-grid-last"></span></span>
                         </div>
                     </kv-empty-grid-filter-all>
                     <div style="display: none">
@@ -760,10 +697,10 @@
                                                                                         style="max-height: 789px;">
                                                                                         <table role="grid">
                                                                                            <tbody role="rowgroup">`
-                                                                                            $.each(json.coupon_product,function(key,val){
-                                                                                                totalTypeProduct++
-                                                                                                totalQuantity = Number(totalQuantity) + Number(val.quantity) 
-                                                                                                descriptionData +=`
+            $.each(json.coupon_product, function(key, val) {
+                totalTypeProduct++
+                totalQuantity = Number(totalQuantity) + Number(val.quantity)
+                descriptionData += `
                                                                                                 <tr data-uid="cfa1b491-d417-43f2-babc-c96e4a9b2cd0"
                                                                                                     role="row">
                                                                                                     <td class="cell-code"
@@ -794,9 +731,9 @@
                                                                                                                 class="fa fa-tag"></i></a>
                                                                                                     </td>
                                                                                                 </tr>`
-                                                                                            })
-                                                                                            
-                                                                                            descriptionData+=`</tbody>
+            })
+
+            descriptionData += `</tbody>
                                                                                         </table><span class="line"
                                                                                             style=" top: 86.7969px;"></span><span
                                                                                             class="line line2"
@@ -926,10 +863,11 @@
 
         });
         getCoupon()
+
         function getCoupon(s = "") {
             let html = ``;
             $.ajax({
-                url: "/api/coupon?s=" + s,
+                url: "/api/kho?s=" + s,
                 type: "get",
                 success: function(response) {
                     let data = response.data
@@ -972,19 +910,19 @@
                                             </td>
                                             <td class="cell-date-time" role="gridcell">${val.created_at}</td>
                                            
-                                            <td class="cell-auto" role="gridcell"><span
-                                                    ng-bind="dataItem.Supplier.Name" class="ng-binding">${val.supplier.name}</span></td>
+                                           
                                             
+                                            <td class="cell-total-final ng-binding" role="gridcell">
+                                                ${val.name}</td>
+                                                <td class="cell-auto" role="gridcell"><span
+                                                    ng-bind="dataItem.Supplier.Name" class="ng-binding">${val.address}</span></td>
                                             
-                                            <td class="cell-total-final txtR ng-binding" role="gridcell">
-                                                ${formatCurrency(val.price)}</td>
                                             <td class="cell-total-final txtR ng-binding"
                                                 style="display: none; color: rgb(255, 0, 0);" role="gridcell">0</td>
                                             <td class="cell-description" style="display:none" role="gridcell"><span
                                                     ng-bind="dataItem.ShortDescription" class="ng-binding"></span></td>
                                             <td class="cell-status" role="gridcell"><span ng-bind="dataItem.Status"
-                                                    class="ng-binding">Đã nhập
-                                                    hàng</span></td>
+                                                    class="ng-binding">Mở</span></td>
                                         </tr>
                                         `
                         })

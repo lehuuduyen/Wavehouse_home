@@ -13,11 +13,12 @@ class CreateWarehouseTable extends Migration
      */
     public function up()
     {
-        Schema::create('warehouse', function (Blueprint $table) {
+        Schema::create('wavehouse', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('code')->max(40);
             $table->string('name')->max(128);
-            $table->tinyInteger('status');
+            $table->string('address')->nullable();
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }
