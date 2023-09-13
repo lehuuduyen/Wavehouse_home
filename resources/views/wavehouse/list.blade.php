@@ -143,7 +143,7 @@
                                         class="fal fa-times"></i></a></div>
                         </div>
                         <aside class="header-filter-buttons"><!-- ngIf: selectedPurchaseOrder.length > 0 --><a
-                                href="/wavehouse/create" title="Nhập hàng" ng-show="hasAdd" class="btn btn-success"><i
+                                href="" id="href-create" title="Nhập hàng" ng-show="hasAdd" class="btn btn-success"><i
                                     class="far fa-plus"></i><span class="text-btn ng-binding">Nhập hàng</span></a>
 
                         </aside>
@@ -446,7 +446,6 @@
         $(document).on("click", ".table-data", function() {
             let stt = $(this).data('stt')
             let json = $(this).data('json')
-            console.log(json);
             let totalQuantity = 0;
             let totalTypeProduct = 0;
             let descriptionData = `
@@ -927,16 +926,30 @@
         });
         getCoupon()
         function getCoupon(s = "") {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const wavehouseId =urlParams.get('wavehouse_id')
+            $('#href-create').attr('href','/coupon/create?wavehouse_id='+wavehouseId)
             let html = ``;
             $.ajax({
-                url: "/api/coupon?s=" + s,
+                url: "/api/coupon?wavehouse_id="+wavehouseId+"&&s=" + s,
                 type: "get",
                 success: function(response) {
                     let data = response.data
-                    if (data) {
+                    if (data && response.status =="success") {
                         data.map(function(val, key) {
                             let stt = key + 1
+                            let status = `<span ng-bind="dataItem.Status"
+                                                    class="ng-binding" style="color:green">Đã Nhập Hàng</span>`
 
+                            if(val.status == 2){
+                                status = `<span ng-bind="dataItem.Status"
+                                                    class="ng-binding" style="color:blue">Đã Xuất Hàng</span>`
+                            }else if(val.status == 3){
+                                status = `<span ng-bind="dataItem.Status"
+                                                    class="ng-binding" style="color:red">Đã Bán</span>`
+
+                            }
                             html += `
                             <tr data-json='${JSON.stringify(val)}' class=" k-master-row ng-scope table-data " data-stt="1"
                                             data-uid="2d800645-b0de-47c5-a67e-9b929cfd1137" role="row">
@@ -982,13 +995,13 @@
                                                 style="display: none; color: rgb(255, 0, 0);" role="gridcell">0</td>
                                             <td class="cell-description" style="display:none" role="gridcell"><span
                                                     ng-bind="dataItem.ShortDescription" class="ng-binding"></span></td>
-                                            <td class="cell-status" role="gridcell"><span ng-bind="dataItem.Status"
-                                                    class="ng-binding">Đã nhập
-                                                    hàng</span></td>
+                                            <td class="cell-status" role="gridcell">${status}</td>
                                         </tr>
                                         `
                         })
                         $('#tbody-coupon').html(html)
+                    }else{
+                        toastr.error('Kho không tồn tai')
                     }
 
                 }

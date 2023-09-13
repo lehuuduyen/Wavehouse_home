@@ -18,11 +18,20 @@ class CouponController extends BaseController
      */
     public function index()
     {
+        if(!isset($_GET['wavehouse_id']) && empty($_GET['wavehouse_id'])){
+            return response()->json(
+                array(
+                    'status' => 'error',
+                    'data' => ''   
+                ),
+                200
+            );
+        }
         $param = (isset($_GET['s'])) ? $_GET['s'] : "";
         if ($param) {
             $ImportExportCoupon = ImportExportCoupon::with('CouponProduct')->with('Supplier')->with('Wavehouse')->where('name', 'like', '%' . $param . '%')->orWhere('code', 'like', '%' . $param . '%')->get();
         } else {
-            $ImportExportCoupon = ImportExportCoupon::with('CouponProduct')->with('Supplier')->with('Wavehouse')->get();
+            $ImportExportCoupon = ImportExportCoupon::with('CouponProduct')->with('Supplier')->with('Wavehouse')->where('wavehouse_id',  $_GET['wavehouse_id'] )->get();
         }
         return response()->json(
             array(

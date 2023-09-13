@@ -226,6 +226,11 @@
                                                     class="cell-status k-header ng-scope th-show"
                                                     data-role="columnsorter"><a class="k-link" href="#">Trạng
                                                         thái</a></th>
+                                                        <th scope="col" role="columnheader" data-field="Status"
+                                                    rowspan="1" data-title="Trạng thái" data-index="18"
+                                                    id="06de29c1-e310-4a72-9288-30cde8c85619"
+                                                    class="cell-status k-header ng-scope th-show"
+                                                    data-role="columnsorter"><a class="k-link" href="#">Hành động</a></th>
                                             </tr>
                                         </thead>
                                     </table>
@@ -410,8 +415,7 @@
                                                                                     class="row row-padding-15 mb15 row-flex">
                                                                                     <div class="col-md-4 col-sm-12">
                                                                                         <div class="form-group"><label
-                                                                                                class="form-label control-label ng-binding">Mã
-                                                                                                nhập hàng:</label>
+                                                                                                class="form-label control-label ng-binding">Mã kho:</label>
                                                                                             <div
                                                                                                 class="form-wrap form-control-static">
                                                                                                 <strong
@@ -441,79 +445,7 @@
                                                                                                     class="ng-binding ng-hide">01/09/2023
                                                                                                     17:18</span></div>
                                                                                         </div>
-                                                                                        <div class="form-group"><label
-                                                                                                class="form-label control-label ng-binding">Nhà
-                                                                                                cung
-                                                                                                cấp:</label>
-                                                                                            <div class="form-wrap form-control-static ng-scope"
-                                                                                                ng-if="dataItem.Supplier.Code"
-                                                                                                ng-show="dataItem.Supplier.Code"
-                                                                                                ng-hide="dataItem.isShowSupplier">
-                                                                                                <label
-                                                                                                    class="ng-binding">${json.supplier.name}</label></div>
-                                                                                            <div class="form-wrap ng-hide"
-                                                                                                ng-show="dataItem.isShowSupplier">
-                                                                                                <autocomplete
-                                                                                                    ng-show="!cart.Supplier"
-                                                                                                    attr-inputid="idSupplierSearchTerm"
-                                                                                                    attr-inputclass="classSupplierSearchTerm"
-                                                                                                    ng-model="supplierSearchTerm"
-                                                                                                    title=""
-                                                                                                    attr-placeholder="Tìm nhà cung cấp"
-                                                                                                    template-id="supplierItemTempl"
-                                                                                                    data="suppliers"
-                                                                                                    on-type="searchTermChanged"
-                                                                                                    on-select="selectSupplier"
-                                                                                                    class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty">
-                                                                                                    <div class="autocomplete "
-                                                                                                        id=""><i
-                                                                                                            class="far fa-search"></i><input
-                                                                                                            type="text"
-                                                                                                            autocomplete="off"
-                                                                                                            ng-model="searchParam"
-                                                                                                            maxlength=""
-                                                                                                            ng-change="onInputChange(searchParam)"
-                                                                                                            placeholder="Tìm nhà cung cấp"
-                                                                                                            class="form-control form-control-kv classSupplierSearchTerm iptUnitName_  ng-empty ng-valid-maxlength"
-                                                                                                            id="idSupplierSearchTerm"
-                                                                                                            tabindex=""
-                                                                                                            ng-disabled="kvDisable"
-                                                                                                            kv-filter-search="">
-                                                                                                        <div class="output-complete ng-hide"
-                                                                                                            ng-show="completing || alwaysOpen"
-                                                                                                            ng-class="{'show-only': showSelectMulti(listSelectMulti, searchParam), 'isMultiSelect': showMultiSelect, 'notFoundMulti' : isNotFoundMultiSelect }"
-                                                                                                            ng-mousedown="autocompleFocus($event)">
-                                                                                                            <ul
-                                                                                                                ng-hide="suggestions &amp;&amp; suggestions.length == 0 &amp;&amp; isNotShowNotFound">
-                                                                                                                <!-- ngRepeat: suggestion in suggestions track by $index -->
-                                                                                                            </ul>
-                                                                                                            <!-- ngIf: getStateSelectMulti(listSelectMulti, isMultiSelect, suggestions) -->
-                                                                                                            <div class="autoNotFound ng-hide"
-                                                                                                                ng-show="searchParam &amp;&amp; suggestions &amp;&amp; suggestions.length == 0 &amp;&amp; !isNotShowNotFound">
-                                                                                                                Không tìm
-                                                                                                                thấy kết quả
-                                                                                                                nào phù hợp
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </autocomplete>
-                                                                                                <div class="autocomplete autocomplete-text ng-hide"
-                                                                                                    ng-show="cart.Supplier">
-                                                                                                    <i class="fa fa-user"
-                                                                                                        aria-hidden="true"></i>
-                                                                                                    <span
-                                                                                                        class="form-control form-text ng-binding"
-                                                                                                        id="idReadOnlySupplier"></span>
-                                                                                                    <a href=""
-                                                                                                        id="idRemoveSupplier"
-                                                                                                        class="btn-icon"
-                                                                                                        ng-click="removeSupplier()"
-                                                                                                        ng-enter="removeSupplier()"
-                                                                                                        title="Xóa"><i
-                                                                                                            class="fal fa-remove"></i></a>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
+                                                                                    
                                                                                         <div class="form-group"><label
                                                                                                 class="form-label control-label ng-binding">Người
                                                                                                 tạo:</label>
@@ -539,14 +471,13 @@
                                                                                                 thái:</label>
                                                                                             <div
                                                                                                 class="form-wrap form-control-static ng-binding">
-                                                                                                Đã nhập hàng</div>
+                                                                                                Hoạt động</div>
                                                                                         </div>
                                                                                         <div class="form-group"><label
-                                                                                                class="form-label control-label ng-binding">Chi
-                                                                                                nhánh:</label>
+                                                                                                class="form-label control-label ng-binding">Tên kho:</label>
                                                                                             <div
                                                                                                 class="form-wrap form-control-static ng-binding">
-                                                                                                ${json.wavehouse.name}</div>
+                                                                                                ${json.name}</div>
                                                                                         </div>
                                                                                         <div class="form-group"><label
                                                                                                 class="form-label control-label ng-binding">Người
@@ -602,11 +533,11 @@
                                                                                             ng-bind="dataItem.Description?dataItem.Description:'Ghi chú...'"
                                                                                             ng-show="disabled"
                                                                                             class="tblBox_Des tblBox_Des2 ng-binding ng-hide">
-                                                                                            Ghi chú...</div>
+                                                                                            Địa chỉ</div>
                                                                                         <textarea maxlength="2000" ng-model="dataItem.Description" placeholder="Ghi chú..." ng-show="!disabled"
                                                                                             disabled="disabled"
                                                                                             class="tblBox_Des tblBox_Des2 ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength"
-                                                                                            kv-textarea-enter="">${json.name}</textarea>
+                                                                                            kv-textarea-enter="">${json.address}</textarea>
                                                                                     </div>
                                                                                 </div>
                                                                             </article>
@@ -660,33 +591,7 @@
                                                                                                             id="238ff582-9e5e-482b-841e-c51bc7e42dc1"
                                                                                                             class="cell-quantity k-header">
                                                                                                             Số lượng</th>
-                                                                                                        <th scope="col"
-                                                                                                            role="columnheader"
-                                                                                                            data-field="Price"
-                                                                                                            rowspan="1"
-                                                                                                            data-title="Đơn giá"
-                                                                                                            data-index="3"
-                                                                                                            id="d8769c39-91c3-4f1f-9c32-6488d3c4a9d2"
-                                                                                                            class="cell-total txtR k-header">
-                                                                                                            Đơn giá</th>
-                                                                                                        <th scope="col"
-                                                                                                            role="columnheader"
-                                                                                                            data-field="SubTotal"
-                                                                                                            rowspan="1"
-                                                                                                            data-title="Thành tiền"
-                                                                                                            data-index="6"
-                                                                                                            id="7a6bc5a9-a018-4c41-8541-73665dc5a9cf"
-                                                                                                            class="cell-total txtR bg-none k-header">
-                                                                                                            Thành tiền</th>
-                                                                                                        <th scope="col"
-                                                                                                            role="columnheader"
-                                                                                                            data-field="ProductId"
-                                                                                                            rowspan="1"
-                                                                                                            data-title=" "
-                                                                                                            data-index="7"
-                                                                                                            id="0d79ae43-8c1f-488f-8e94-7c7449be2f71"
-                                                                                                            class="cell-adddel k-header th-show">
-                                                                                                        </th>
+                                                                                                       
                                                                                                     </tr>
                                                                                                   
                                                                                                 </thead>
@@ -697,7 +602,7 @@
                                                                                         style="max-height: 789px;">
                                                                                         <table role="grid">
                                                                                            <tbody role="rowgroup">`
-            $.each(json.coupon_product, function(key, val) {
+            $.each(json.list_product, function(key, val) {
                 totalTypeProduct++
                 totalQuantity = Number(totalQuantity) + Number(val.quantity)
                 descriptionData += `
@@ -705,23 +610,17 @@
                                                                                                     role="row">
                                                                                                     <td class="cell-code"
                                                                                                         role="gridcell"><a
-                                                                                                           >${val.product.code}</a>
+                                                                                                           >${val.code}</a>
                                                                                                     </td>
                                                                                                     <td class="cell-auto"
                                                                                                         role="gridcell">
-                                                                                                        ${val.product.name}<span
+                                                                                                        ${val.name}<span
                                                                                                             class="txtN txtI fs11 dpb txtGray txtNote"></span>
                                                                                                     </td>
                                                                                                     <td class="cell-quantity"
                                                                                                         role="gridcell">${val.quantity}
                                                                                                     </td>
-                                                                                                    <td class="cell-total txtR"
-                                                                                                        role="gridcell">
-                                                                                                        ${formatCurrency(val.price)}</td>
-                                                                                                
-                                                                                                    <td class="cell-total txtR txtB"
-                                                                                                        role="gridcell">
-                                                                                                        ${formatCurrency(Number(val.price) * Number(val.quantity))}</td>
+                                                                                                   
                                                                                                     <td class="cell-adddel"
                                                                                                         role="gridcell"><a
                                                                                                             href="javascript:void(0)"
@@ -815,25 +714,14 @@
                                                                                                         class="ng-binding">
                                                                                                         ${totalTypeProduct}</td>
                                                                                                 </tr>
-                                                                                                <tr
-                                                                                                    ng-show="viewPurchasePrice">
-                                                                                                    <td
-                                                                                                        class="ng-binding">
-                                                                                                        Tổng tiền hàng:</td>
-                                                                                                    <td
-                                                                                                        class="totalPrice ng-binding">
-                                                                                                        ${formatCurrency(json.price)}</td>
-                                                                                                </tr>
-                                                                                              
+                                                                                                
                                                                                             </tbody>
                                                                                  
                                                                                         </table>
                                                                                     </div>
                                                                                 </aside>
                                                                             </article>
-                                                                          
-                                                                           
-                                                                        </purchase-order-form> </div>
+                                                                         </purchase-order-form> </div>
                                                                
                                                                 </div>
                                                             </div>
@@ -917,14 +805,16 @@
                                                 <td class="cell-auto" role="gridcell"><span
                                                     ng-bind="dataItem.Supplier.Name" class="ng-binding">${val.address}</span></td>
                                             
-                                            <td class="cell-total-final txtR ng-binding"
-                                                style="display: none; color: rgb(255, 0, 0);" role="gridcell">0</td>
-                                            <td class="cell-description" style="display:none" role="gridcell"><span
-                                                    ng-bind="dataItem.ShortDescription" class="ng-binding"></span></td>
+                                          
                                             <td class="cell-status" role="gridcell"><span ng-bind="dataItem.Status"
                                                     class="ng-binding">Mở</span></td>
-                                        </tr>
-                                        `
+                                                    <td class="cell-status" role="gridcell">
+                                                        <a href="/coupon?wavehouse_id=${val.id}">
+                                                            <span
+                                                    class="ng-binding"><i class="fa fa-eye"></i> Chi tiết</span>
+                                                    </a></td>
+                                        </tr>`
+                                        
                         })
                         $('#tbody-coupon').html(html)
                     }

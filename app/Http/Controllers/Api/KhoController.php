@@ -26,20 +26,29 @@ class KhoController extends BaseController
         } else {
             $wavehouses = Wavehouse::with('Coupon')->get();
         }
-        // foreach($wavehouses as $key => $wavehouse){
-        //     $temp =[];
-        //     foreach($wavehouse->Coupon as $key2 => $coupon){
-        //         if($coupon->status == 1){
-                 
-                    
-        //             foreach($coupon->coupon_product as $key3 => $listProduct){
-        //                 $temp[$listProduct->product_id]['quantily'] += $listProduct->quantily;
-        //                 $temp[$listProduct->product_id]['name'] = $listProduct->product->name;
-        //             }
-        //             $wavehouses[$key]->coupon[$key2]['list_product']=$temp;
-        //         }
-        //     }
-        // }
+
+        foreach ($wavehouses as $key => $wavehouse) {
+            $temp = [];
+
+            foreach ($wavehouse->coupon as $key2 => $coupon) {
+
+                foreach ($coupon->CouponProduct as $key3 => $listProduct) {
+
+                    if (!isset($temp[$listProduct->product_id]['quantity'])) {
+                        $temp[$listProduct->product_id]['quantity'] = 0;
+                    }
+                    if ($coupon->status == 1) {
+                        $temp[$listProduct->product_id]['quantity'] += $listProduct->quantity;
+                    }else{
+                        $temp[$listProduct->product_id]['quantity'] -= $listProduct->quantity;
+
+                    }
+                    $temp[$listProduct->product_id]['name'] = $listProduct->product->name;
+                    $temp[$listProduct->product_id]['code'] = $listProduct->product->code;
+                }
+            }
+            $wavehouses[$key]['list_product'] = $temp;
+        }
 
         return response()->json(
             array(
@@ -76,12 +85,12 @@ class KhoController extends BaseController
             return  $this->responseError($validator->errors()->first());
         }
         $data = $request->all();
-        if (!isset($data['code']) ) {
+        if (!isset($data['code'])) {
             $data['code'] = $this->generateRandomString();
         }
         $result = Supplier::create($data);
 
-        return $this->responseSuccess($result,'Thêm nhà cung cấp thành công');
+        return $this->responseSuccess($result, 'Thêm nhà cung cấp thành công');
     }
 
     /**
