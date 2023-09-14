@@ -509,24 +509,29 @@
                                                         <option selected="selected" value="">Chọn nhà cung cấp...
                                                         </option>
                                                     </select>
-
                                                 </div>
                                                 <a id="idAddSupplier" ng-show="allowAdd &amp;&amp; !cart.Supplier"
                                                     class="btn-icon" ng-enter="addSupplier()" ng-click="addSupplier()"
                                                     title="Thêm nhà cung cấp mới" tabindex="100003"><i
                                                         class="far fa-plus"></i>
                                                 </a>
-                                                <div class="autocomplete ng-hide" ng-show="cart.Supplier"><i
-                                                        class="fa fa-user" aria-hidden="true"></i> <a
-                                                        ng-show="!cart.Supplier.isDeleted" id="idEditSupplier"
-                                                        ng-click="editSupplier()" ng-enter="editSupplier()"
-                                                        class="name form-control ng-binding" tabindex="100002"> - </a>
-                                                    <div class="supplierDel ng-binding ng-hide"
-                                                        ng-show="cart.Supplier.isDeleted"></div>
-                                                </div><a href="" id="idRemoveSupplier" ng-show="cart.Supplier"
-                                                    class="btn-icon btn-icon-close ng-hide" ng-click="removeSupplier()"
-                                                    ng-enter="removeSupplier()" title="Xóa" tabindex="100003"><i
-                                                        class="fal fa-times"></i></a>
+
+                                            </div>
+                                            <br>
+                                            <div class="autocompleteAdd">
+
+                                                <div class="autocomplete " id="">
+                                                    <select class="search-wavehouse" style="width: 100%">
+                                                        <option selected="selected" value="">Chọn kho nhập hàng...
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                {{-- <a id="idAddSupplier" ng-show="allowAdd &amp;&amp; !cart.Supplier"
+                                                    class="btn-icon" ng-enter="addSupplier()" ng-click="addSupplier()"
+                                                    title="Thêm nhà cung cấp mới" tabindex="100003"><i
+                                                        class="far fa-plus"></i>
+                                                </a> --}}
+
                                             </div>
                                         </section>
                                     </div>
@@ -914,8 +919,12 @@
     </div>
 
     <script type="text/javascript" class="ng-scope">
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const wavehouseId = urlParams.get('wavehouse_id')
         getSupplier()
         getProducts()
+        getWavehouse()
         $('b[role="presentation"]').hide();
 
 
@@ -937,6 +946,25 @@
                         })
                         $('.search-supplier').html(html)
                         $('.search-supplier').select2();
+                    }
+
+                }
+            });
+        }
+
+        function getWavehouse() {
+            let html = `<option selected="selected" value="">Chọn kho nhập hàng...</option>`;
+            $.ajax({
+                url: "/api/wavehouse/except?wavehouse_id=" +wavehouseId ,
+                type: "get",
+                success: function(response) {
+                    let data = response.data
+                    if (data) {
+                        data.map(function(val, key) {
+                            html += `<option value="${val.id}">${val.name}</option>`
+                        })
+                        $('.search-wavehouse').html(html)
+                        $('.search-wavehouse').select2();
                     }
 
                 }
@@ -1107,6 +1135,7 @@
             BtnLoading(_this)
 
             let supplier = $('.search-supplier').val()
+            let wavehouse_from_id = $('.search-wavehouse').val()
             let code = $('input[name="code"]').val()
             let des = $("#purchaseOrderDes").val()
             let sum = $(".sum-total").html()
@@ -1130,13 +1159,15 @@
                     'code': code,
                     'name': des,
                     'sum': sum,
+                    'wavehouse_id': wavehouseId,
+                    'wavehouse_from_id': wavehouse_from_id,
                     'listProduct': JSON.stringify(listProduct),
                 },
                 success: function(response) {
                     BtnReset(_this)
                     toastr.success(response.message)
-                    document.location="/wavehouse"
-                    
+                    document.location = "/coupon?wavehouse_id="+wavehouseId
+
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     BtnReset(_this)

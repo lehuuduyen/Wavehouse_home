@@ -25,3 +25,4 @@ Route::apiResource('supplier', SupplierController::class);
 Route::apiResource('product', ProductController::class);
 Route::apiResource('coupon', CouponController::class);
 Route::apiResource('kho', KhoController::class);
+Route::get('wavehouse/except','App\Http\Controllers\Api\KhoController@except');

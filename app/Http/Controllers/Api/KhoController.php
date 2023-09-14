@@ -58,6 +58,28 @@ class KhoController extends BaseController
             200
         );
     }
+    public function except()
+    {
+        if (!isset($_GET['wavehouse_id']) && empty($_GET['wavehouse_id'])) {
+            return response()->json(
+                array(
+                    'status' => 'error',
+                    'data' => ''
+                ),
+                200
+            );
+        }
+        
+        $Wavehouse = Wavehouse::where('id','!=',$_GET['wavehouse_id'])->get();
+
+        return response()->json(
+            array(
+                'status' => 'success',
+                'data' => $Wavehouse
+            ),
+            200
+        );
+    }
     /**
      * Get a validator for an incoming registration request.
      *

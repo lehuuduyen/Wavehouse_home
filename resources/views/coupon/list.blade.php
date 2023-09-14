@@ -1,10 +1,62 @@
 @extends('main', ['pageTitle' => 'Danh mục sản phẩm'])
 @section('content')
+    <style>
+        .select-box {
+            cursor: pointer;
+            position: relative;
+            max-width: 20em;
+            margin: 5em auto;
+            width: 100%;
+        }
+
+        .select,
+        .label {
+            color: #414141;
+            display: block;
+            font: 400 17px/2em 'Source Sans Pro', sans-serif;
+        }
+
+        .select {
+            width: 100%;
+            position: absolute;
+            top: 0;
+            padding: 5px 0;
+            height: 40px;
+            opacity: 0;
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+            background: none transparent;
+            border: 0 none;
+        }
+
+        .select-box1 {
+            background: #ececec;
+        }
+
+        .label {
+            position: relative;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .open .label::after {
+            content: "▲";
+        }
+
+        .label::after {
+            content: "▼";
+            font-size: 12px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 5px 15px;
+            border-left: 5px solid #fff;
+        }
+    </style>
     <!-- ngIf: $root.isAuthenticated === true -->
     <section class="container main_wrapper kma-wrapper ng-scope" ng-if="$root.isAuthenticated === true">
         <!-- ngView:  -->
         <section class="clb main main-content ng-scope" ng-view="">
-           
+
             <section class="mainRight ng-scope">
                 <section class="mainWrap fll w100" ng-class="{ 'has-expire' : showExpireMessage.isActive === true}"
                     style="position: relative; top: auto; bottom: auto; width: auto;">
@@ -12,154 +64,44 @@
                         <div class="header-filter-search"><kv-mobile-new on-click-call-back="refresh()"
                                 class="ng-isolate-scope"><a href="javascript:void(0);"
                                     class="mobileIcon"></a></kv-mobile-new>
-                            <div class="input-group"><input kv-filter-search="" ng-enter="quickSearch(true)"
-                                    ng-change="changeQuickSearch()"
+                            <div class="input-group"><input id="input-search"
                                     class="form-control input-focus ng-pristine ng-untouched ng-valid ng-empty"
-                                    type="text" ng-model="filterQuickSearch" placeholder="Theo mã phiếu nhập">
-                                <div id="idDropdownSearch" class="input-group-append dropdown" uib-dropdown=""
-                                    auto-close="disabled" is-open="isOpenDropdownSearch" kv-input-focus="">
-                                    <!-- ngIf: filterQuickSearch && filterQuickSearch.length > 0 --> <button type="button"
-                                        id="idDropdownBtnSearch" class="btn-icon dropdown-toggle" uib-dropdown-toggle=""
-                                        aria-haspopup="true" aria-expanded="false"><i
-                                            class="fas fa-caret-down"></i></button>
-                                    <div id="idDropdownMenuSearch" class="dropdown-content dropdown-menu"
-                                        uib-dropdown-menu="">
-                                        <div class="form-group"><input ng-enter="quickSearch()"
-                                                class="form-control ng-pristine ng-untouched ng-valid ng-empty"
-                                                type="text" ng-model="filterName" placeholder="Theo mã phiếu nhập">
-                                        </div>
-                                        <div class="form-group ng-hide"
-                                            ng-show="isPurchaseOrder &amp;&amp; settings.UseOrderSupplier">
-                                            <input ng-enter="quickSearch()"
-                                                class="form-control ng-pristine ng-untouched ng-valid ng-empty"
-                                                type="text" ng-model="filterOrderSupplierCode"
-                                                placeholder="Theo mã phiếu đặt hàng nhập ">
-                                        </div>
-                                        <aside ng-hide="showOrderSearch">
-                                            <div class="form-group" ng-show="isSuggestProductForSearchPurchaseOrder">
-                                                <kv-multi-select-search-product control-css-id="suggestProductSearch"
-                                                    control-css-class="form-control kv-multi-select-search"
-                                                    icon-remove-css-class="icon-remove-search-product"
-                                                    filter-ids="filterProductIds" filter-keyword="filterProductKey"
-                                                    filter-text="filterProductCodes" on-type="quickSearch()"
-                                                    check-permission-onhand="true" id="purchaseOrderFilterMultiSelect"
-                                                    class="ng-isolate-scope"><kv-multi-select-search
-                                                        control-css-id="suggestProductSearch"
-                                                        control-css-class="form-control kv-multi-select-search"
-                                                        icon-remove-css-class="icon-remove-search-product"
-                                                        input-placeholder="Theo mã, tên hàng"
-                                                        option-data-text-field="Code" option-data-value-field="Id"
-                                                        option-item-template="itemTemplate" option-data-source="products"
-                                                        filter-ids="filterIds" filter-keyword="filterKeyword"
-                                                        filter-text="filterText" limit-filter-ids="10"
-                                                        message-limit-filter-ids="Bạn chỉ được chọn tối đa 10 hàng hóa"
-                                                        on-type="onType()" field-compare-get-first-by-enter="Code"
-                                                        class="ng-isolate-scope">
-                                                        <div class="k-widget k-multiselect k-header form-control kv-multi-select-search"
-                                                            unselectable="on" title="" style="">
-                                                            <div class="k-multiselect-wrap k-floatwrap" unselectable="on">
-                                                                <ul role="listbox" unselectable="on" class="k-reset"
-                                                                    id="suggestProductSearch_taglist"></ul>
-                                                                <input class="k-input k-readonly" style="width: 25px"
-                                                                    accesskey="" autocomplete="off" role="listbox"
-                                                                    aria-expanded="false" tabindex="0"
-                                                                    aria-owns="suggestProductSearch_taglist suggestProductSearch_listbox"
-                                                                    aria-disabled="false" aria-readonly="false"
-                                                                    placeholder="Theo mã, tên hàng"><span
-                                                                    class="k-icon k-loading k-loading-hidden"></span>
-                                                            </div><select id="suggestProductSearch"
-                                                                class="form-control kv-multi-select-search"
-                                                                data-role="multiselect" multiple="multiple"
-                                                                aria-disabled="false" aria-readonly="false"
-                                                                style="display: none;"></select><span
-                                                                style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-stretch: 100%; font-style: normal; font-weight: 400; letter-spacing: normal; text-transform: none; line-height: 17.03px; position: absolute; visibility: hidden; top: -3333px; left: -3333px;"></span>
-                                                        </div>
-                                                    </kv-multi-select-search></kv-multi-select-search-product>
-                                            </div>
-                                            <div class="form-group ng-hide"
-                                                ng-show="!isSuggestProductForSearchPurchaseOrder"><input
-                                                    ng-enter="quickSearch()"
-                                                    class="form-control ng-pristine ng-untouched ng-valid ng-empty"
-                                                    type="text" ng-model="filterProductCode"
-                                                    placeholder="Theo mã hàng"></div>
-                                            <div class="form-group ng-hide"
-                                                ng-show="!isSuggestProductForSearchPurchaseOrder"><input
-                                                    ng-enter="quickSearch()"
-                                                    class="form-control ng-pristine ng-untouched ng-valid ng-empty"
-                                                    type="text" ng-model="filterProductName"
-                                                    placeholder="Theo tên hàng"></div>
-                                            <div class="form-group" ng-show="settings.UseImei &amp;&amp; isPurchaseOrder">
-                                                <input ng-enter="quickSearch()"
-                                                    class="form-control ng-pristine ng-untouched ng-valid ng-empty"
-                                                    type="text" ng-model="filterSerial" placeholder="Theo Serial/IMEI"
-                                                    kv-select-text=""></div>
-                                            <div class="form-group ng-hide"
-                                                ng-show="showInput &amp;&amp; settings.UseBatchExpire &amp;&amp; isPurchaseOrder">
-                                                <input ng-enter="quickSearch()"
-                                                    class="form-control ng-pristine ng-untouched ng-valid ng-empty"
-                                                    type="text" ng-model="filterBatchExpire"
-                                                    placeholder="Theo lô, hạn sử dụng" kv-select-text="">
-                                            </div>
-                                            <div class="form-group"><input ng-enter="quickSearch()"
-                                                    class="form-control ng-pristine ng-untouched ng-valid ng-empty"
-                                                    type="text" ng-model="filterCustomer"
-                                                    placeholder="Theo mã, tên NCC" kv-select-text=""></div>
-                                            <div class="form-group ng-hide" ng-show="showInput &amp;&amp; isOrder">
-                                                <input ng-enter="quickSearch()"
-                                                    class="form-control ng-pristine ng-untouched ng-valid ng-empty"
-                                                    type="text" ng-model="filterInvoiceCode"
-                                                    placeholder="Theo mã hóa đơn" kv-select-text="">
-                                            </div>
-                                            <div class="form-group ng-hide"
-                                                ng-show="showInput &amp;&amp; isOrder &amp;&amp; settings.UseCod">
-                                                <input ng-enter="quickSearch()"
-                                                    class="form-control ng-pristine ng-untouched ng-valid ng-empty"
-                                                    type="text" ng-model="filterDeliveryCode"
-                                                    placeholder="Theo mã vận đơn">
-                                            </div>
-                                            <div class="form-group ng-hide" ng-show="showInput"><input
-                                                    ng-enter="quickSearch()"
-                                                    class="form-control ng-pristine ng-untouched ng-valid ng-empty"
-                                                    type="text" ng-model="filterDescription"
-                                                    placeholder="Theo ghi chú"></div>
-                                            <div class="form-group ng-hide" ng-show="showInput"><input
-                                                    ng-enter="quickSearch()"
-                                                    class="form-control ng-pristine ng-untouched ng-valid ng-empty"
-                                                    type="text" ng-model="filterDescriptionProduct"
-                                                    placeholder="Theo ghi chú hàng hóa"></div>
-                                        </aside>
-                                        <div class="kv-window-footer"><a class="ng-binding"
-                                                ng-hide="showPurchaseReturnSearch" href="javascript:void(0)"
-                                                ng-click="showInput = !showInput">Mở rộng <i
-                                                    class="far fa-arrow-down"></i></a> <button type="button"
-                                                class="btn btn-success ng-binding" ng-click="quickSearch()"><i
-                                                    class="far fa-search"></i>Tìm
-                                                kiếm</button></div>
-                                    </div>
-                                </div>
+                                    type="text" placeholder="Theo mã phiếu nhập">
+
                             </div>
-                            <div class="choosed-items ng-binding ng-hide" ng-show="selectedPurchaseOrder.length > 0">Đã
-                                chọn 0 <a href="javascript:void(0);" ng-click="removeAllSelected()" class="btn-icon"><i
-                                        class="fal fa-times"></i></a></div>
+
                         </div>
-                        <aside class="header-filter-buttons"><!-- ngIf: selectedPurchaseOrder.length > 0 --><a
-                                href="" id="href-create" title="Nhập hàng" ng-show="hasAdd" class="btn btn-success"><i
-                                    class="far fa-plus"></i><span class="text-btn ng-binding">Nhập hàng</span></a>
+                        <aside class="header-filter-buttons">
+                            <a href="" id="href-import" title="Nhập hàng" ng-show="hasAdd" class="btn btn-success"><i
+                                    class="far fa-plus"></i><span class="text-btn ng-binding">Nhập
+                                    hàng</span>
+                            </a>
+                            <a href="" id="href-export" title="Nhập hàng" ng-show="hasAdd" class="btn btn-primary"><i
+                                    class="far fa-plus"></i><span class="text-btn ng-binding">Xuất hàng</span>
+                            </a>
+                            <a href="" id="href-sell" title="Nhập hàng" ng-show="hasAdd" class="btn btn-danger"><i
+                                    class="far fa-plus"></i><span class="text-btn ng-binding">Bán
+                                    hàng</span>
+                            </a>
 
                         </aside>
+
                     </article>
+
+
                     <article class="ovh clb k-gridNone purchaseorderList k-grid-Scroll">
                         <div id="grdPurchaseOrders" kendo-grid="" k-data-source="orders" k-sortable="true"
                             k-resizable="true"
                             k-pageable="{ &quot;pageSize&quot;: 10, &quot;refresh&quot;: false, &quot;pageSizes&quot;: false , buttonCount: 5,&quot;messages&quot;:{&quot;display&quot;:_l.pagerInfo + _l.purchaseOrder_paging, first:_l.paging_First, previous:_l.paging_Prev, next: _l.paging_Next, last: _l.paging_Last}}"
                             k-columns="gridcolumns" kv-grid-expan-row="" k-data-bound="grvInvoicesDataBound"
                             data-title="purchaseOrder_closeBookMessage" data-headerformat="{0}"
-                            k-data-binding="grvdataBinding" k-detail-template="detailTemplate"
-                            k-detail-init="grvDetailInit" k-detail-expand="grvDetailExpand" data-role="grid"
-                            class="k-grid k-widget k-grid-noscroll" style="">
+                            k-data-binding="grvdataBinding" k-detail-template="detailTemplate" k-detail-init="grvDetailInit"
+                            k-detail-expand="grvDetailExpand" data-role="grid" class="k-grid k-widget k-grid-noscroll"
+                            style="">
                             <div class="k-grid-header" style="padding-right: 8px;">
                                 <div class="k-grid-header-wrap k-auto-scrollable" data-role="resizable"
                                     style="touch-action: pan-y;">
+
                                     <table role="grid">
                                         <colgroup>
                                             <col class="k-hierarchy-col">
@@ -181,8 +123,8 @@
                                                     <div class="clearfix prettycheckbox labelright  blue">
                                                         <input type="checkbox" ng-change="orderGridCheckAll()"
                                                             ng-model="checkbox.checkAll" ng-checked="checkbox.checkAll"
-                                                            ng-true-value="true" ng-false-value="false"
-                                                            kv-pretty-check="" kv-data-label=""
+                                                            ng-true-value="true" ng-false-value="false" kv-pretty-check=""
+                                                            kv-data-label=""
                                                             class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty"
                                                             style="display: none;"><a href="javascript:void(0)"
                                                             tabindex="0" class=""></a>
@@ -190,8 +132,7 @@
                                                     </div>
                                                 </th>
                                                 <th scope="col" role="columnheader" data-field="IsFavourite"
-                                                    rowspan="1" data-index="1"
-                                                    id="beed140f-bdc2-4aaa-9791-a2b984543bac"
+                                                    rowspan="1" data-index="1" id="beed140f-bdc2-4aaa-9791-a2b984543bac"
                                                     class="cell-star k-header ng-scope" data-role="columnsorter"><a
                                                         class="k-link" href="#"><span class="starFilter"
                                                             ng-click="sortFavouriteItem($event)"><i
@@ -286,8 +227,15 @@
                                                     rowspan="1" data-title="Trạng thái" data-index="18"
                                                     id="06de29c1-e310-4a72-9288-30cde8c85619"
                                                     class="cell-status k-header ng-scope th-show"
-                                                    data-role="columnsorter"><a class="k-link" href="#">Trạng
-                                                        thái</a></th>
+                                                    data-role="columnsorter"><a class="k-link" href="#">
+                                                        <select class="form-select form-select-lg"
+                                                            onchange="getCoupon(this)">
+                                                            <option value="" selected>Trạng thái</option>
+                                                            <option value="">Tất cả</option>
+                                                            <option value="1">Phiếu nhập</option>
+                                                            <option value="2">Phiếu xuất</option>
+                                                            <option value="3">Phiếu bán</option>
+                                                        </select></a></th>
                                             </tr>
                                         </thead>
                                     </table>
@@ -306,10 +254,10 @@
                                         <col>
                                     </colgroup>
                                     <tbody id="tbody-coupon">
-                                        
-                                        
 
-                                       
+
+
+
 
                                         {{-- <tr class="k-alt k-master-row ng-scope"
                                                         data-uid="495d90d1-6f2f-48d2-b9c1-06f4f88b1c6c" role="row">
@@ -392,16 +340,15 @@
                                         href="#" title="Trang đầu"
                                         class="k-link k-pager-nav k-pager-first k-state-disabled" data-page="1"
                                         tabindex="-1"><span class="k-icon k-i-seek-w">Trang đầu</span></a><a
-                                        href="#" title="Trang trước"
-                                        class="k-link k-pager-nav  k-state-disabled" data-page="1"
-                                        tabindex="-1"><span class="k-icon k-i-arrow-w">Trang trước</span></a>
+                                        href="#" title="Trang trước" class="k-link k-pager-nav  k-state-disabled"
+                                        data-page="1" tabindex="-1"><span class="k-icon k-i-arrow-w">Trang
+                                            trước</span></a>
                                     <ul class="k-pager-numbers k-reset">
                                         <li class="k-current-page"><span class="k-link k-pager-nav">1</span>
                                         </li>
                                         <li><span class="k-state-selected">1</span></li>
-                                    </ul><a href="#" title="Trang sau"
-                                        class="k-link k-pager-nav  k-state-disabled" data-page="1"
-                                        tabindex="-1"><span class="k-icon k-i-arrow-e">Trang
+                                    </ul><a href="#" title="Trang sau" class="k-link k-pager-nav  k-state-disabled"
+                                        data-page="1" tabindex="-1"><span class="k-icon k-i-arrow-e">Trang
                                             sau</span></a><a href="#" title="Trang cuối"
                                         class="k-link k-pager-nav k-pager-last k-state-disabled" data-page="1"
                                         tabindex="-1"><span class="k-icon k-i-seek-e">Trang cuối</span></a><span
@@ -412,9 +359,9 @@
                         </div>
                     </article><kv-empty-grid-filter-all class="ng-isolate-scope">
                         <div hidden="hidden" id="empty-grid-filter-alltime" class="no-data"><span><span
-                                    id="empty-grid-head"></span><a href="javascript:void(0);"
-                                    style="font-weight: bold;" ng-click="filterbyRange('alltime')"
-                                    class="ng-binding">&nbsp;vào đây&nbsp;</a><span id="empty-grid-last"></span></span>
+                                    id="empty-grid-head"></span><a href="javascript:void(0);" style="font-weight: bold;"
+                                    ng-click="filterbyRange('alltime')" class="ng-binding">&nbsp;vào đây&nbsp;</a><span
+                                    id="empty-grid-last"></span></span>
                         </div>
                     </kv-empty-grid-filter-all>
                     <div style="display: none">
@@ -442,12 +389,22 @@
     </div>
     <!-- ngIf: $root.isAuthenticated === false -->
     <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const wavehouseId = urlParams.get('wavehouse_id')
+        $('#href-import').attr('href', '/coupon/import?wavehouse_id=' + wavehouseId)
+        $('#href-export').attr('href', '/coupon/export?wavehouse_id=' + wavehouseId)
+        $('#href-sell').attr('href', '/coupon/sell?wavehouse_id=' + wavehouseId)
         let temp = 0
         $(document).on("click", ".table-data", function() {
-            let stt = $(this).data('stt')
-            let json = $(this).data('json')
+            let stt = $(this).data('stt');
+            let json = $(this).data('json');
             let totalQuantity = 0;
             let totalTypeProduct = 0;
+            let text = "";
+            if (json.supplier_id !== null) {
+                text = json.supplier.name
+            }
             let descriptionData = `
                                                     <tr class="k-detail-row k-alt ng-scope" id="detail-row" data-stt="${stt}" style="display: table-row;">
                                                         <td class="k-hierarchy-cell"></td>
@@ -512,7 +469,7 @@
                                                                                                 ng-show="dataItem.Supplier.Code"
                                                                                                 ng-hide="dataItem.isShowSupplier">
                                                                                                 <label
-                                                                                                    class="ng-binding">${json.supplier.name}</label></div>
+                                                                                                    class="ng-binding">${text}</label></div>
                                                                                             <div class="form-wrap ng-hide"
                                                                                                 ng-show="dataItem.isShowSupplier">
                                                                                                 <autocomplete
@@ -759,10 +716,10 @@
                                                                                         style="max-height: 789px;">
                                                                                         <table role="grid">
                                                                                            <tbody role="rowgroup">`
-                                                                                            $.each(json.coupon_product,function(key,val){
-                                                                                                totalTypeProduct++
-                                                                                                totalQuantity = Number(totalQuantity) + Number(val.quantity) 
-                                                                                                descriptionData +=`
+            $.each(json.coupon_product, function(key, val) {
+                totalTypeProduct++
+                totalQuantity = Number(totalQuantity) + Number(val.quantity)
+                descriptionData += `
                                                                                                 <tr data-uid="cfa1b491-d417-43f2-babc-c96e4a9b2cd0"
                                                                                                     role="row">
                                                                                                     <td class="cell-code"
@@ -793,9 +750,9 @@
                                                                                                                 class="fa fa-tag"></i></a>
                                                                                                     </td>
                                                                                                 </tr>`
-                                                                                            })
-                                                                                            
-                                                                                            descriptionData+=`</tbody>
+            })
+
+            descriptionData += `</tbody>
                                                                                         </table><span class="line"
                                                                                             style=" top: 86.7969px;"></span><span
                                                                                             class="line line2"
@@ -925,33 +882,40 @@
 
         });
         getCoupon()
-        function getCoupon(s = "") {
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
-            const wavehouseId =urlParams.get('wavehouse_id')
-            $('#href-create').attr('href','/coupon/create?wavehouse_id='+wavehouseId)
+
+        function getCoupon(_this) {
+            let selected = $(_this).val();
+            if (selected == undefined) {
+                selected = ""
+            }
+            let s = $("#input-search").val()
+
             let html = ``;
             $.ajax({
-                url: "/api/coupon?wavehouse_id="+wavehouseId+"&&s=" + s,
+                url: "/api/coupon?wavehouse_id=" + wavehouseId + "&&s=" + s + "&&status=" + selected,
                 type: "get",
                 success: function(response) {
                     let data = response.data
-                    if (data && response.status =="success") {
+                    if (data && response.status == "success") {
                         data.map(function(val, key) {
                             let stt = key + 1
                             let status = `<span ng-bind="dataItem.Status"
                                                     class="ng-binding" style="color:green">Đã Nhập Hàng</span>`
 
-                            if(val.status == 2){
+                            if (val.status == 2) {
                                 status = `<span ng-bind="dataItem.Status"
                                                     class="ng-binding" style="color:blue">Đã Xuất Hàng</span>`
-                            }else if(val.status == 3){
+                            } else if (val.status == 3) {
                                 status = `<span ng-bind="dataItem.Status"
                                                     class="ng-binding" style="color:red">Đã Bán</span>`
 
                             }
+                            let text = ""
+                            if (val.supplier_id != null) {
+                                text = val.supplier.name
+                            }
                             html += `
-                            <tr data-json='${JSON.stringify(val)}' class=" k-master-row ng-scope table-data " data-stt="1"
+                            <tr data-json='${JSON.stringify(val)}' class=" k-master-row ng-scope table-data " data-stt="${stt}"
                                             data-uid="2d800645-b0de-47c5-a67e-9b929cfd1137" role="row">
                                             <td class="k-hierarchy-cell"><a class="k-icon k-minus" href="#"
                                                     tabindex="-1"></a></td>
@@ -986,7 +950,7 @@
                                             <td class="cell-date-time" role="gridcell">${val.created_at}</td>
                                            
                                             <td class="cell-auto" role="gridcell"><span
-                                                    ng-bind="dataItem.Supplier.Name" class="ng-binding">${val.supplier.name}</span></td>
+                                                    ng-bind="dataItem.Supplier.Name" class="ng-binding">${text}</span></td>
                                             
                                             
                                             <td class="cell-total-final txtR ng-binding" role="gridcell">
@@ -1000,7 +964,7 @@
                                         `
                         })
                         $('#tbody-coupon').html(html)
-                    }else{
+                    } else {
                         toastr.error('Kho không tồn tai')
                     }
 

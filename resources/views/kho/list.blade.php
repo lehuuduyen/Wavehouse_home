@@ -143,11 +143,11 @@
                                 chọn 0 <a href="javascript:void(0);" ng-click="removeAllSelected()" class="btn-icon"><i
                                         class="fal fa-times"></i></a></div>
                         </div>
-                        <aside class="header-filter-buttons"><!-- ngIf: selectedPurchaseOrder.length > 0 --><a
+                        {{-- <aside class="header-filter-buttons"><!-- ngIf: selectedPurchaseOrder.length > 0 --><a
                                 href="/wavehouse/create" title="Nhập hàng" ng-show="hasAdd" class="btn btn-success"><i
                                     class="far fa-plus"></i><span class="text-btn ng-binding">Nhập hàng</span></a>
 
-                        </aside>
+                        </aside> --}}
                     </article>
                     <article class="ovh clb k-gridNone purchaseorderList k-grid-Scroll">
                         <div id="grdPurchaseOrders" kendo-grid="" k-data-source="orders" k-sortable="true"
@@ -394,7 +394,7 @@
             let descriptionData = `
                                                     <tr class="k-detail-row k-alt ng-scope" id="detail-row" data-stt="${stt}" style="display: table-row;">
                                                         <td class="k-hierarchy-cell"></td>
-                                                        <td class="k-detail-cell" colspan="7">
+                                                        <td class="k-detail-cell" colspan="8">
                                                             <div class="k-tabstrip-wrapper">
                                                                 <div class="tabstrip k-widget k-header k-tabstrip k-floatwrap k-tabstrip-top"
                                                                     data-role="tabstrip" tabindex="0"
@@ -764,7 +764,7 @@
                             let stt = key + 1
 
                             html += `
-                            <tr data-json='${JSON.stringify(val)}' class=" k-master-row ng-scope table-data " data-stt="1"
+                            <tr data-json='${JSON.stringify(val)}' class=" k-master-row ng-scope table-data " data-stt="${stt}"
                                             data-uid="2d800645-b0de-47c5-a67e-9b929cfd1137" role="row">
                                             <td class="k-hierarchy-cell"><a class="k-icon k-minus" href="#"
                                                     tabindex="-1"></a></td>

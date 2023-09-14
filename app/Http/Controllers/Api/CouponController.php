@@ -6,7 +6,10 @@ use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\ImportExportCoupon;
 use App\Models\ImportExportCouponProduct;
+use App\Models\Products;
+use App\Models\Wavehouse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class CouponController extends BaseController
@@ -18,29 +21,37 @@ class CouponController extends BaseController
      */
     public function index()
     {
-        if(!isset($_GET['wavehouse_id']) && empty($_GET['wavehouse_id'])){
+        if (!isset($_GET['wavehouse_id']) && empty($_GET['wavehouse_id'])) {
             return response()->json(
                 array(
                     'status' => 'error',
-                    'data' => ''   
+                    'data' => ''
                 ),
                 200
             );
         }
         $param = (isset($_GET['s'])) ? $_GET['s'] : "";
+        $paramStatus = (isset($_GET['status'])) ? $_GET['status'] : "";
+        $ImportExportCoupon = ImportExportCoupon::with('CouponProduct')->with('Supplier')->with('Wavehouse');
         if ($param) {
-            $ImportExportCoupon = ImportExportCoupon::with('CouponProduct')->with('Supplier')->with('Wavehouse')->where('name', 'like', '%' . $param . '%')->orWhere('code', 'like', '%' . $param . '%')->get();
-        } else {
-            $ImportExportCoupon = ImportExportCoupon::with('CouponProduct')->with('Supplier')->with('Wavehouse')->where('wavehouse_id',  $_GET['wavehouse_id'] )->get();
+            $ImportExportCoupon = $ImportExportCoupon->where(function ($query, $param) {
+                $query->where('name', 'like', '%' . $param . '%')->orWhere('code', 'like', '%' . $param . '%');
+            });
         }
+        if ($paramStatus) {
+            $ImportExportCoupon = $ImportExportCoupon->where('status', $paramStatus);
+        }
+        $ImportExportCoupon = $ImportExportCoupon->where('wavehouse_id', $_GET['wavehouse_id'])->get();
+
         return response()->json(
             array(
                 'status' => 'success',
-                'data' => $ImportExportCoupon   
+                'data' => $ImportExportCoupon
             ),
             200
         );
     }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -57,59 +68,123 @@ class CouponController extends BaseController
     {
         $rules = array(
             'name' => 'required|string|max:255',
-            'supplier_id' => 'required|string|max:255',
+            // 'supplier_id' => 'required|string|max:255',
         );
         $messages = array(
             'name.required' => 'Ghi chú không được để trống',
-            'supplier_id.required' => 'Nhà cung cấp không được để trống',
+            // 'supplier_id.required' => 'Nhà cung cấp không được để trống',
         );
         $validator = Validator::make($request->all(), $rules, $messages);
 
         if ($validator->fails()) {
             return $this->responseError($validator->errors()->first());
         }
+        DB::beginTransaction();
+
         try {
             //code...
+
             $data = $request->all();
-
-        if (!isset($data['code']) ) {
-            $data['code'] = $this->generateRandomString();
-        }
-        $listProduct = json_decode($data['listProduct']);
-        if(count($listProduct)>0)        
-        {
-            if (isset($data['sum'])) {
-                $data['price'] = str_replace('$',"",$data['sum']);
-                $data['price'] = str_replace(',',"",$data['price']);
-            }
-            $data['wavehouse_id'] =1;
-            $data['status'] =1;
-            $data['user_id'] =1;
-            $coupon = ImportExportCoupon::create($data);
-            foreach($listProduct as $value){
-                $priceSell = str_replace('$',"",$value->priceSell);
-                $priceSell = str_replace(',',"",$priceSell);
-                $couponDetail = ImportExportCouponProduct::create([
-                    'product_id' => $value->id,
-                    'quantity' => $value->quantity,
-                    'price' => $priceSell,
-                    'coupon_id' => $coupon->id,
-                    'wavehouse_id' => 1,
-                    'status' => 1,
-                ]);
-                
+            if (!isset($data['code'])) {
+                $data['code'] = $this->generateRandomString();
             }
 
-        }else{
-            return $this->responseError('Sản phẩm không tồn tại');
-        }
+
+            $listProduct = json_decode($data['listProduct']);
+            if (is_array($listProduct) && count($listProduct) > 0) {
+                if (isset($data['sum'])) {
+                    $data['price'] = str_replace('$', "", $data['sum']);
+                    $data['price'] = str_replace(',', "", $data['price']);
+                }
+                $data['status'] = 1;
+                $data['user_id'] = 1;
+
+
+
+                $coupon = ImportExportCoupon::create($data);
+                foreach ($listProduct as $value) {
+                    $priceSell = str_replace('$', "", $value->priceSell);
+                    $priceSell = str_replace(',', "", $priceSell);
+                    if (empty($data['wavehouse_from_id'])) {
+                        $couponDetail = ImportExportCouponProduct::create([
+                            'product_id' => $value->id,
+                            'quantity' => $value->quantity,
+                            'price' => $priceSell,
+                            'coupon_id' => $coupon->id,
+                            'wavehouse_id' => $data['wavehouse_id'],
+                            'status' => 1,
+                        ]);
+                    } else {
+                        $checkProductQuantity = $this->checkProductQuantity($data['wavehouse_from_id'], $value->id, $value->quantity);
+                        $couponDetail = ImportExportCouponProduct::create([
+                            'product_id' => $value->id,
+                            'quantity' => $value->quantity,
+                            'price' => $priceSell,
+                            'coupon_id' => $coupon->id,
+                            'wavehouse_id' => $data['wavehouse_from_id'],
+                            'status' => 1,
+                        ]);
+                    }
+                }
+
+
+                // phieu xuat
+                if (!empty($data['wavehouse_from_id'])) {
+                    $data['status'] = 2;
+                    $data['wavehouse_id'] = $data['wavehouse_from_id'];
+                    $couponExport = ImportExportCoupon::create($data);
+                    foreach ($listProduct as $value) {
+                        $priceSell = str_replace('$', "", $value->priceSell);
+                        $priceSell = str_replace(',', "", $priceSell);
+                        $couponDetail = ImportExportCouponProduct::create([
+                            'product_id' => $value->id,
+                            'quantity' => $value->quantity,
+                            'price' => $priceSell,
+                            'coupon_id' => $couponExport->id,
+                            'wavehouse_id' => $data['wavehouse_from_id'],
+                            'status' => 2,
+                        ]);
+                    }
+                }
+            } else {
+                throw new \Exception('Sản phẩm không tồn tại');
+            }
         } catch (\Throwable $th) {
-            return $this->responseError('Sản phẩm không được để rỗng');
+            DB::rollback();
+            return $this->responseError($th->getMessage());
             //throw $th;
         }
-        
+        DB::commit();
 
-        return $this->responseSuccess($coupon,'Thêm nhà cung cấp thành công');
+        return $this->responseSuccess($coupon, 'Thêm nhà cung cấp thành công');
+    }
+    public function checkProductQuantity($wavehouseFromId, $productId, $count)
+    {
+        $wavehouse = Wavehouse::with('Coupon')->where('wavehouse.id', $wavehouseFromId)->first();
+        $product = Products::find($productId);
+
+        if (count($wavehouse->coupon) > 0) {
+            $soLuongKho = 0;
+
+            foreach ($wavehouse->coupon as $key2 => $coupon) {
+                foreach ($coupon->CouponProduct as $key3 => $listProduct) {
+                    if ($listProduct->product_id != $productId) {
+                        continue;
+                    }
+                    if ($coupon->status == 1) {
+                        $soLuongKho = $soLuongKho + $listProduct->quantity;
+                    } else {
+                        $soLuongKho = $soLuongKho - $listProduct->quantity;
+                    }
+                }
+            }
+            $sum = $soLuongKho - $count;
+            if ($sum >= 0) {
+                return true;
+            }
+            throw new \Exception('Trong kho chỉ còn ' . $soLuongKho . ' Sản phẩm ' . $product->name . '');
+        }
+        throw new \Exception('Sản phẩm ' . $product->name . ' không đủ trong kho');
     }
 
     /**

@@ -21,13 +21,13 @@ Route::get('/products', function () {
     return view('products');
 });
 Route::get('/coupon', function () {
-    return view('wavehouse.list');
+    return view('coupon.list');
 });
 Route::get('/kho', function () {
     return view('kho.list');
 });
-Route::get('/coupon/create', function () {
-    return view('wavehouse.create');
+Route::get('/coupon/import', function () {
+    return view('coupon.import');
 });
 Route::get('/print', function () {
     return view('layouts.print');
