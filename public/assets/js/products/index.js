@@ -1,4 +1,55 @@
 jQuery(document).ready(function () {
+  jQuery(".importBtn").click(function (event) {
+    event.stopPropagation();
+    var clickedInsideDiv = false;
+    if (!clickedInsideDiv) {
+      jQuery('input[type="file"]').click();
+      clickedInsideDiv = true;
+    }
+  });
+
+  // Add a click handler for the file input to reset the clickedInsideDiv flag
+  jQuery('input[type="file"]').change(function () {
+    var formData = new FormData();
+    formData.append('file', this.files[0]);
+    let _this = this
+    $.ajax({
+      url: "/api/product/import",
+      type: "POST",
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (response) {
+        window.location.reload();
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        BtnReset(_this)
+        if (jqXHR.responseJSON.errors && jqXHR.responseJSON.errors.length > 0) {
+          var customMessages = jqXHR.responseJSON.errors.map(function (messageArray) {
+            var errorMessage = messageArray[0];
+            var matches = errorMessage.match(/(\d+)/);
+            var rowNumber = matches ? matches[0] : null;
+
+            if (rowNumber) {
+              return "Dòng " + rowNumber + errorMessage.substring(errorMessage.indexOf('.'));
+            } else {
+              return errorMessage;
+            }
+          });
+        } else {
+          customMessages = jqXHR.responseJSON.message;
+        }
+
+        toastr.error(customMessages)
+
+      }
+    });
+  });
+
+  function BtnReset(elem) {
+    $(elem).prop("disabled", false);
+    $(elem).html($(elem).attr("data-original-text"));
+  }
   var modal = document.getElementById("myModal");
   var btn = document.getElementById("addProduct");
   var span = document.getElementsByClassName("close")[0];
@@ -7,91 +58,26 @@ jQuery(document).ready(function () {
     document.getElementsByClassName("k-overlay")[0].style.display = "block"
     modal.style.display = "block";
   }
-  $(document).on('click','#updateProduct',function(){
+  $(document).on('click', '#updateProduct', function () {
     document.getElementsByClassName("k-overlay")[0].style.display = "block"
-    let json =$(this).data('json');
-    Object.keys(json).map(function(key){
-      if(key =="price_sell"  || key == "price_capital"){
-        
+    let json = $(this).data('json');
+    Object.keys(json).map(function (key) {
+      if (key == "price_sell" || key == "price_capital") {
+
         $(`input[name='${key}']`).val(formatCurrency(json[key]))
 
-      }else if(key =="file"){
-        $("#output").attr('src',json[key])
-      }else{
+      } else if (key == "file") {
+        $("#output").attr('src', json[key])
+      } else {
         $(`input[name='${key}']`).val(json[key])
 
       }
     })
     modal.style.display = "block";
   })
- 
+
   span.onclick = function () {
     document.getElementsByClassName("k-overlay")[0].style.display = "none"
     modal.style.display = "none";
-  }
-  
-
-  // Thêm nhóm hàng 
-  var addSupplierModal = document.getElementById("addSupplierModal");
-  var addGroupBtn = document.getElementById("addGroupBtn");
-  var spanGroup = document.getElementsByClassName("close-group")[0];
-  var closeSupplierModal = document.getElementById("closeSupplierModal");
-  addGroupBtn.onclick = function () {
-    addSupplierModal.style.display = "block";
-    addSupplierModal.style.zIndex = "10005";
-  }
-  spanGroup.onclick = function () {
-    document.getElementsByClassName("addSupplierModalOverlay")[0].remove();
-    addSupplierModal.style.display = "none";
-    addSupplierModal.style.zIndex = "0";
-  }
-
-  closeSupplierModal.onclick = function () {
-    document.getElementsByClassName("addSupplierModalOverlay")[0].remove();
-    addSupplierModal.style.display = "none";
-    addSupplierModal.style.zIndex = "0";
-  }
-
-  // Thêm thương hiệu
-  var addBrandModal = document.getElementById("addBrandModal");
-  var addBrandBtn = document.getElementById("addBrandBtn");
-  var spanBrand = document.getElementsByClassName("close-brand")[0];
-  var closeBrandModal = document.getElementById("closeBrandModal");
-  addBrandBtn.onclick = function () {
-    addBrandModal.style.display = "block";
-    addBrandModal.style.zIndex = "10021";
-
-  }
-  spanBrand.onclick = function () {
-    document.getElementsByClassName("addBrandModalOverlay")[0].remove();
-    addBrandModal.style.display = "none";
-    addBrandModal.style.zIndex = "0";
-  }
-  closeBrandModal.onclick = function () {
-    document.getElementsByClassName("addBrandModalOverlay")[0].remove();
-    addBrandModal.style.display = "none";
-    addBrandModal.style.zIndex = "0";
-  }
-
-  // Thêm vị trí
-  var addPositionModal = document.getElementById("addPositionModal");
-  var AddPositionBtn = document.getElementById("AddPositionBtn");
-  var spanPosition = document.getElementsByClassName("close-position")[0];
-  var closePositionModal = document.getElementById("closePositionModal");
-  AddPositionBtn.onclick = function () {
-    addPositionModal.style.display = "block";
-    addPositionModal.style.zIndex = "10005";
-
-  }
-  spanPosition.onclick = function () {
-    document.getElementsByClassName("addPositionModalOverlay")[0].remove();
-    addPositionModal.style.display = "none";
-    addPositionModal.style.zIndex = "0";
-  }
-
-  closePositionModal.onclick = function () {
-    document.getElementsByClassName("addPositionModalOverlay")[0].remove();
-    addPositionModal.style.display = "none";
-    addPositionModal.style.zIndex = "0";
   }
 })

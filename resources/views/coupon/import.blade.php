@@ -388,7 +388,7 @@
                                                         ng-class="{txtRed :(dataItem.Price > dataItem.BasePrice)}"
                                                         class="txtR form-control form-control-sm purchase-order-price ng-pristine ng-untouched ng-valid ng-not-empty"
                                                         kv-tooltip="" data-toggle="tooltip" data-placement="bottom"
-                                                        data-original-title="Cao hơn giá bán"
+                                                        data-original-title="Cao hơn Giá bán khuyến mãi"
                                                         ng-change="ChangePrice(dataItem)"></td>
                                                 <td class="txtR cell-total" role="gridcell">
                                                     <div class="proPrice posR"><button
@@ -1042,7 +1042,7 @@
                                                             tabindex="100" 
                                                             class="txtR price-sell  form-control form-control-sm purchase-order-price ng-pristine ng-untouched ng-valid ng-not-empty"
                                                             kv-tooltip="" data-toggle="tooltip" data-placement="bottom"
-                                                            data-original-title="Cao hơn giá bán"
+                                                            data-original-title="Cao hơn Giá bán khuyến mãi"
                                                             onchange="ChangePrice(this)"></td>
                                                
                                                     <td class="cell-total txtR" role="gridcell">

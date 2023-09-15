@@ -6,10 +6,12 @@ use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateSupplierRequest;
 use App\Models\Products;
+use App\Models\ProductsImport;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends BaseController
 {
@@ -57,7 +59,7 @@ class ProductController extends BaseController
         );
         $messages = array(
             'name.required' => 'Tên sản phẩm không được để trống',
-            'price_sell.required' => 'Giá bán không được để trống',
+            'price_sell.required' => 'Giá bán khuyến mãi không được để trống',
             'price_capital.required' => 'Giá vốn không được để trống',
         );
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -73,38 +75,65 @@ class ProductController extends BaseController
             $data['barcode'] = $this->generateRandomString();
         }
         if (isset($data['price_sell'])) {
-            $data['price_sell'] = str_replace('$',"",$data['price_sell']);
-            $data['price_sell'] = str_replace(',',"",$data['price_sell']);
+            $data['price_sell'] = str_replace('$', "", $data['price_sell']);
+            $data['price_sell'] = str_replace(',', "", $data['price_sell']);
         }
         if (isset($data['price_capital'])) {
-            $data['price_capital'] = str_replace('$',"",$data['price_capital']);
-            $data['price_capital'] = str_replace(',',"",$data['price_capital']);
+            $data['price_capital'] = str_replace('$', "", $data['price_capital']);
+            $data['price_capital'] = str_replace(',', "", $data['price_capital']);
         }
-        
-        
-        if(!empty($_FILES["files"]['tmp_name'])){
+        if (isset($data['price_old'])) {
+            $data['price_old'] = str_replace('$', "", $data['price_old']);
+            $data['price_old'] = str_replace(',', "", $data['price_old']);
+        }
+
+        if (!empty($_FILES["files"]['tmp_name'])) {
             $currentWorkingDirectory = getcwd(); // Get the current working directory
             $targetDirectory = $currentWorkingDirectory; // Create a directory to store uploaded files
-            $nameFile ="/uploads/".$this->generateRandomString(5).basename($_FILES["files"]["name"]);
-            $targetFile = $targetDirectory .$nameFile;
+            $nameFile = "/uploads/" . $this->generateRandomString(5) . basename($_FILES["files"]["name"]);
+            $targetFile = $targetDirectory . $nameFile;
             if (move_uploaded_file($_FILES["files"]["tmp_name"], $targetFile)) {
                 $data['file'] = $nameFile;
             } else {
                 return $this->responseError('Upload file fail');
             }
         }
-        if(!empty($data['id'])){
-            $result = Products::where('id',$data['id'])->update($data);
-            $mess ='Cập nhật sản phẩm thành công';
-        }else{
+        if (!empty($data['id'])) {
+            $result = Products::where('id', $data['id'])->update($data);
+            $mess = 'Cập nhật sản phẩm thành công';
+        } else {
             $result = Products::create($data);
-            $mess ='Thêm sản phẩm thành công';
-
+            $mess = 'Thêm sản phẩm thành công';
         }
 
-        return $this->responseSuccess($result,$mess );
+        return $this->responseSuccess($result, $mess);
     }
 
+    /*
+    * @param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\Response
+    */
+    public function import(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|file|mimes:xlsx,xls',
+        ], [
+            'file.required' => 'File không được để trống.',
+            'file.file' => 'File không hợp lệ.',
+            'file.mimes' => 'File được chọn phải là tệp xlsx hoặc xls.',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->responseError($validator->errors()->first());
+        }
+
+        $file = $request->file('file');
+        $fileName = $file->getClientOriginalName();
+
+        Excel::import(new ProductsImport($fileName), $file);
+
+        return $this->responseSuccess([], 'Nhập sản phẩm thành công');
+    }
     /**
      * Display the specified resource.
      *

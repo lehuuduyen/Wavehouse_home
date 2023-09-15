@@ -169,9 +169,18 @@
                                                                     class="formInsert form-control text-right iptPriceCost ng-pristine ng-untouched ng-valid ng-not-empty"
                                                                     ></div>
                                                         </div>
+                                                        <div class="form-group">
+                                                            <label class="form-label control-label ng-binding">Giá bán<a
+                                                                    tabindex="-1" class="help icon" kv-tooltip=""
+                                                                    data-toggle="tooltip" data-placement="right"
+                                                                    data-original-title="Giá bán ban đầu"><i
+                                                                        class="fas fa-info-circle"></i></a></label>
+                                                            <div class="form-wrap"><input data-type="currency" type="text" name="price_old" min="0"
+                                                                    class="formInsert form-control text-right iptPriceCost ng-pristine ng-untouched ng-valid ng-not-empty"
+                                                                    ></div>
+                                                        </div>
                                                         <div class="form-group isShowAdd"><label
-                                                                class="form-label control-label ng-binding">Giá
-                                                                bán</label>
+                                                                class="form-label control-label ng-binding">Giá bán khuyến mãi</label>
                                                             <div class="form-wrap input-group">
                                                                 <input id="iptBasePriceMaster" type="text" name="price_sell"
                                                                     class="formInsert form-control text-right iptPriceSale ng-pristine ng-untouched ng-valid ng-not-empty"
