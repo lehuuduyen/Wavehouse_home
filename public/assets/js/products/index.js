@@ -41,7 +41,7 @@ jQuery(document).ready(function () {
         }
 
         toastr.error(customMessages)
-
+        jQuery('input[type="file"]').val('')
       }
     });
   });

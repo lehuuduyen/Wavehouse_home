@@ -72,7 +72,7 @@ class ProductsImport extends DefaultValueBinder implements ToCollection, WithSta
             'price' => $price,
             'supplier_id' => 1,
             'wavehouse_id' => 1,
-            'status' => 0,
+            'status' => 1,
             'user_id' => 1
         ]);
 
@@ -83,7 +83,7 @@ class ProductsImport extends DefaultValueBinder implements ToCollection, WithSta
                 'quantity' => $product['count'],
                 'price' => $product['price_capital'],
                 'wavehouse_id' => 1,
-                'status' => 0,
+                'status' => 1,
             ]);
         }
     }
