@@ -29,6 +29,9 @@ Route::get('/kho', function () {
 Route::get('/coupon/import', function () {
     return view('coupon.import');
 });
+Route::get('/coupon/sell', function () {
+    return view('coupon.sell');
+});
 Route::get('/print', function () {
     return view('layouts.print');
 });

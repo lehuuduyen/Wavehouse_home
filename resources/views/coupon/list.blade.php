@@ -76,9 +76,7 @@
                                     class="far fa-plus"></i><span class="text-btn ng-binding">Nhập
                                     hàng</span>
                             </a>
-                            <a href="" id="href-export" title="Nhập hàng" ng-show="hasAdd" class="btn btn-primary"><i
-                                    class="far fa-plus"></i><span class="text-btn ng-binding">Xuất hàng</span>
-                            </a>
+                    
                             <a href="" id="href-sell" title="Nhập hàng" ng-show="hasAdd" class="btn btn-danger"><i
                                     class="far fa-plus"></i><span class="text-btn ng-binding">Bán
                                     hàng</span>
