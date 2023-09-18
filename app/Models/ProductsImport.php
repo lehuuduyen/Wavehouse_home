@@ -59,11 +59,11 @@ class ProductsImport extends DefaultValueBinder implements ToCollection, WithSta
                 'barcode'   => !empty($row[1]) ? $row[1] : $this->generateRandomString(),
                 'name'   => $row[2],
                 'price_capital'   => $row[3],
-                'price_sell'   => $row[4],
-                'price_old'   => $row[5],
+                'price_sell'   => $row[5],
+                'price_old'   => $row[4],
                 'count'   => $row[6],
             ]);
-            $price += $row[3];
+            $price += $row[3] * $row[6] ;
             $quantity += $row[6];
         }
         $importExportCoupon = ImportExportCoupon::create([
@@ -72,7 +72,7 @@ class ProductsImport extends DefaultValueBinder implements ToCollection, WithSta
             'price' => $price,
             'supplier_id' => 1,
             'wavehouse_id' => 1,
-            'status' => 0,
+            'status' => 1,
             'user_id' => 1
         ]);
 
@@ -82,8 +82,9 @@ class ProductsImport extends DefaultValueBinder implements ToCollection, WithSta
                 'coupon_id' => $importExportCoupon->id,
                 'quantity' => $product['count'],
                 'price' => $product['price_capital'],
+                'price_old'   => $product['price_old'],
                 'wavehouse_id' => 1,
-                'status' => 0,
+                'status' => 1,
             ]);
         }
     }

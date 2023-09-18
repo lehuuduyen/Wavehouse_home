@@ -1113,12 +1113,13 @@
         })
 
         function submit(_this) {
-            BtnLoading(_this)
 
             let customer = $('.search-supplier').val()
             if (customer == "" || customer == null) {
                 toastr.error("Vui lòng nhập khách hàng")
             } else {
+                BtnLoading(_this)
+
                 let wavehouse_from_id = $('.search-wavehouse').val()
                 let code = $('input[name="code"]').val()
                 let des = $("#purchaseOrderDes").val()

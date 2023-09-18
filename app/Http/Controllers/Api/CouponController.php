@@ -105,10 +105,12 @@ class CouponController extends BaseController
                     foreach ($listProduct as $value) {
                         $priceSell = str_replace('$', "", $value->priceSell);
                         $priceSell = str_replace(',', "", $priceSell);
+                        $price_old = str_replace('$', "", $value->price_old);
+                        $price_old = str_replace(',', "", $price_old);
                         $couponDetail = ImportExportCouponProduct::create([
                             'product_id' => $value->id,
                             'quantity' => $value->quantity,
-                            'price_old' => $value->price_old ,
+                            'price_old' => $price_old ,
                             'price' => $priceSell,
                             'coupon_id' => $coupon->id,
                             'wavehouse_id' => $data['wavehouse_id'],
@@ -121,6 +123,7 @@ class CouponController extends BaseController
                     foreach ($listProduct as $value) {
                         $priceSell = str_replace('$', "", $value->priceSell);
                         $priceSell = str_replace(',', "", $priceSell);
+                        
                         if (empty($data['wavehouse_from_id'])) {
                             $couponDetail = ImportExportCouponProduct::create([
                                 'product_id' => $value->id,

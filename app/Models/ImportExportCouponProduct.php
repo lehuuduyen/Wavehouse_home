@@ -22,6 +22,7 @@ class ImportExportCouponProduct extends Model
         "wavehouse_id",
         "coupon_id",
         "status",
+        "price_old",
     ];
     public function Product()
     {
