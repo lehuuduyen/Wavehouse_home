@@ -11,6 +11,7 @@ use App\Models\Wavehouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use PhpOffice\PhpSpreadsheet\Calculation\Financial\Coupons;
 
 class CouponController extends BaseController
 {
@@ -96,54 +97,70 @@ class CouponController extends BaseController
                     $data['price'] = str_replace('$', "", $data['sum']);
                     $data['price'] = str_replace(',', "", $data['price']);
                 }
-                $data['status'] = 1;
                 $data['user_id'] = 1;
 
-
-
-                $coupon = ImportExportCoupon::create($data);
-                foreach ($listProduct as $value) {
-                    $priceSell = str_replace('$', "", $value->priceSell);
-                    $priceSell = str_replace(',', "", $priceSell);
-                    if (empty($data['wavehouse_from_id'])) {
-                        $couponDetail = ImportExportCouponProduct::create([
-                            'product_id' => $value->id,
-                            'quantity' => $value->quantity,
-                            'price' => $priceSell,
-                            'coupon_id' => $coupon->id,
-                            'wavehouse_id' => $data['wavehouse_id'],
-                            'status' => 1,
-                        ]);
-                    } else {
-                        $checkProductQuantity = $this->checkProductQuantity($data['wavehouse_from_id'], $value->id, $value->quantity);
-                        $couponDetail = ImportExportCouponProduct::create([
-                            'product_id' => $value->id,
-                            'quantity' => $value->quantity,
-                            'price' => $priceSell,
-                            'coupon_id' => $coupon->id,
-                            'wavehouse_id' => $data['wavehouse_from_id'],
-                            'status' => 1,
-                        ]);
-                    }
-                }
-
-
-                // phieu xuat
-                if (!empty($data['wavehouse_from_id'])) {
-                    $data['status'] = 2;
-                    $data['wavehouse_id'] = $data['wavehouse_from_id'];
-                    $couponExport = ImportExportCoupon::create($data);
+                if (!empty($data['customer_id'])) {
+                    $data['status'] = 3;
+                    $coupon = ImportExportCoupon::create($data);
                     foreach ($listProduct as $value) {
                         $priceSell = str_replace('$', "", $value->priceSell);
                         $priceSell = str_replace(',', "", $priceSell);
                         $couponDetail = ImportExportCouponProduct::create([
                             'product_id' => $value->id,
                             'quantity' => $value->quantity,
+                            'price_old' => $value->price_old ,
                             'price' => $priceSell,
-                            'coupon_id' => $couponExport->id,
-                            'wavehouse_id' => $data['wavehouse_from_id'],
-                            'status' => 2,
+                            'coupon_id' => $coupon->id,
+                            'wavehouse_id' => $data['wavehouse_id'],
+                            'status' => 1,
                         ]);
+                    }
+                } else {
+                    $data['status'] = 1;
+                    $coupon = ImportExportCoupon::create($data);
+                    foreach ($listProduct as $value) {
+                        $priceSell = str_replace('$', "", $value->priceSell);
+                        $priceSell = str_replace(',', "", $priceSell);
+                        if (empty($data['wavehouse_from_id'])) {
+                            $couponDetail = ImportExportCouponProduct::create([
+                                'product_id' => $value->id,
+                                'quantity' => $value->quantity,
+                                'price' => $priceSell,
+                                'coupon_id' => $coupon->id,
+                                'wavehouse_id' => $data['wavehouse_id'],
+                                'status' => 1,
+                            ]);
+                        } else {
+                            $checkProductQuantity = $this->checkProductQuantity($data['wavehouse_from_id'], $value->id, $value->quantity);
+                            $couponDetail = ImportExportCouponProduct::create([
+                                'product_id' => $value->id,
+                                'quantity' => $value->quantity,
+                                'price' => $priceSell,
+                                'coupon_id' => $coupon->id,
+                                'wavehouse_id' => $data['wavehouse_from_id'],
+                                'status' => 1,
+                            ]);
+                        }
+                    }
+
+
+                    // phieu xuat
+                    if (!empty($data['wavehouse_from_id'])) {
+                        $data['status'] = 2;
+                        $data['wavehouse_id'] = $data['wavehouse_from_id'];
+                        $couponExport = ImportExportCoupon::create($data);
+                        foreach ($listProduct as $value) {
+                            $priceSell = str_replace('$', "", $value->priceSell);
+                            $priceSell = str_replace(',', "", $priceSell);
+                            $couponDetail = ImportExportCouponProduct::create([
+                                'product_id' => $value->id,
+                                'quantity' => $value->quantity,
+                                'price' => $priceSell,
+                                'coupon_id' => $couponExport->id,
+                                'wavehouse_id' => $data['wavehouse_from_id'],
+                                'status' => 2,
+                            ]);
+                        }
                     }
                 }
             } else {
@@ -156,7 +173,7 @@ class CouponController extends BaseController
         }
         DB::commit();
 
-        return $this->responseSuccess($coupon, 'Thêm nhà cung cấp thành công');
+        return $this->responseSuccess($coupon, 'Tạo phiếu thành công');
     }
     public function checkProductQuantity($wavehouseFromId, $productId, $count)
     {
@@ -193,9 +210,12 @@ class CouponController extends BaseController
      * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function show(Supplier $supplier)
+    public function show($id)
     {
         //
+        return $this->responseSuccess(ImportExportCoupon::with('CouponProduct')->with('Wavehouse')->with('Customer')->find($id), 'Get phiếu thành công');
+        
+        
     }
 
     /**

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CouponController;
+use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\KhoController;
 use App\Http\Controllers\Api\ProductController;
 use Illuminate\Http\Request;
@@ -25,5 +26,6 @@ Route::apiResource('supplier', SupplierController::class);
 Route::apiResource('product', ProductController::class);
 Route::apiResource('coupon', CouponController::class);
 Route::apiResource('kho', KhoController::class);
+Route::apiResource('customer', CustomerController::class);
 Route::post('product/import', 'App\Http\Controllers\Api\ProductController@import')->name('import');
 Route::get('wavehouse/except','App\Http\Controllers\Api\KhoController@except');

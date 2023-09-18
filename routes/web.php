@@ -35,7 +35,9 @@ Route::get('/coupon/sell', function () {
 Route::get('/print', function () {
     return view('layouts.print');
 });
-
+Route::get('/print_hoadon', function () {
+    return view('layouts.print_hoadon');
+});
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -273,6 +273,12 @@
                                                         rowspan="1" data-title="Đơn giá" data-index="8"
                                                         id="1f701d95-0342-43e3-b79e-535cff0ea911"
                                                         class="txtR cell-total k-header ng-scope"
+                                                        data-role="columnsorter"><a class="k-link" href="#">Giá
+                                                            gốc</a></th>
+                                                    <th scope="col" role="columnheader" data-field="Price"
+                                                        rowspan="1" data-title="Đơn giá" data-index="8"
+                                                        id="1f701d95-0342-43e3-b79e-535cff0ea911"
+                                                        class="txtR cell-total k-header ng-scope"
                                                         data-role="columnsorter"><a class="k-link" href="#">Đơn
                                                             giá</a></th>
 
@@ -506,40 +512,25 @@
 
                                                 <div class="autocomplete " id="">
                                                     <select class="search-supplier" style="width: 100%">
-                                                        <option selected="selected" value="">Chọn nhà cung cấp...
+                                                        <option selected="selected" value="">Chọn Khách Hàng...
                                                         </option>
                                                     </select>
                                                 </div>
                                                 <a id="idAddSupplier" ng-show="allowAdd &amp;&amp; !cart.Supplier"
                                                     class="btn-icon" ng-enter="addSupplier()" ng-click="addSupplier()"
-                                                    title="Thêm nhà cung cấp mới" tabindex="100003"><i
+                                                    title="Thêm khách hàng mới" tabindex="100003"><i
                                                         class="far fa-plus"></i>
                                                 </a>
 
                                             </div>
                                             <br>
-                                            <div class="autocompleteAdd">
-
-                                                <div class="autocomplete " id="">
-                                                    <select class="search-wavehouse" style="width: 100%">
-                                                        <option selected="selected" value="">Chọn kho nhập hàng...
-                                                        </option>
-                                                    </select>
-                                                </div>
-                                                {{-- <a id="idAddSupplier" ng-show="allowAdd &amp;&amp; !cart.Supplier"
-                                                    class="btn-icon" ng-enter="addSupplier()" ng-click="addSupplier()"
-                                                    title="Thêm nhà cung cấp mới" tabindex="100003"><i
-                                                        class="far fa-plus"></i>
-                                                </a> --}}
-
-                                            </div>
                                         </section>
                                     </div>
                                     <div ng-show="_p.has('SupplierAdjustment_Read') &amp;&amp; cart.Supplier &amp;&amp; cart.Supplier.Debt != null &amp;&amp; cart.Supplier.Debt != 0"
                                         class="form-group ng-hide"><label class="form-label control-label ng-binding">Nợ:
                                         </label></div>
                                     <div class="form-group"><label class="form-label control-label ng-binding">Mã phiếu
-                                            nhập</label>
+                                            bán</label>
                                         <div class="form-wrap"><input name="code" tabindex="100004"
                                                 ng-disabled="!IsUpdatePurchaseOrder" type="text" title=""
                                                 ng-change="UpdateCart()" placeholder="Mã phiếu tự động"
@@ -551,7 +542,7 @@
                                     <div class="form-group mb10"><label class="form-label control-label ng-binding">Trạng
                                             thái</label>
                                         <div class="form-wrap form-control-static ng-binding" style="font-weight: 700">
-                                            Phiếu nhập</div>
+                                            Phiếu bán</div>
                                     </div>
                                 </div>
                                 <div class="form-wrapper kv3Pay">
@@ -675,7 +666,8 @@
                     <div class="wrap-button">
                         <button tabindex="100016" onclick="submit(this)"
                             class="btn btn-success btn-font--medium ng-binding ng-isolate-scope"
-                            kv-next-focus="productSearchInput"><i class="fas fa-check"></i>Hoàn thành</button>
+                            kv-next-focus="productSearchInput"><i class="fas fa-check"></i>Thanh toán + Xuất hóa
+                            đơn</button>
                     </div>
                 </section><kv-popup id="discountOrderHelp" class="ng-isolate-scope popupWrapper">
                     <div class="kv2Pop pop popArrow" ng-transclude="">
@@ -858,8 +850,8 @@
     <div class="click-modal k-widget k-window k-window-poup k-window-supplieriorder kv-window k-window-customer-info"
         data-role="draggable"
         style="display: none;padding-top: 62px; min-width: 90px; min-height: 50px; width: 100%;  top: 260px; left: 48.5px; position: fixed; touch-action: pan-y; z-index: 10005; transform: scale(1); opacity: 1;">
-        <div class="k-window-titlebar k-header" style="margin-top: -62px;">&nbsp;<span class="k-window-title">Thêm nhà
-                cung cấp</span>
+        <div class="k-window-titlebar k-header" style="margin-top: -62px;">&nbsp;<span class="k-window-title">Thêm khách
+                hàng</span>
             <div class="k-window-actions"><a role="button" href="javascript:void(0)"
                     class="k-window-action k-link"><span role="presentation" class="k-icon k-i-close">Close</span></a>
             </div>
@@ -874,21 +866,15 @@
                         <div class="form-wrapper">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
-                                    <div class="form-group"><label class="form-label control-label ng-binding">Mã nhà
-                                            cung cấp</label>
-                                        <div class="form-wrap"><input type="text" name="code"
+                                    <div class="form-group"><label class="form-label control-label ng-binding">Tên khách
+                                            hàng<span style="color: red">*</span></label>
+                                        <div class="form-wrap"><input type="text" name="name"
                                                 class="form-control formInsert  iptFocus ng-pristine ng-valid ng-empty ng-touched"
-                                                ng-model="supplier.Code" placeholder="Mã mặc định"></div>
+                                                ng-model="supplier.Code" placeholder="Họ và tên"></div>
                                     </div>
-                                    <div class="form-group"><label class="form-label control-label ng-binding">Tên nhà
-                                            cung cấp <span style="color: red">*</span></label>
-                                        <div class="form-wrap"><input name="name" type="text"
-                                                class="form-control formInsert ng-pristine ng-untouched ng-valid ng-empty"
-                                                ng-model="supplier.Name"></div>
-                                    </div>
-                                    <div class="form-group"><label class="form-label control-label ng-binding">Điện
-                                            thoại</label>
-                                        <div class="form-wrap"><input name="sdt"
+                                    <div class="form-group"><label class="form-label control-label ng-binding">Số điện
+                                            thoại <span style="color: red">*</span></label>
+                                        <div class="form-wrap"><input name="phone"
                                                 onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;"
                                                 type="text"
                                                 class="form-control formInsert ng-pristine ng-untouched ng-valid ng-empty"
@@ -931,23 +917,23 @@
         $(document).on("click", "#idAddSupplier", function() {
             $(".k-overlay,.click-modal").css('display', 'block')
         })
-        if(wavehouseId != 1){
-            $('.group-search-supplier').css('display','none')
-        }else{
-        getSupplier()
-        checkWavehousePrimary = true
+        if (wavehouseId != 1) {
+            $('.group-search-supplier').css('display', 'none')
+        } else {
+            getCustomer()
+            checkWavehousePrimary = true
         }
         // 
-        function getSupplier() {
-            let html = `<option selected="selected" value="">Chọn nhà cung cấp...</option>`;
+        function getCustomer() {
+            let html = `<option selected="selected" value="">Chọn khách hàng...</option>`;
             $.ajax({
-                url: "/api/supplier",
+                url: "/api/customer",
                 type: "get",
                 success: function(response) {
                     let data = response.data
                     if (data) {
                         data.map(function(val, key) {
-                            html += `<option value="${val.id}">${val.name}</option>`
+                            html += `<option value="${val.id}">${val.name} - ${val.phone}</option>`
                         })
                         $('.search-supplier').html(html)
                         $('.search-supplier').select2();
@@ -960,7 +946,7 @@
         function getWavehouse() {
             let html = `<option selected="selected" value="">Chọn kho nhập hàng...</option>`;
             $.ajax({
-                url: "/api/wavehouse/except?wavehouse_id=" +wavehouseId ,
+                url: "/api/wavehouse/except?wavehouse_id=" + wavehouseId,
                 type: "get",
                 success: function(response) {
                     let data = response.data
@@ -985,7 +971,8 @@
                     let data = response.data
                     if (data) {
                         data.map(function(val, key) {
-                            html += `<option code="${val.code}" value="${val.id}">${val.name}</option>`
+                            html +=
+                                `<option code="${val.code}" price_old="${val.price_old}" price_sell="${val.price_sell}" value="${val.id}">${val.name} - ${val.barcode}</option>`
                         })
                         $('.search-product').html(html)
                         $('.search-product').select2({
@@ -1000,10 +987,12 @@
         $(document).on('change', '.search-product', function() {
             let html = ""
             let list = $(this).select2('data')
-            
+
             list.map(function(val, key) {
                 let stt = key + 1
                 let code = val.element.getAttribute('code')
+                let price_old = val.element.getAttribute('price_old')
+                let price_sell = val.element.getAttribute('price_sell')
                 html += `
                             <tr class="k-master-row ng-scope productMaster" data-id="${val.id}"
                                                     data-uid="5639ffe3-98e5-4483-bf18-c07d30113ee3" role="row">
@@ -1043,12 +1032,14 @@
                                                                 ng-show="FromOrderSupplier &amp;&amp; dataItem.OrderQuantity != null &amp;&amp; dataItem.OrderQuantity != 0"
                                                                 class="ng-binding ng-hide">/</span></div>
                                                     </td>
-                                                    <td class="txtR cell-total" role="gridcell"><input data-type='currency' ${(!checkWavehousePrimary)?"disabled='disabled'":""} type="text"
-                                                            tabindex="100"  value="${(!checkWavehousePrimary)?"0":""}"
+                                                    <td class="txtR cell-total" role="gridcell"><input data-type='currency' value="${formatCurrency(price_old)}"  type="text"
+                                                            tabindex="100" disabled="disabled"
+                                                            class="txtR price-old form-control form-control-sm purchase-order-price ng-pristine ng-untouched ng-valid ng-not-empty"
+                                                            kv-tooltip="" data-toggle="tooltip" data-placement="bottom"></td>
+                                                    <td class="txtR cell-total" role="gridcell"><input data-type='currency' value="${formatCurrency(price_sell)}"  type="text"
+                                                            tabindex="100" disabled="disabled"
                                                             class="txtR price-sell  form-control form-control-sm purchase-order-price ng-pristine ng-untouched ng-valid ng-not-empty"
-                                                            kv-tooltip="" data-toggle="tooltip" data-placement="bottom"
-                                                            data-original-title="Cao hơn Giá bán khuyến mãi"
-                                                            onchange="ChangePrice(this)"></td>
+                                                            kv-tooltip="" data-toggle="tooltip" data-placement="bottom"></td>
                                                
                                                     <td class="cell-total txtR" role="gridcell">
                                                      
@@ -1092,7 +1083,6 @@
 
                 sumTotal = Number(sumTotal) + Number(temp)
             })
-            console.log(sumTotal);
             $(".sum-total").html(formatCurrency(sumTotal))
             // sum-total
         }
@@ -1102,13 +1092,13 @@
             BtnLoading(_this)
 
             $.ajax({
-                url: "/api/supplier",
+                url: "/api/customer",
                 type: "post",
                 data: values,
                 success: function(response) {
                     BtnReset(_this)
                     toastr.success(response.message)
-                    getSupplier()
+                    getCustomer()
 
                     closePopupSupplier()
 
@@ -1125,47 +1115,55 @@
         function submit(_this) {
             BtnLoading(_this)
 
-            let supplier = $('.search-supplier').val()
-            let wavehouse_from_id = $('.search-wavehouse').val()
-            let code = $('input[name="code"]').val()
-            let des = $("#purchaseOrderDes").val()
-            let sum = $(".sum-total").html()
-            let listProduct = []
-            $(".productMaster").map(function(key, elm) {
-                let id = $(elm).data('id')
-                let quantity = $(elm).find('.quantity').val()
-                let priceSell = $(elm).find('.price-sell').val()
-                let temp = {
-                    'id': id,
-                    'quantity': quantity,
-                    'priceSell': priceSell,
-                }
-                listProduct.push(temp)
-            })
-            $.ajax({
-                url: "/api/coupon",
-                type: "post",
-                data: {
-                    'supplier_id': supplier,
-                    'code': code,
-                    'name': des,
-                    'sum': sum,
-                    'wavehouse_id': wavehouseId,
-                    'wavehouse_from_id': wavehouse_from_id,
-                    'listProduct': JSON.stringify(listProduct),
-                },
-                success: function(response) {
-                    BtnReset(_this)
-                    toastr.success(response.message)
-                    document.location = "/coupon?wavehouse_id="+wavehouseId
+            let customer = $('.search-supplier').val()
+            if (customer == "" || customer == null) {
+                toastr.error("Vui lòng nhập khách hàng")
+            } else {
+                let wavehouse_from_id = $('.search-wavehouse').val()
+                let code = $('input[name="code"]').val()
+                let des = $("#purchaseOrderDes").val()
+                let sum = $(".sum-total").html()
+                let listProduct = []
+                $(".productMaster").map(function(key, elm) {
+                    let id = $(elm).data('id')
+                    let quantity = $(elm).find('.quantity').val()
+                    let priceSell = $(elm).find('.price-sell').val()
+                    let priceOld = $(elm).find('.price-old').val()
+                    
+                    let temp = {
+                        'id': id,
+                        'quantity': quantity,
+                        'priceSell': priceSell,
+                        'price_old': priceOld,
+                    }
+                    listProduct.push(temp)
+                })
+                $.ajax({
+                    url: "/api/coupon",
+                    type: "post",
+                    data: {
+                        'customer_id': customer,
+                        'code': code,
+                        'name': des,
+                        'sum': sum,
+                        'wavehouse_id': wavehouseId,
+                        'wavehouse_from_id': wavehouse_from_id,
+                        'listProduct': JSON.stringify(listProduct),
+                    },
+                    success: function(response) {
+                        BtnReset(_this)
+                        toastr.success(response.message)
+                        document.location = "/print_hoadon?coupon_id=" + response.data.id
 
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    BtnReset(_this)
-                    toastr.error(jqXHR.responseJSON.message)
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        BtnReset(_this)
+                        toastr.error(jqXHR.responseJSON.message)
 
-                }
-            });
+                    }
+                });
+            }
+
         }
     </script>
 @endsection

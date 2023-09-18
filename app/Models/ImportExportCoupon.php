@@ -19,6 +19,7 @@ class ImportExportCoupon extends Model
     protected $fillable = [
         "code",
         "price",
+        "customer_id",
         "name",
         "supplier_id",
         "wavehouse_id",
@@ -29,6 +30,10 @@ class ImportExportCoupon extends Model
     {
         $date = Carbon::parse($value);
         return $date->format('d-m-Y H:i:s');
+    }
+    public function Customer()
+    {
+        return $this->hasOne('App\Models\Customer', 'id', 'customer_id');
     }
     public function Supplier()
     {

@@ -19,6 +19,7 @@ class CreateImportExportCouponTable extends Migration
             $table->string('code')->max(40);
             $table->integer('price');
             $table->integer('supplier_id')->nullable();
+            $table->integer('customer_id')->nullable();
             $table->integer('wavehouse_id');
             $table->tinyInteger('status');
             $table->integer('user_id')->max(8);
