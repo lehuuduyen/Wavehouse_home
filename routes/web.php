@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', function () {
         return view('products');
-    });
+    })->middleware('role:2');
 
     Route::get('/home', function () {
         return view('products');
-    });
+    })->middleware('role:2');
 
     Route::get('/products', function () {
         return view('products');
@@ -49,6 +49,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/print_hoadon', function () {
         return view('layouts.print_hoadon');
     });
+    Route::get('logout', 'App\Http\Controllers\Auth\LoginController@logout')->middleware('role:2');
+
 });
 
 Auth::routes();

@@ -9,6 +9,7 @@ use App\Models\ImportExportCouponProduct;
 use App\Models\Products;
 use App\Models\Wavehouse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use PhpOffice\PhpSpreadsheet\Calculation\Financial\Coupons;
@@ -33,7 +34,7 @@ class CouponController extends BaseController
         }
         $param = (isset($_GET['s'])) ? $_GET['s'] : "";
         $paramStatus = (isset($_GET['status'])) ? $_GET['status'] : "";
-        $ImportExportCoupon = ImportExportCoupon::with('CouponProduct')->with('Supplier')->with('Wavehouse')->with('Customer');
+        $ImportExportCoupon = ImportExportCoupon::with('User')->with('CouponProduct')->with('Supplier')->with('Wavehouse')->with('Customer');
         if ($param) {
             $ImportExportCoupon = $ImportExportCoupon->where(function ($query, $param) {
                 $query->where('name', 'like', '%' . $param . '%')->orWhere('code', 'like', '%' . $param . '%');
@@ -66,7 +67,7 @@ class CouponController extends BaseController
         $param = (isset($_GET['s'])) ? $_GET['s'] : "";
         
         
-        $ImportExportCoupon = ImportExportCoupon::with('CouponProduct')->with('Supplier')->with('Wavehouse')->with('Customer');
+        $ImportExportCoupon = ImportExportCoupon::with('User')->with('CouponProduct')->with('Supplier')->with('Wavehouse')->with('Customer');
         if ($param) {
             $ImportExportCoupon = $ImportExportCoupon->where('code', 'like', '%' . $param . '%');
         }
@@ -114,7 +115,7 @@ class CouponController extends BaseController
 
         try {
             //code...
-
+            
             $data = $request->all();
             if (!isset($data['code'])) {
                 $data['code'] = $this->generateRandomString();
@@ -127,8 +128,6 @@ class CouponController extends BaseController
                     $data['price'] = str_replace('$', "", $data['sum']);
                     $data['price'] = str_replace(',', "", $data['price']);
                 }
-                $data['user_id'] = 1;
-
                 if (!empty($data['customer_id'])) {
                     $data['status'] = 3;
                     $coupon = ImportExportCoupon::create($data);
@@ -146,17 +145,21 @@ class CouponController extends BaseController
                             'price' => $priceSell,
                             'coupon_id' => $coupon->id,
                             'wavehouse_id' => $data['wavehouse_id'],
-                            'status' => 1,
+                            'status' => 3,
                         ]);
                     }
                 } else {
                     $data['status'] = 1;
                     $coupon = ImportExportCoupon::create($data);
                     foreach ($listProduct as $value) {
+                       
                         $priceSell = str_replace('$', "", $value->priceSell);
                         $priceSell = str_replace(',', "", $priceSell);
                         
                         if (empty($data['wavehouse_from_id'])) {
+                          
+                            
+                            $this->calculatorProductCapital($value->id,$value->quantity,$priceSell);
                             $couponDetail = ImportExportCouponProduct::create([
                                 'product_id' => $value->id,
                                 'quantity' => $value->quantity,
@@ -209,6 +212,26 @@ class CouponController extends BaseController
         DB::commit();
 
         return $this->responseSuccess($coupon, 'Tạo phiếu thành công');
+    }
+    public function calculatorProductCapital($product,$quantity,$price){
+        $coupons = ImportExportCouponProduct::select("import_export_coupon_product.id as id_product","import_export_coupon_product.price as price_product","import_export_coupon_product.quantity as quantity_product")->
+        join('import_export_coupon','import_export_coupon.id','=','import_export_coupon_product.coupon_id')
+        ->where('import_export_coupon.wavehouse_id',1)->where('import_export_coupon.status',1)->where('import_export_coupon_product.product_id',$product)->get();
+        $price = $price * $quantity;
+        foreach($coupons as $couponProduct){
+            if($couponProduct->price_product != 0){
+               
+                
+                $quantity +=$couponProduct->quantity_product;
+                $price = $price + ($couponProduct->price_product * $couponProduct->quantity_product );
+                
+            }
+        }
+        $priceCapital = ($price) / $quantity;
+        print_r($this->responseSuccess( $priceCapital, 'Tạo phiếu thành công'));
+        die;
+        
+        return $coupons;
     }
     public function checkProductQuantity($wavehouseFromId, $productId, $count)
     {

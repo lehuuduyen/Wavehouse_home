@@ -127,7 +127,11 @@
             return n.replace(/\D/g, "").replaceAll(/\B(?=(\d{3})+(?!\d))/g, ",")
         }
     </script>
-
+    <script type="text/javascript">
+        $.ajaxSetup({
+            data: {  'user_id': <?=Auth::user()->id?> }
+        });
+    </script>
 
 </head>
 

@@ -536,7 +536,7 @@
                                                                                                 tạo:</label>
                                                                                             <div
                                                                                                 class="form-wrap form-control-static ng-binding">
-                                                                                                admin</div>
+                                                                                                ${json.user.user_name}</div>
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="col-md-4 col-sm-12">
@@ -585,7 +585,7 @@
                                                                                                         unselectable="on"
                                                                                                         class="k-dropdown-wrap k-state-default"><span
                                                                                                             unselectable="on"
-                                                                                                            class="k-input ng-scope">admin</span><span
+                                                                                                            class="k-input ng-scope">${json.user.user_name}</span><span
                                                                                                             unselectable="on"
                                                                                                             class="k-select"><span
                                                                                                                 unselectable="on"

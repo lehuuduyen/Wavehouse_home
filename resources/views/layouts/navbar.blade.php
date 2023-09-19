@@ -41,17 +41,15 @@
                 <a><i class="fa-solid fa-chart-simple"></i>Báo cáo</a>
             </li> --}}
         </ul>
-        {{-- <ul class="menu menu-right">
+        <ul class="menu menu-right">
             <li class="ng-scope">
                 <ul>
-                    <li class="shortcut saleCheft ng-scope" data-placement="right">
-                        <a class="kol-menu-item ng-binding"><i class="kol-logo-online"></i>Bán Online</a>
+                    <li class="  ng-scope" data-placement="right">
+                        <a href="/logout" class="kol-menu-item ng-binding"><i class="fa fa-sign-out"></i>Đăng xuất</a>
                     </li>
                 </ul>
             </li>
-            <li class="shortcut ng-scope">
-                <a href="https://shoppedemo.kiotviet.vn/sale/"><i class="fas fa-shopping-basket"></i>Bán hàng</a>
-            </li>
-        </ul> --}}
+           
+        </ul>
     </section>
 </nav>

@@ -35,6 +35,10 @@ class ImportExportCoupon extends Model
     {
         return $this->hasOne('App\Models\Customer', 'id', 'customer_id');
     }
+    public function User()
+    {
+        return $this->hasOne('App\Models\Users', 'id', 'user_id');
+    }
     public function Supplier()
     {
         return $this->hasOne('App\Models\Supplier', 'id', 'supplier_id');
