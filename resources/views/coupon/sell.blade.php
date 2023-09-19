@@ -551,6 +551,20 @@
                                             {{-- <span ng-show="settings.UseTotalQuantity"
                                                 class="qty ng-binding">0</span> --}}
                                         </label>
+                                        <div class="form-wrap form-control-static ng-binding sum-total-goc"
+                                            ng-show="viewPrice">0</div>
+                                    </div>
+                                    <div class="form-group"><label class="form-label control-label ng-binding">Giảm giá
+                                            {{-- <span ng-show="settings.UseTotalQuantity"
+                                            class="qty ng-binding">0</span> --}}
+                                        </label>
+                                        <div class="form-wrap form-control-static ng-binding sum-discount"
+                                            ng-show="viewPrice">0</div>
+                                    </div>
+                                    <div class="form-group"><label class="form-label control-label ng-binding">Thành tiền
+                                            {{-- <span ng-show="settings.UseTotalQuantity"
+                                            class="qty ng-binding">0</span> --}}
+                                        </label>
                                         <div class="form-wrap form-control-static ng-binding sum-total"
                                             ng-show="viewPrice">0</div>
                                     </div>
@@ -917,12 +931,8 @@
         $(document).on("click", "#idAddSupplier", function() {
             $(".k-overlay,.click-modal").css('display', 'block')
         })
-        if (wavehouseId != 1) {
-            $('.group-search-supplier').css('display', 'none')
-        } else {
-            getCustomer()
-            checkWavehousePrimary = true
-        }
+        getCustomer()
+
         // 
         function getCustomer() {
             let html = `<option selected="selected" value="">Chọn khách hàng...</option>`;
@@ -1072,6 +1082,7 @@
 
             tr.find('.total').html(formatCurrency(total))
             let sumTotal = 0
+            let sumTotalGoc = 0
 
             $(".total").map(function(key, elm) {
                 let total = elm.innerHTML
@@ -1083,6 +1094,18 @@
 
                 sumTotal = Number(sumTotal) + Number(temp)
             })
+            $(".price-old").map(function(key, elm) {
+                let total = elm.value
+                let temp = 0
+                if (total != "") {
+                    temp = total.replace('$', '')
+                    temp = temp.replaceAll(',', '')
+                }
+                sumTotalGoc = Number(sumTotalGoc) + (Number(temp) * quantity)
+            })
+            
+            $(".sum-total-goc").html(formatCurrency(sumTotalGoc))
+            $(".sum-discount").html(formatCurrency(sumTotalGoc - sumTotal))
             $(".sum-total").html(formatCurrency(sumTotal))
             // sum-total
         }
@@ -1130,7 +1153,7 @@
                     let quantity = $(elm).find('.quantity').val()
                     let priceSell = $(elm).find('.price-sell').val()
                     let priceOld = $(elm).find('.price-old').val()
-                    
+
                     let temp = {
                         'id': id,
                         'quantity': quantity,
@@ -1154,7 +1177,10 @@
                     success: function(response) {
                         BtnReset(_this)
                         toastr.success(response.message)
-                        document.location = "/print_hoadon?coupon_id=" + response.data.id
+                        window.open(
+                            "/print_hoadon?coupon_id=" + response.data.id,
+                            '_blank' // <- This is what makes it open in a new window.
+                        );
 
                     },
                     error: function(jqXHR, textStatus, errorThrown) {

@@ -29,3 +29,4 @@ Route::apiResource('kho', KhoController::class);
 Route::apiResource('customer', CustomerController::class);
 Route::post('product/import', 'App\Http\Controllers\Api\ProductController@import')->name('import');
 Route::get('wavehouse/except','App\Http\Controllers\Api\KhoController@except');
+Route::get('customer_coupon','App\Http\Controllers\Api\CouponController@getByCustomer');

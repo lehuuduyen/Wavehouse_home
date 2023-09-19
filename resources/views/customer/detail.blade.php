@@ -71,18 +71,7 @@
                             </div>
 
                         </div>
-                        <aside class="header-filter-buttons">
-                            <a href="" id="href-import" title="Nhập hàng" ng-show="hasAdd" class="btn btn-success"><i
-                                    class="far fa-plus"></i><span class="text-btn ng-binding">Nhập
-                                    hàng</span>
-                            </a>
-                    
-                            <a href="" id="href-sell" title="Nhập hàng" ng-show="hasAdd" class="btn btn-danger"><i
-                                    class="far fa-plus"></i><span class="text-btn ng-binding">Bán
-                                    hàng</span>
-                            </a>
 
-                        </aside>
 
                     </article>
 
@@ -389,10 +378,14 @@
     <script>
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
-        const wavehouseId = urlParams.get('wavehouse_id')
-        $('#href-import').attr('href', '/coupon/import?wavehouse_id=' + wavehouseId)
-        $('#href-export').attr('href', '/coupon/export?wavehouse_id=' + wavehouseId)
-        $('#href-sell').attr('href', '/coupon/sell?wavehouse_id=' + wavehouseId)
+        const customerId = urlParams.get('id')
+        $("#input-search").on('keyup', function(e) {
+            if (e.key === 'Enter' || e.keyCode === 13) {
+                // Do something
+                getCoupon()
+
+            }
+        });
         let temp = 0
         $(document).on("click", ".table-data", function() {
             let stt = $(this).data('stt');
@@ -890,9 +883,10 @@
 
             let html = ``;
             $.ajax({
-                url: "/api/coupon?wavehouse_id=" + wavehouseId + "&&s=" + s + "&&status=" + selected,
+                url: "/api/customer_coupon?customer_id=" + customerId + "&&s=" + s,
                 type: "get",
                 success: function(response) {
+
                     let data = response.data
                     if (data && response.status == "success") {
                         data.map(function(val, key) {
@@ -911,8 +905,8 @@
                             let text = ""
                             if (val.supplier_id != null) {
                                 text = val.supplier.name
-                            }else if(val.customer_id != null){
-                                text = val.customer.name + " - " +val.customer.phone
+                            } else if (val.customer_id != null) {
+                                text = val.customer.name + " - " + val.customer.phone
                             }
                             html += `
                             <tr data-json='${JSON.stringify(val)}' class=" k-master-row ng-scope table-data " data-stt="${stt}"
@@ -965,7 +959,7 @@
                         })
                         $('#tbody-coupon').html(html)
                     } else {
-                        toastr.error('Kho không tồn tai')
+                        toastr.error('Khách hàng không tồn tai')
                     }
 
                 }

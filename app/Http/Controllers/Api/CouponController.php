@@ -33,7 +33,7 @@ class CouponController extends BaseController
         }
         $param = (isset($_GET['s'])) ? $_GET['s'] : "";
         $paramStatus = (isset($_GET['status'])) ? $_GET['status'] : "";
-        $ImportExportCoupon = ImportExportCoupon::with('CouponProduct')->with('Supplier')->with('Wavehouse');
+        $ImportExportCoupon = ImportExportCoupon::with('CouponProduct')->with('Supplier')->with('Wavehouse')->with('Customer');
         if ($param) {
             $ImportExportCoupon = $ImportExportCoupon->where(function ($query, $param) {
                 $query->where('name', 'like', '%' . $param . '%')->orWhere('code', 'like', '%' . $param . '%');
@@ -44,6 +44,36 @@ class CouponController extends BaseController
         }
         $ImportExportCoupon = $ImportExportCoupon->where('wavehouse_id', $_GET['wavehouse_id'])->get();
 
+        return response()->json(
+            array(
+                'status' => 'success',
+                'data' => $ImportExportCoupon
+            ),
+            200
+        );
+    }
+    public function getByCustomer()
+    {
+        if (!isset($_GET['customer_id']) && empty($_GET['customer_id'])) {
+            return response()->json(
+                array(
+                    'status' => 'error',
+                    'data' => 'Khách hàng không tồn tại'
+                ),
+                200
+            );
+        }
+        $param = (isset($_GET['s'])) ? $_GET['s'] : "";
+        
+        
+        $ImportExportCoupon = ImportExportCoupon::with('CouponProduct')->with('Supplier')->with('Wavehouse')->with('Customer');
+        if ($param) {
+            $ImportExportCoupon = $ImportExportCoupon->where('code', 'like', '%' . $param . '%');
+        }
+            $ImportExportCoupon = $ImportExportCoupon->where('status', 3);
+        
+        $ImportExportCoupon = $ImportExportCoupon->where('customer_id', $_GET['customer_id'])->get();
+    
         return response()->json(
             array(
                 'status' => 'success',
@@ -103,6 +133,8 @@ class CouponController extends BaseController
                     $data['status'] = 3;
                     $coupon = ImportExportCoupon::create($data);
                     foreach ($listProduct as $value) {
+                        $checkProductQuantity = $this->checkProductQuantity($data['wavehouse_id'], $value->id, $value->quantity);
+
                         $priceSell = str_replace('$', "", $value->priceSell);
                         $priceSell = str_replace(',', "", $priceSell);
                         $price_old = str_replace('$', "", $value->price_old);

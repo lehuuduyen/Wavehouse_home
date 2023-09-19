@@ -9,6 +9,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+    <script src="{{ asset('assets/js/dist_n2vi.min.js') }}" crossorigin="anonymous"></script>
+
     <style>
         @media print {
 
@@ -30,7 +32,7 @@
 
         table,
         table thead tr th {
-            border-bottom: 1px dashed  #000000;
+            border-bottom: 1px dashed #000000;
         }
 
         .strikethrough {
@@ -69,7 +71,7 @@
             <div>
                 Điện thoại: <span id="phone">24/12/2019 16:17</span>
             </div>
-            <table style="margin-top: 10px">
+            <table style="margin-top: 10px;width: 100%;">
                 <thead style="    text-align: left;">
                     <tr>
                         <th>Đơn giá</th>
@@ -81,8 +83,22 @@
                 <tbody>
                 </tbody>
             </table>
-            <div>
-                Tổng tiền: <span id="total"></span>
+
+            <div style="margin-left:107px;margin-top: 10px">
+                Tổng tiền: <span style="text-align: center;" id="total"></span>
+            </div>
+
+            <div style="margin-left:107px;margin-top: 10px">
+                Giảm giá: <span style="text-align: center" id="discount"></span>
+            </div>
+            <hr style="width: 90%;">
+
+            <div style="margin-left:107px;margin-top: 10px;font-weight: 700">
+                Thành tiền: <span style="text-align: center;" id="thanh_tien"></span>
+            </div>
+
+            <div style="margin-left:107px;margin-top: 3px;font-size: 10px;text-align: center">
+                (<span style="" id="string"></span>)
             </div>
         </div>
 
@@ -109,8 +125,14 @@
                     $("#customer").html(data.customer.name)
                     $("#phone").html(data.customer.phone)
                     $("#address").html(data.customer.address)
+
+                    let discount = 0
+                    let total = 0
                     let html = ``;
                     data.coupon_product.map(function(val, key) {
+                        discount = discount + (val.price_old * val.quantity) - (val.price * val
+                            .quantity)
+                        total = total + (val.price_old * val.quantity)
                         html += `
                         <tr>
                         <td colspan="1"><u>${val.product.name}</u></td>
@@ -118,13 +140,20 @@
                     <tr>
                         <td>
                             <span class="new-line">${formatCurrency(val.price)}</span><br>
-                            <span class="strikethrough">${formatCurrency(val.product.price_old)}</span>
+                            <span class="strikethrough">${formatCurrency(val.price_old)}</span>
                         </td>
                         <td>${val.quantity}</td>
                         <td>${formatCurrency(val.price * val.quantity)}</td>
                     </tr>`
 
                     })
+                    $("#total").html(formatCurrency(total))
+                    $("#thanh_tien").html(formatCurrency(data.price))
+                    let string = to_vietnamese(data.price)
+                    $("#string").html(string)
+
+                    $("#discount").html(formatCurrency(discount))
+
                     $('tbody').html(html)
                     JsBarcode("#barcode", data.code, {
                         lineColor: "#000000",
