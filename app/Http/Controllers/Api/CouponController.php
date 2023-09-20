@@ -228,8 +228,7 @@ class CouponController extends BaseController
             }
         }
         $priceCapital = ($price) / $quantity;
-        print_r($this->responseSuccess( $priceCapital, 'Tạo phiếu thành công'));
-        die;
+        Products::find($product)->update(['price_capital'=>$priceCapital]);
         
         return $coupons;
     }

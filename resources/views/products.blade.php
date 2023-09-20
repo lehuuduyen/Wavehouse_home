@@ -173,8 +173,7 @@
                                                     vốn</a></th>
                                             <th scope="col" role="columnheader" data-field="TradeMarkName" rowspan="1" data-title="Thương hiệu" data-index="11" id="1d16a245-b42d-4294-a2f5-8caa20f689d8" class="cell-name k-header ng-scope" style="display:none" data-role="columnsorter"><a class="k-link" href="#">Thương
                                                     hiệu</a></th>
-                                            <th scope="col" role="columnheader" data-field="OnHand" rowspan="1" data-title="Tồn kho" data-index="12" id="e8703697-3521-4cf7-a07a-d2c6a4c1dcfa" class="cell-total txtR k-header ng-scope" data-role="columnsorter"><a class="k-link" href="#">Tồn
-                                                    kho</a></th>
+                                    
                                             <th scope="col" role="columnheader" data-field="ProductShelvesArr" rowspan="1" data-title="Vị trí" data-index="13" id="8e5bed37-2134-472b-8796-75030ba5a51b" class="cell-name k-header ng-scope" style="display:none">Vị
                                                 trí</th>
                                             <th scope="col" role="columnheader" data-field="MinQuantity" rowspan="1" data-title="Định mức tồn ít nhất" data-index="16" id="1911a390-f1ee-4319-83a1-7d450b730807" class="cell-total-final txtR k-header ng-scope" style="display:none" data-role="columnsorter"><a class="k-link" href="#">Định mức
@@ -724,7 +723,6 @@
                                             <td class="cell-total txtR tdMobile ng-binding" role="gridcell">
                                                 ${formatCurrency(val.price_capital)}</td>
                                           
-                                            <td class="cell-total txtR ng-binding" role="gridcell">${val.count}</td>
                                            
                                            
                                         </tr>
