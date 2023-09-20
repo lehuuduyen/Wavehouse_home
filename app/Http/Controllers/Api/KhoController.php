@@ -6,6 +6,7 @@ use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateSupplierRequest;
 use App\Models\Supplier;
+use App\Models\Users;
 use App\Models\Wavehouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,13 +22,22 @@ class KhoController extends BaseController
     public function index()
     {
         $param = (isset($_GET['s'])) ? $_GET['s'] : "";
+        $user = Users::find($_GET['user_id']);
+
         if ($param) {
             $wavehouses = Wavehouse::where('name', 'like', '%' . $param . '%')->orWhere('code', 'like', '%' . $param . '%')->get();
         } else {
-            $wavehouses = Wavehouse::with('Coupon')->get();
+            if($user->role !=1){
+                $wavehouses = Wavehouse::with('Coupon')->where('id', '!=' , 1)->get();
+
+            }else{
+                $wavehouses = Wavehouse::with('Coupon')->get();
+
+            }
         }
 
         foreach ($wavehouses as $key => $wavehouse) {
+
             $temp = [];
 
             foreach ($wavehouse->coupon as $key2 => $coupon) {
