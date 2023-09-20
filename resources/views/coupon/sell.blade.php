@@ -1181,7 +1181,7 @@
                             "/print_hoadon?coupon_id=" + response.data.id,
                             '_blank' // <- This is what makes it open in a new window.
                         );
-
+                        document.location=""
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         BtnReset(_this)
