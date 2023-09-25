@@ -113,6 +113,7 @@
                     </div>
                     <aside class="header-filter-buttons"><a class="btn btn-success kvopenSyncSalesChannel ng-hide"><i class="fas fa-sync-alt"></i> <span class="badge badge-danger ng-binding">0</span></a>
                         <div class="importBtn">
+                            <input type="file"name="input-import" id="input_import" style="display: none">
                             <a ng-show="_p.has('Product_Create')" href="javascript:void(0)" class="btn btn-success"><i class="far fa-plus"></i> <span class="text-btn ng-binding">
                                     Import Excel</span></a>
                         </div>

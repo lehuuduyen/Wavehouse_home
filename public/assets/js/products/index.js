@@ -3,14 +3,16 @@ jQuery(document).ready(function () {
     event.stopPropagation();
     var clickedInsideDiv = false;
     if (!clickedInsideDiv) {
-      jQuery('input[type="file"]').click();
+      jQuery('#input_import')[0].click();
       clickedInsideDiv = true;
     }
   });
 
   // Add a click handler for the file input to reset the clickedInsideDiv flag
   jQuery('input[type="file"]').change(function () {
-    var formData = new FormData();
+    console.log($(this).attr('name'));
+    if($(this).attr('name') != "files"){
+      var formData = new FormData();
     formData.append('file', this.files[0]);
     let _this = this
     $.ajax({
@@ -44,6 +46,8 @@ jQuery(document).ready(function () {
 
       }
     });
+    }
+    
   });
 
   function BtnReset(elem) {
