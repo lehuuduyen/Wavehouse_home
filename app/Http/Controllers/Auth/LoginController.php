@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
-class LoginController extends Controller
+class LoginController extends BaseController
 {
     /*
     |--------------------------------------------------------------------------
@@ -22,6 +24,7 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+    public $successStatus = 200;
 
     /**
      * Where to redirect users after login.
@@ -39,8 +42,21 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         Auth::logout();
         return redirect('/login');
-      }
+    }
+    public function signIn()
+    {
+        if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
+            $user = Auth::user();
+            $user['token'] =  Str::random(60);
+            return $this->responseSuccess($user,'Đăng nhập thành công');
+
+        } else {
+            return $this->responseError("Tài khoản không đúng",401);
+
+        }
+    }
 }

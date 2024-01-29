@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\Users;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class RegisterController extends Controller
+class RegisterController extends BaseController
 {
     /*
     |--------------------------------------------------------------------------
@@ -65,6 +67,30 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        return Users::create([
+            'user_name' => $data['name'],
+            'email' => $data['email'],
+            'role' => $data['role'],
+            'password' => Hash::make($data['password']),
+        ]);
+    }
+    protected function registerApi(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role' => ['required'],
+        ], [
+            'file.required' => 'File không được để trống.',
+            'file.file' => 'File không hợp lệ.',
+            'file.mimes' => 'File được chọn phải là tệp xlsx hoặc xls.',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->responseError($validator->errors()->first());
+        }
+        $data = $request->all();
         return Users::create([
             'user_name' => $data['name'],
             'email' => $data['email'],
