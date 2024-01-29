@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\Api\CouponController;
+use App\Http\Controllers\Api\CustomerController;
+use App\Http\Controllers\Api\KhoController;
+use App\Http\Controllers\Api\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\SupplierController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +22,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::apiResource('supplier', SupplierController::class);
+Route::apiResource('product', ProductController::class);
+Route::apiResource('coupon', CouponController::class);
+Route::apiResource('kho', KhoController::class);
+Route::apiResource('customer', CustomerController::class);
+Route::post('product/import', 'App\Http\Controllers\Api\ProductController@import')->name('import');
+Route::get('wavehouse/except','App\Http\Controllers\Api\KhoController@except');
+Route::get('customer_coupon','App\Http\Controllers\Api\CouponController@getByCustomer');

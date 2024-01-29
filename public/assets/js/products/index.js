@@ -1,29 +1,87 @@
 jQuery(document).ready(function () {
+  jQuery(".importBtn").click(function (event) {
+    event.stopPropagation();
+    var clickedInsideDiv = false;
+    if (!clickedInsideDiv) {
+      jQuery('#input_import')[0].click();
+      clickedInsideDiv = true;
+    }
+  });
+
+  // Add a click handler for the file input to reset the clickedInsideDiv flag
+  jQuery('input[type="file"]').change(function () {
+    console.log($(this).attr('name'));
+    if($(this).attr('name') != "files"){
+      var formData = new FormData();
+    formData.append('file', this.files[0]);
+    let _this = this
+    $.ajax({
+      url: "/api/product/import",
+      type: "POST",
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (response) {
+        window.location.reload();
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        BtnReset(_this)
+        if (jqXHR.responseJSON.errors && jqXHR.responseJSON.errors.length > 0) {
+          var customMessages = jqXHR.responseJSON.errors.map(function (messageArray) {
+            var errorMessage = messageArray[0];
+            var matches = errorMessage.match(/(\d+)/);
+            var rowNumber = matches ? matches[0] : null;
+
+            if (rowNumber) {
+              return "Dòng " + rowNumber + errorMessage.substring(errorMessage.indexOf('.'));
+            } else {
+              return errorMessage;
+            }
+          });
+        } else {
+          customMessages = jqXHR.responseJSON.message;
+        }
+
+        toastr.error(customMessages)
+
+      }
+    });
+    }
+    
+  });
+
+  function BtnReset(elem) {
+    $(elem).prop("disabled", false);
+    $(elem).html($(elem).attr("data-original-text"));
+  }
   var modal = document.getElementById("myModal");
-
-  // Get the button that opens the modal
   var btn = document.getElementById("addProduct");
-
-  // Get the <span> element that closes the modal
   var span = document.getElementsByClassName("close")[0];
 
-  // When the user clicks on the button, open the modal
   btn.onclick = function () {
     document.getElementsByClassName("k-overlay")[0].style.display = "block"
     modal.style.display = "block";
   }
+  $(document).on('click', '#updateProduct', function () {
+    document.getElementsByClassName("k-overlay")[0].style.display = "block"
+    let json = $(this).data('json');
+    Object.keys(json).map(function (key) {
+      if (key == "price_sell" || key == "price_capital") {
 
-  // When the user clicks on <span> (x), close the modal
+        $(`input[name='${key}']`).val(formatCurrency(json[key]))
+
+      } else if (key == "file") {
+        $("#output").attr('src', json[key])
+      } else {
+        $(`input[name='${key}']`).val(json[key])
+
+      }
+    })
+    modal.style.display = "block";
+  })
+
   span.onclick = function () {
     document.getElementsByClassName("k-overlay")[0].style.display = "none"
     modal.style.display = "none";
-  }
-
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function (event) {
-    if (event.target == modal) {
-      document.getElementsByClassName("k-overlay")[0].style.display = "none" 
-      modal.style.display = "none";
-    }
   }
 })

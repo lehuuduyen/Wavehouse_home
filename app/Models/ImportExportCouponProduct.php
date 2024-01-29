@@ -15,4 +15,17 @@ class ImportExportCouponProduct extends Model
      * @var string
      */
     protected $table = 'import_export_coupon_product';
+    protected $fillable = [
+        "product_id",
+        "quantity",
+        "price",
+        "wavehouse_id",
+        "coupon_id",
+        "status",
+        "price_old",
+    ];
+    public function Product()
+    {
+        return $this->hasOne('App\Models\Products', 'id', 'product_id');
+    }
 }

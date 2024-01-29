@@ -15,4 +15,14 @@ class Products extends Model
      * @var string
      */
     protected $table = 'products';
+    protected $fillable = [
+        "code",
+        "barcode",
+        "name",
+        "price_old",
+        "price_capital",
+        "price_sell",
+        "file",
+        "count"
+    ];
 }
