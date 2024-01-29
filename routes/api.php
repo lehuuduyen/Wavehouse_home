@@ -22,6 +22,9 @@ use App\Http\Controllers\Api\SupplierController;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('signin', 'App\Http\Controllers\Auth\LoginController@signIn');
+Route::post('register', 'App\Http\Controllers\Auth\RegisterController@registerApi');
+
 Route::apiResource('supplier', SupplierController::class);
 Route::apiResource('product', ProductController::class);
 Route::apiResource('coupon', CouponController::class);
