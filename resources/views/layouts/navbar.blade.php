@@ -4,13 +4,13 @@
             {{-- <li>
                 <a><i class="fas fa-eye"></i>Tổng quan</a>
             </li> --}}
-            <?php 
+            <?php
             if(Auth::user()->role == 1){?>
             <li>
                 <a> <i class="fas fa-cube"></i>Hàng hóa</a>
                 <ul class="sub">
                     <li>
-                        <a href="/products"> <i class="fa-fw fa fa-th"></i>Danh mục</a>
+                        <a href="/admin/products"> <i class="fa-fw fa fa-th"></i>Danh mục</a>
                     </li>
                     {{-- <li>
                         <a><i class="fa-fw fa fa-tags"></i>Thiết lập giá</a>
@@ -25,11 +25,11 @@
             </li>
             <?php }?>
             <li class="active">
-                <a href="/customer"><i class="fas fa-warehouse"></i>Khách hàng</a>
+                <a href="/admin/customer"><i class="fas fa-warehouse"></i>Khách hàng</a>
             </li>
-            
+
             <li>
-                <a href="/kho"><i class="fas fa-warehouse"></i>Kho</a>
+                <a href="/admin/kho"><i class="fas fa-warehouse"></i>Kho</a>
             </li>
             {{-- <li>
                 <a><i class="fas fa-user-friends"></i>Nhân viên</a>
@@ -45,11 +45,11 @@
             <li class="ng-scope">
                 <ul>
                     <li class="  ng-scope" data-placement="right">
-                        <a href="/logout" class="kol-menu-item ng-binding"><i class="fa fa-sign-out"></i>Đăng xuất</a>
+                        <a href="/admin/logout" class="kol-menu-item ng-binding"><i class="fa fa-sign-out"></i>Đăng xuất</a>
                     </li>
                 </ul>
             </li>
-           
+
         </ul>
     </section>
 </nav>

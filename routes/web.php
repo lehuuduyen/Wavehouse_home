@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::get('/', function () {
         return view('products');
     })->middleware('role:2');

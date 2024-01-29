@@ -350,7 +350,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="cell-code"
-                                                    title="Tồn: 92 - KH đặt: 0 
+                                                    title="Tồn: 92 - KH đặt: 0
                                                 "
                                                     role="gridcell"><a ng-show="dataItem.MasterProductId == null"
                                                         href="#/Products?Code=SP000001" target="_blank"
@@ -933,7 +933,7 @@
         })
         getCustomer()
 
-        // 
+        //
         function getCustomer() {
             let html = `<option selected="selected" value="">Chọn khách hàng...</option>`;
             $.ajax({
@@ -1008,16 +1008,16 @@
                                                     data-uid="5639ffe3-98e5-4483-bf18-c07d30113ee3" role="row">
                                                     <td class="k-hierarchy-cell"><a class="k-icon k-minus" href="#"
                                                             tabindex="-1"></a></td>
-                                              
+
                                                     <td class="cell-order txtC" role="gridcell"><span
                                                             ng-show="dataItem.MasterProductId == null"
                                                             class="ng-binding">${stt}</span></td>
-                                                
+
                                                     <td class="cell-code"
-                                                        title="Tồn: 92 - KH đặt: 0 
+                                                        title="Tồn: 92 - KH đặt: 0
                                                     "
                                                         role="gridcell"><a ng-show="dataItem.MasterProductId == null"
-                                                            href="#/Products?Code=SP000001" target="_blank"
+                                                            href="#/admin/Products?Code=SP000001" target="_blank"
                                                             class="ng-binding">${code}</a></td>
                                                     <td class="cell-auto" role="gridcell"><span
                                                             ng-show="!dataItem.MasterProductId"
@@ -1032,7 +1032,7 @@
                                                             ng-show="dataItem.MasterProductId == null"> Cái <span
                                                                 class="slcUnit slcUnit2 txtL ng-binding"></span> </span>
                                                     </td>
-                                                  
+
                                                     <td class="cell-qty-numb txtR" role="gridcell">
                                                         <div class="qtyBox">
                                                             <input
@@ -1050,18 +1050,18 @@
                                                             tabindex="100" disabled="disabled"
                                                             class="txtR price-sell  form-control form-control-sm purchase-order-price ng-pristine ng-untouched ng-valid ng-not-empty"
                                                             kv-tooltip="" data-toggle="tooltip" data-placement="bottom"></td>
-                                               
+
                                                     <td class="cell-total txtR" role="gridcell">
-                                                     
+
                                                         <div class="proPrice posR ng-scope"
                                                             ng-if="toogleActionVM.toggleChangePriceEnabled"><button
                                                                 class="txtR total form-control form-control-sm ng-binding"
                                                                 tabindex="100" >0</button></div>
                                                     </td>
-                                                    
+
                                                 </tr>
-                            
-                            
+
+
                             `
             })
             $('#add-product').html(html)
@@ -1103,7 +1103,7 @@
                 }
                 sumTotalGoc = Number(sumTotalGoc) + (Number(temp) * quantity)
             })
-            
+
             $(".sum-total-goc").html(formatCurrency(sumTotalGoc))
             $(".sum-discount").html(formatCurrency(sumTotalGoc - sumTotal))
             $(".sum-total").html(formatCurrency(sumTotal))

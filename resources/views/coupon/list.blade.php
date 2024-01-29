@@ -76,7 +76,7 @@
                                     class="far fa-plus"></i><span class="text-btn ng-binding">Nhập
                                     hàng</span>
                             </a>
-                    
+
                             <a href="" id="href-sell" title="Nhập hàng" ng-show="hasAdd" class="btn btn-danger"><i
                                     class="far fa-plus"></i><span class="text-btn ng-binding">Bán
                                     hàng</span>
@@ -390,9 +390,9 @@
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const wavehouseId = urlParams.get('wavehouse_id')
-        $('#href-import').attr('href', '/coupon/import?wavehouse_id=' + wavehouseId)
-        $('#href-export').attr('href', '/coupon/export?wavehouse_id=' + wavehouseId)
-        $('#href-sell').attr('href', '/coupon/sell?wavehouse_id=' + wavehouseId)
+        $('#href-import').attr('href', '/admin/coupon/import?wavehouse_id=' + wavehouseId)
+        $('#href-export').attr('href', '/admin/coupon/export?wavehouse_id=' + wavehouseId)
+        $('#href-sell').attr('href', '/admin/coupon/sell?wavehouse_id=' + wavehouseId)
         let temp = 0
         $(document).on("click", ".table-data", function() {
             let stt = $(this).data('stt');
@@ -411,7 +411,7 @@
                                                                 <div class="tabstrip k-widget k-header k-tabstrip k-floatwrap k-tabstrip-top"
                                                                     data-role="tabstrip" tabindex="0"
                                                                     role="tablist">
-                                                                 
+
                                                                     <div class="k-content k-state-active"
                                                                         id="b13a6cc8-4c4c-4ed9-a3dd-1cad0a3a9fbe-1"
                                                                         role="tabpanel" aria-expanded="true"
@@ -446,7 +446,7 @@
                                                                                                             class="form-control k-input"
                                                                                                             type="text"
                                                                                                             style="width: 100%;" value="${json.created_at}"><span
-                                                                                                            
+
                                                                                                             class="k-select"><span
                                                                                                                 unselectable="on"
                                                                                                                 class="k-icon k-i-calendar"
@@ -705,7 +705,7 @@
                                                                                                             class="cell-adddel k-header th-show">
                                                                                                         </th>
                                                                                                     </tr>
-                                                                                                  
+
                                                                                                 </thead>
                                                                                             </table>
                                                                                         </div>
@@ -735,7 +735,7 @@
                                                                                                     <td class="cell-total txtR"
                                                                                                         role="gridcell">
                                                                                                         ${formatCurrency(val.price)}</td>
-                                                                                                
+
                                                                                                     <td class="cell-total txtR txtB"
                                                                                                         role="gridcell">
                                                                                                         ${formatCurrency(Number(val.price) * Number(val.quantity))}</td>
@@ -841,17 +841,17 @@
                                                                                                         class="totalPrice ng-binding">
                                                                                                         ${formatCurrency(json.price)}</td>
                                                                                                 </tr>
-                                                                                              
+
                                                                                             </tbody>
-                                                                                 
+
                                                                                         </table>
                                                                                     </div>
                                                                                 </aside>
                                                                             </article>
-                                                                          
-                                                                           
+
+
                                                                         </purchase-order-form> </div>
-                                                               
+
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -948,11 +948,11 @@
                                                 <span ng-bind="dataItem.ReturnCode" class="ng-binding"></span>
                                             </td>
                                             <td class="cell-date-time" role="gridcell">${val.created_at}</td>
-                                           
+
                                             <td class="cell-auto" role="gridcell"><span
                                                     ng-bind="dataItem.Supplier.Name" class="ng-binding">${text}</span></td>
-                                            
-                                            
+
+
                                             <td class="cell-total-final txtR ng-binding" role="gridcell">
                                                 ${formatCurrency(val.price)}</td>
                                             <td class="cell-total-final txtR ng-binding"
