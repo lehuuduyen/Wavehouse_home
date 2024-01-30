@@ -15,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('page.home');
 });
+Route::get('/buy/{name}', function () {
+    return view('page.buy');
+});
+Route::get('/sell/{name}', function () {
+    return view('page.sell');
+});
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::get('/', function () {
         return view('products');

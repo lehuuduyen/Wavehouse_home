@@ -1,1 +1,172 @@
-.a2{width:100%}.home1{width:55%;display:inline-block;vertical-align:top}.menu .header{font-size:12px}.click .item:hover{background-color:#279cfc;color:#fff}.empty{display:inline-block;vertical-align:top;width:44.5%}#formall{vertical-align:top;width:44.5%}#arrow{cursor:pointer}@media only screen and (max-width:1010px){.home1{width:100%}.menu .header{font-size:x-small}.menu .title{display:table-row;height:30px;padding:0;text-align:center}.menu .rate{display:table-row;height:30px;padding:0;text-align:center}.b4 .menu .logo{height:60px}.b2b{display:none}.empty{display:block!important;width:100%}}@media only screen and (max-width:710px){.b4 .menu .logo{height:24px}.menu .rate{height:0}.menu .title{height:24px}.menu .rate span{padding:1px 6px}#radiotype,.label{font-size:10px}}.menu{border:1px solid #ccc}.menu .buy,.menu .sell{display:inline}.menu .item{display:table;cursor:pointer;background-color:#fff;width:100%;margin:2px 0 0;padding:0;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background:#0268ac}.b1{display:inline-block;vertical-align:top;width:47%;margin-left:0}.b3{display:inline-block;vertical-align:top;width:47%;margin-left:0}.b2b3{margin-top:10px}section{padding:5px}.b4{width:65px;display:block;float:left}.bb{padding-left:56px;display:block}.b4 .menu{padding:9px 1px 11px 11px}.b1 .menu{padding:9px 1px 1px}.b3 .menu{padding:9px 11px 1px 1px}.b1 .menu .logo,.b3 .menu .logo{display:none}.b4 .menu .logo{line-height:43.5px;padding:0 13px}
+.a2 {
+    width: 100%
+}
+
+.home1 {
+    width: 55%;
+    display: inline-block;
+    vertical-align: top
+}
+
+.menu .header {
+    font-size: 12px
+}
+
+.click .item:hover {
+    background-color: #279cfc;
+    color: #fff
+}
+
+.empty {
+    display: inline-block;
+    vertical-align: top;
+    width: 44.5%
+}
+
+#formall {
+    vertical-align: top;
+}
+
+#arrow {
+    cursor: pointer
+}
+
+@media only screen and (max-width:1010px) {
+    .home1 {
+        width: 100%
+    }
+
+    .menu .header {
+        font-size: x-small
+    }
+
+    .menu .title {
+        display: table-row;
+        height: 30px;
+        padding: 0;
+        text-align: center
+    }
+
+    .menu .rate {
+        display: table-row;
+        height: 30px;
+        padding: 0;
+        text-align: center
+    }
+
+    .b4 .menu .logo {
+        height: 60px
+    }
+
+    .b2b {
+        display: none
+    }
+
+    .empty {
+        display: block !important;
+        width: 100%
+    }
+}
+
+@media only screen and (max-width:710px) {
+    .b4 .menu .logo {
+        height: 24px
+    }
+
+    .menu .rate {
+        height: 0
+    }
+
+    .menu .title {
+        height: 24px
+    }
+
+    .menu .rate span {
+        padding: 1px 6px
+    }
+
+    #radiotype,
+    .label {
+        font-size: 10px
+    }
+}
+
+
+
+.menu .buy,
+.menu .sell {
+    display: inline
+}
+
+.menu .item {
+    display: table;
+    cursor: pointer;
+    background-color: #fff;
+    width: 100%;
+    margin: 2px 0 0;
+    padding: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background: #014473
+}
+
+.b1 {
+    display: inline-block;
+    vertical-align: top;
+    width: 47%;
+    margin-left: 0
+}
+
+.b3 {
+    display: inline-block;
+    vertical-align: top;
+    width: 47%;
+    margin-left: 0
+}
+
+.b2b3 {
+    margin-top: 10px
+}
+
+section {
+    padding: 5px
+}
+
+.b4 {
+    width: 65px;
+    display: block;
+    float: left
+}
+
+.bb {
+    padding-left: 56px;
+    display: block
+}
+
+.b4 .menu {
+    padding: 9px 1px 11px 11px
+}
+
+.b1 .menu {
+    padding: 9px 1px 1px
+}
+
+.b3 .menu {
+    padding: 9px 11px 1px 1px
+}
+
+.b1 .menu .logo,
+.b3 .menu .logo {
+    display: none
+}
+
+.b4 .menu .logo {
+    line-height: 43.5px;
+    padding: 8 13px
+}
