@@ -13,7 +13,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
     }
 
     /**
@@ -21,8 +20,20 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function buy()
     {
-        return view('home');
+        $priceSell = 0;
+        $priceBuy = 0;
+        $price  = file_get_contents('https://api.binance.com/api/v3/ticker/price?symbol=FDUSDUSDT');
+        if($price){
+            $price = floor(json_decode($price)->price * 24441);
+            $priceSell = number_format($price - 200);
+            $priceBuy = number_format($price + 200);
+        }
+        return view('page.buy', ['priceSell' => $priceSell,'priceBuy' => $priceBuy]);
+    }
+    public function sell()
+    {
+        return view('page.sell');
     }
 }

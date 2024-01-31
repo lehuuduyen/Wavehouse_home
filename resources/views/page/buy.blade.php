@@ -15,8 +15,8 @@
                                 </div>
                             </div>
                             <div class="bar-rate_bar_item_rate">
-                                <div class="bar-rate_bar_item_rate_buy"><span>BÁN RA: 25,113 ₫</span></div>
-                                <div class="bar-rate_bar_item_rate_sell"><span>MUA VÀO: 24,778 ₫</span></div>
+                                <div class="bar-rate_bar_item_rate_buy"><span>BÁN RA: {{ $priceSell }} ₫</span></div>
+                                <div class="bar-rate_bar_item_rate_sell"><span>MUA VÀO: {{ $priceBuy }} ₫</span></div>
                             </div>
                         </div>
                     </li>
@@ -83,11 +83,11 @@
                                                 $</span></div>
                                         <a style="text-decoration: none" href="/buy/usdt">
                                             <button id="bbuy" type="button" class="btn btn-outline-danger">Mua
-                                                USDT<span class="sell">25,110 ₫</span><br>
+                                                USDT<span class="sell">{{ $priceBuy }} ₫</span><br>
                                             </button></a>
                                         <a style="text-decoration: none" href="/sell/usdt">
                                             <button id="bsell" type="button" class="btn btn-outline-success">Bán
-                                                USDT<span class="buy">24,775 ₫</span>
+                                                USDT<span class="buy">{{ $priceSell }} ₫</span>
                                             </button></a>
 
                                     </div>
@@ -318,7 +318,7 @@
                                                 submit.disabled = false;
                                                 $("#shownoti").html(
                                                     "<u>Chú ý:</u> <i>Hãy kiểm tra kỹ lại các thông tin của bạn trước khi Tiếp Tục!</i>"
-                                                    );
+                                                );
                                             }
                                         } else {
                                             inputValidam.className = 'form-control is-invalid';
@@ -362,7 +362,8 @@
                     </script>
                     <h1 style="border: 1px dashed #eaeaea;font-size: 16px; padding: 3px; width:100%; text-align: center;">
                         Mua USDT BEP20 - TRC20 - ERC20 - PayID/BinaceID
-                        <span style="color:rgb(255, 144, 130);" id="inffo">| Giá: 25,091 vnđ| Tối Đa: 10,000.00 $
+                        <span style="color:rgb(255, 144, 130);" id="inffo">| Giá: {{ $priceBuy }} vnđ| Tối Đa:
+                            10,000.00 $
                         </span>
                         <p></p>
                     </h1>
@@ -374,12 +375,15 @@
                                 <div class="label" id="label-amount">Nhập số lượng USDT bạn muốn mua:</div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="typechosse">TRC20</span>
-                                    <input type="text" class="form-control" id="inputValidam" autocomplete="off"
-                                        spellcheck="false" min="10" max="19025.0" name="amountr"
-                                        placeholder="Min 10$ | Max 19,025.00$" required="" fdprocessedid="rangbc">
-                                    <span class="input-group-text" id="showinputValidam">0.00$</span>
+                                    <input type="text" class="form-control is-valid" id="inputValidam"
+                                        autocomplete="off" spellcheck="false" min="10" max="14074.0"
+                                        name="amountr" placeholder="Min 10$ | Max 14,074.00$" required=""
+                                        fdprocessedid="hboe2a">
+                                    <span class="form-control is-valid" id="showinputValidam" style="color: green;">Tổng
+                                        thanh toán: 351,945,375VND</span>
                                     <span class="valid-feedback" id="infoshowinputValidam"
-                                        style="color:#78967a;font-style:italic;"></span>
+                                        style="color:#78967a;font-style:italic;">Thông tin: 25,005 x (14074+1.00) - 0 =
+                                        351,945,375 VND | Công thức: Price*(Amount+Fee) - Bonus = Total</span>
                                 </div>
                             </div>
                             <div class="row" id="row-net" style="border-color: rgb(255, 255, 255);">
