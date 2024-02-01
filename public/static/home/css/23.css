@@ -1492,9 +1492,16 @@ footer {
         font-size: 15px
     }
 }
-
-@media only screen and (min-width:710px) and (max-width:1010px) {
-
+.a2{
+    margin-left: 20px;
+}
+.div-cha{
+    display: flex
+}
+@media only screen and (min-width:0) and (max-width:1010px) {
+    .div-cha{
+        display: block
+    }
     .a1,
     .a31,
     .menu {
@@ -1506,7 +1513,8 @@ footer {
     .a2 {
         display: inline-block;
         vertical-align: top;
-        width: 100%
+        width: 100%;
+        margin-left: 0 !important;
     }
 
     .wrap {

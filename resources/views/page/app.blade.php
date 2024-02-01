@@ -19,8 +19,6 @@
     <script async="" src="https://embed.tawk.to/5c87bf8cc37db86fcfcd5b60/default" charset="UTF-8" crossorigin="*"></script>
     <script type="text/javascript" async="" src="https://ssl.google-analytics.com/ga.js"></script>
     <script async="" src="https://www.google-analytics.com/analytics.js"></script>
-    <script src="/static/home/js/emojione.min.js" type="text/javascript"></script>
-    <script src="/static/home/js/bootstrap.bundle.min.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="/static/home/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/static/home/css/23.css">
     <link rel="stylesheet" type="text/css" href="/static/home/css/15.css">
@@ -431,11 +429,6 @@
             @yield('content')
         </main>
     </div>
-    <script defer=""
-        src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317"
-        integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA=="
-        data-cf-beacon="{&quot;rayId&quot;:&quot;84d08f795c7324bf&quot;,&quot;r&quot;:1,&quot;version&quot;:&quot;2024.1.0&quot;,&quot;token&quot;:&quot;adea2543882b411ab012be1b650d9daf&quot;}"
-        crossorigin="anonymous"></script>
 
     <footer class="footer">
         © 2015 -
@@ -463,21 +456,7 @@
             </div>
         </nav>
     </footer>
-    <iframe src="about:blank" style="display: none;"></iframe>
-    <script async="" charset="UTF-8" src="https://embed.tawk.to/_s/v4/app/65839862293/languages/vi.js"></script>
-    <div id="k20a6lc3q6ao1706521717620" class="widget-visible"><iframe src="about:blank" frameborder="0"
-            scrolling="no" width="130px" height="64px"
-            style="outline:none !important; visibility:visible !important; resize:none !important; box-shadow:none !important; overflow:visible !important; background:none !important; opacity:1 !important; filter:alpha(opacity=100) !important; -ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity 1}) !important; -mz-opacity:1 !important; -khtml-opacity:1 !important; top:auto !important; right:10px !important; bottom:0px !important; left:auto !important; position:fixed !important; border:0 !important; min-height:64px !important; min-width:130px !important; max-height:64px !important; max-width:130px !important; padding:0 !important; margin:0 !important; -moz-transition-property:none !important; -webkit-transition-property:none !important; -o-transition-property:none !important; transition-property:none !important; transform:none !important; -webkit-transform:none !important; -ms-transform:none !important; width:130px !important; height:64px !important; display:block !important; z-index:1000001 !important; background-color:transparent !important; cursor:none !important; float:none !important; border-radius:unset !important; pointer-events:auto !important; clip:auto !important; color-scheme:light !important;"
-            id="picjnq6tt0q1706521717643" class="" title="chat widget"></iframe><iframe src="about:blank"
-            frameborder="0" scrolling="no" width="350px" height="520px"
-            style="outline:none !important; visibility:visible !important; resize:none !important; box-shadow:none !important; overflow:visible !important; background:none !important; opacity:1 !important; filter:alpha(opacity=100) !important; -ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity 1}) !important; -mz-opacity:1 !important; -khtml-opacity:1 !important; top:auto !important; right:0px !important; bottom:0px !important; left:auto !important; position:fixed !important; border:0 !important; min-height:520px !important; min-width:350px !important; max-height:520px !important; max-width:350px !important; padding:0 !important; margin:0 !important; -moz-transition-property:none !important; -webkit-transition-property:none !important; -o-transition-property:none !important; transition-property:none !important; transform:none !important; -webkit-transform:none !important; -ms-transform:none !important; width:350px !important; height:520px !important; display:none !important; z-index:auto !important; background-color:transparent !important; cursor:none !important; float:none !important; border-radius:5px 5px  0 0 !important; pointer-events:auto !important; clip:auto !important; color-scheme:light !important;"
-            id="g3alsku32dng1706521717669" class="" title="chat widget"></iframe><iframe src="about:blank"
-            frameborder="0" scrolling="no" width="360px" height="296px"
-            style="outline:none !important; visibility:visible !important; resize:none !important; box-shadow:none !important; overflow:visible !important; background:none !important; opacity:1 !important; filter:alpha(opacity=100) !important; -ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity 1}) !important; -mz-opacity:1 !important; -khtml-opacity:1 !important; top:auto !important; right:10px !important; bottom:80px; left:auto !important; position:fixed !important; border:0 !important; min-height:296px !important; min-width:360px !important; max-height:296px !important; max-width:360px !important; padding:0 !important; margin:0 !important; -moz-transition-property:none !important; -webkit-transition-property:none !important; -o-transition-property:none !important; transition-property:none !important; transform:none !important; -webkit-transform:none !important; -ms-transform:none !important; width:360px !important; height:296px !important; display:block !important; z-index:auto !important; background-color:transparent !important; cursor:none !important; float:none !important; border-radius:unset !important; pointer-events:auto !important; clip:auto !important; color-scheme:light !important;"
-            id="jl4h34fcjljo1706521717656" class="" title="chat widget"></iframe><iframe src="about:blank"
-            frameborder="0" scrolling="no" width="146px" height="85px"
-            style="outline:none !important; visibility:visible !important; resize:none !important; box-shadow:none !important; overflow:visible !important; background:none !important; opacity:1 !important; filter:alpha(opacity=100) !important; -ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity 1}) !important; -mz-opacity:1 !important; -khtml-opacity:1 !important; top:auto !important; right:10px !important; bottom:62px !important; left:auto !important; position:fixed !important; border:0 !important; min-height:85px !important; min-width:146px !important; max-height:85px !important; max-width:146px !important; padding:0 !important; margin:0px 0 0 0 !important; -moz-transition-property:none !important; -webkit-transition-property:none !important; -o-transition-property:none !important; transition-property:none !important; transform:rotate(0deg) translateZ(0); -webkit-transform:rotate(0deg) translateZ(0); -ms-transform:rotate(0deg) translateZ(0); width:146px !important; height:85px !important; display:none !important; z-index:1000002 !important; background-color:transparent !important; cursor:none !important; float:none !important; border-radius:unset !important; pointer-events:auto !important; clip:auto !important; color-scheme:light !important; -moz-transform:rotate(0deg) translateZ(0); -o-transform:rotate(0deg) translateZ(0); transform-origin:0; -moz-transform-origin:0; -webkit-transform-origin:0; -o-transform-origin:0; -ms-transform-origin:0;"
-            id="eh2okh0giqog1706521717650" class="" title="chat widget"></iframe></div>
+
 </body>
 
 </html>

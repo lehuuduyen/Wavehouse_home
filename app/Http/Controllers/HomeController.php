@@ -27,6 +27,8 @@ class HomeController extends Controller
         $price  = file_get_contents('https://api.binance.com/api/v3/ticker/price?symbol=FDUSDUSDT');
         if($price){
             $price = floor(json_decode($price)->price * 24441);
+
+
             $priceSell = number_format($price - 200);
             $priceBuy = number_format($price + 200);
         }
@@ -34,6 +36,15 @@ class HomeController extends Controller
     }
     public function sell()
     {
-        return view('page.sell');
+        $priceSell = 0;
+        $priceBuy = 0;
+        $price  = file_get_contents('https://api.binance.com/api/v3/ticker/price?symbol=FDUSDUSDT');
+        if($price){
+            $price = floor(json_decode($price)->price * 24441);
+
+            $priceSell = number_format($price - 200);
+            $priceBuy = number_format($price + 200);
+        }
+        return view('page.sell', ['priceSell' => $priceSell,'priceBuy' => $priceBuy]);
     }
 }
