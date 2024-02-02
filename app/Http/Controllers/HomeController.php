@@ -14,6 +14,26 @@ class HomeController extends Controller
     public function __construct()
     {
     }
+    public function getGiaUsd(){
+        $price  = file_get_contents('https://open.er-api.com/v6/latest/USD');
+        $usd_to_vnd = 0;
+        if($price){
+            $data = json_decode($price, true);
+            $usd_to_vnd = $data['rates']['VND'];
+
+        }
+        return $usd_to_vnd;
+    }
+    public function getGiaCoin($coin = 'FDUSDUSDT'){
+        $price  = file_get_contents('https://api.binance.com/api/v3/ticker/price?symbol='.$coin);
+        $usd_to_vnd = 0;
+        if($price){
+            $data = json_decode($price, true);
+            $usd_to_vnd = $data['rates']['VND'];
+
+        }
+        return $usd_to_vnd;
+    }
 
     /**
      * Show the application dashboard.
