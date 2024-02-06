@@ -3,6 +3,8 @@
 @section('content_buysell')
     <script type="text/javascript" src="/static/home/js/buy.js"></script>
     <script type="text/javascript">
+        var submit = document.getElementById("submit");
+
         function onchangeinfo(value_) {
             var balance = document.getElementById('balance').value;
             document.getElementById('typechosse').innerHTML = value_;
@@ -20,18 +22,14 @@
                 document.getElementById('inputValidusdt').placeholder = 'Nhập địa chỉ ví ' + value_ + ' nhận của bạn...';
             }
             document.getElementById('choicename').value = value_;
-            console.log('====================================');
-            console.log('onchangeinfo ', value_);
-            console.log('====================================');
+
         }
 
         function feechange(fee) {
             var min = document.getElementById("inputValidam").min;
             var value = document.getElementById("inputValidam").value;
             var valueusd = document.querySelector('input[id="inputValidusdt"]');
-            console.log('====================================');
-            console.log('feechange ', fee);
-            console.log('====================================');
+
             if (value - min >= 0) {
                 var price = document.getElementById("pricename").value;
                 var inputValidam = document.getElementById("inputValidam");
@@ -51,12 +49,9 @@
                     $('#infoshowinputValidam').html("Thông tin chi tiết: " + commaSeparatedNumber(price) + " x " + amount +
                         " + " + commaSeparatedNumber(bonus) + " = " + commaSeparatedNumber(result.toFixed(0)) +
                         " VND | Công thức: Price*Amount + Bonus = Total");
-                    flagam = 1;
-                    if ((flagbank == 1) && (flagam == 1)) {
-                        submit.disabled = false;
-                        $("#shownoti").html(
-                            "<u>Chú ý:</u> <i>Hãy kiểm tra kỹ lại các thông tin của bạn trước khi Tiếp Tục!</i>");
-                    }
+                    submit.disabled = false;
+                    $("#shownoti").html(
+                        "<u>Chú ý:</u> <i>Hãy kiểm tra kỹ lại các thông tin của bạn trước khi Tiếp Tục!</i>");
                 }
                 // submit.disabled=false;
                 else {
@@ -145,13 +140,14 @@
 
     <h1 style="border: 1px dashed #eaeaea;font-size: 16px; padding: 3px; width:100%; text-align: center;">
         Mua USDT BEP20 - TRC20 - ERC20 - PayID/BinaceID
-        <span style="color:rgb(255, 144, 130);" id="inffo">| Giá: {{ $priceBuy }} vnđ| Tối Đa:
-            10,000.00 $
+        <span style="color:rgb(255, 144, 130);" id="inffo">| Giá: {{ $priceBuy }} $| Tối Đa:
+            <?= number_format($max) ?> $
         </span>
         <p></p>
     </h1>
 
-    <form action="" id="formall" method="post" style="padding: 10px;">
+    <form action="/buy" id="formall" method="post" style="padding: 10px;">
+        @csrf
         <input type="hidden" name="csrfmiddlewaretoken"
             value="9EbIS3K7GY9kOa9Dj0AhVZKhLEC5UJbutvytkQpHYrXHOif7Ws8ZVpmghnNNyudQ">
         <div id="menu_exp">
@@ -160,8 +156,8 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="typechosse">TRC20</span>
                     <input type="text" class="form-control " id="inputValidam" autocomplete="off" spellcheck="false"
-                        min="10" max="14074.0" name="amountr" placeholder="Min 10$ | Max 14,074.00$" required=""
-                        fdprocessedid="hboe2a">
+                        min="10" max="<?= $max ?>" name="amountr"
+                        placeholder="Min 10$ | Max <?= number_format($max) ?>$" required="" fdprocessedid="hboe2a">
                     <span class="form-control" id="showinputValidam" style="color: green;"></span>
                     <span class="valid-feedback" id="infoshowinputValidam" style="color:#78967a;font-style:italic;"></span>
                 </div>
@@ -203,44 +199,39 @@
                         <span class="input-group-text">
 
                             <select class="form-select" name="banktt" id="exampleSelect1" {{-- onchange=" getnamebank(this.value)" fdprocessedid="edi0o" --}}>
-                                <option id="bankt" name="bankt" value="970415">VietinBank</option>
-                                <option id="bankt" name="bankt" value="970436" selected="">
-                                    VietcomBank</option>
-                                <option id="bankt" name="bankt" value="970433">Vietbank</option>
-                                <option id="bankt" name="bankt" value="970427">VietABank</option>
-                                <option id="bankt" name="bankt" value="970432">VPBank</option>
-                                <option id="bankt" name="bankt" value="970441">VIB</option>
-                                <option id="bankt" name="bankt" value="970407">Techcombank</option>
-                                <option id="bankt" name="bankt" value="970423">TP Bank</option>
-                                <option id="bankt" name="bankt" value="970440">SeABank</option>
-                                <option id="bankt" name="bankt" value="970400">Saigon Bank</option>
-                                <option id="bankt" name="bankt" value="970403">Sacombank</option>
-                                <option id="bankt" name="bankt" value="970424">SHINHAN Bank
-                                </option>
-                                <option id="bankt" name="bankt" value="970443">SHB</option>
-                                <option id="bankt" name="bankt" value="970429">SCB</option>
-                                <option id="bankt" name="bankt" value="970412">PVcomBank</option>
-                                <option id="bankt" name="bankt" value="970430">PG Bank</option>
-                                <option id="bankt" name="bankt" value="970414">OceanBank</option>
-                                <option id="bankt" name="bankt" value="970448">OCB</option>
-                                <option id="bankt" name="bankt" value="970428">NamABank</option>
-                                <option id="bankt" name="bankt" value="970426">MSB</option>
-                                <option id="bankt" name="bankt" value="970422">MBBank</option>
-                                <option id="bankt" name="bankt" value="970449">LienVietPostBank
-                                </option>
-                                <option id="bankt" name="bankt" value="970452">Kienlongbank
-                                </option>
-                                <option id="bankt" name="bankt" value="458761">HSBC</option>
-                                <option id="bankt" name="bankt" value="970437">HDBank</option>
-                                <option id="bankt" name="bankt" value="970431">Eximbank</option>
-                                <option id="bankt" name="bankt" value="970406">DongA Bank</option>
-                                <option id="bankt" name="bankt" value="970438">BaoViet Bank
-                                </option>
-                                <option id="bankt" name="bankt" value="970409">BacA Bank</option>
-                                <option id="bankt" name="bankt" value="970418">BIDV</option>
-                                <option id="bankt" name="bankt" value="970405">Agribank</option>
-                                <option id="bankt" name="bankt" value="970416">ACB</option>
-                                <option id="bankt" name="bankt" value="970425">ABBank</option>
+                                <option id="bankt" name="bankt" value="VietinBank">VietinBank</option>
+                                <option id="bankt" name="bankt" value="VietcomBank" selected> VietcomBank</option>
+                                <option id="bankt" name="bankt" value="Vietbank">Vietbank</option>
+                                <option id="bankt" name="bankt" value="VietABank">VietABank</option>
+                                <option id="bankt" name="bankt" value="VPBank">VPBank</option>
+                                <option id="bankt" name="bankt" value="VIB">VIB</option>
+                                <option id="bankt" name="bankt" value="Techcombank">Techcombank</option>
+                                <option id="bankt" name="bankt" value="TP Bank">TP Bank</option>
+                                <option id="bankt" name="bankt" value="SeABank">SeABank</option>
+                                <option id="bankt" name="bankt" value="Saigon Bank">Saigon Bank</option>
+                                <option id="bankt" name="bankt" value="Sacombank">Sacombank</option>
+                                <option id="bankt" name="bankt" value="SHINHAN Bank">SHINHAN Bank</option>
+                                <option id="bankt" name="bankt" value="SHB">SHB</option>
+                                <option id="bankt" name="bankt" value="SCB">SCB</option>
+                                <option id="bankt" name="bankt" value="PVcomBank">PVcomBank</option>
+                                <option id="bankt" name="bankt" value="PG Bank">PG Bank</option>
+                                <option id="bankt" name="bankt" value="OceanBank">OceanBank</option>
+                                <option id="bankt" name="bankt" value="OCB">OCB</option>
+                                <option id="bankt" name="bankt" value="NamABank">NamABank</option>
+                                <option id="bankt" name="bankt" value="MSB">MSB</option>
+                                <option id="bankt" name="bankt" value="MBBank">MBBank</option>
+                                <option id="bankt" name="bankt" value="LienVietPostBank">LienVietPostBank</option>
+                                <option id="bankt" name="bankt" value="Kienlongbank">Kienlongbank</option>
+                                <option id="bankt" name="bankt" value="HSBC">HSBC</option>
+                                <option id="bankt" name="bankt" value="HDBank">HDBank</option>
+                                <option id="bankt" name="bankt" value="Eximbank">Eximbank</option>
+                                <option id="bankt" name="bankt" value="DongA Bank">DongA Bank</option>
+                                <option id="bankt" name="bankt" value="BaoViet Bank">BaoViet Bank</option>
+                                <option id="bankt" name="bankt" value="BacA Bank">BacA Bank</option>
+                                <option id="bankt" name="bankt" value="BIDV">BIDV</option>
+                                <option id="bankt" name="bankt" value="Agribank">Agribank</option>
+                                <option id="bankt" name="bankt" value="ACB">ACB</option>
+                                <option id="bankt" name="bankt" value="ABBank">ABBank</option>
                             </select>
 
                         </span>
@@ -254,7 +245,7 @@
                 </div>
             </div>
             <div class="row" id="row-to">
-                <div class="input-group mb-3">
+                <div class="input-group mb-3">@csrf
                     <input type="text" class="form-control" id="inputValidusdt" name="walletr"
                         placeholder="Nhập địa chỉ ví TRC20 nhận của bạn..." required="" fdprocessedid="3agd8j">
                     <input id="sdt" type="text" class="form-control"
@@ -279,7 +270,7 @@
                 cam kết tài khoản ngân hàng của tôi là chính chủ, tiền của tôi dùng để thực hiện giao dịch
                 là hoàn toàn hợp pháp!
             </div>
-            <div style="padding: 10px 0px;"><button class="button" id="submit" disabled="">Tiếp
+            <div style="padding: 10px 0px;"><button class="button" id="submit">Tiếp
                     Tục</button>
             </div>
             <span id="shownoti" style="color:rgb(247, 244, 114); text-align: center;"> </span>

@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 Route::get('/buy/{name}', [HomeController::class, 'buy']);
 Route::get('/sell/{name}', [HomeController::class, 'sell']);
+Route::post('/buy', [HomeController::class, 'create_buy']);
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::get('/', function () {
         return view('products');

@@ -34,6 +34,14 @@ class HomeController extends Controller
         }
         return $usd_to_vnd;
     }
+    public function create_buy(Request $request){
+        $data = $request->all();
+        echo '<pre>';
+        print_r($data);
+        die;
+
+
+    }
 
     /**
      * Show the application dashboard.
@@ -44,23 +52,36 @@ class HomeController extends Controller
     {
         $priceSell = 0;
         $priceBuy = 0;
+
+        $gia_usd = $this->getGiaUsd();
+        $max = 0;
+        $max_vnd = 250000000;
+        $max_usd = floor($max_vnd / $gia_usd);
+
+
         $price  = file_get_contents('https://api.binance.com/api/v3/ticker/price?symbol=FDUSDUSDT');
         if($price){
-            $price = floor(json_decode($price)->price * 24441);
+            $giaCoint = (int) json_decode($price)->price;
 
 
+            $price = floor($giaCoint * $gia_usd);
+
+
+            $max = $max_usd * $giaCoint;
             $priceSell = number_format($price - 200);
             $priceBuy = number_format($price + 200);
         }
-        return view('page.buy', ['priceSell' => $priceSell,'priceBuy' => $priceBuy]);
+        return view('page.buy', ['priceSell' => $priceSell,'priceBuy' => $priceBuy,'max' => $max]);
     }
     public function sell()
     {
         $priceSell = 0;
         $priceBuy = 0;
         $price  = file_get_contents('https://api.binance.com/api/v3/ticker/price?symbol=FDUSDUSDT');
+        $gia_usd = $this->getGiaUsd();
+
         if($price){
-            $price = floor(json_decode($price)->price * 24441);
+            $price = floor(json_decode($price)->price *  $gia_usd);
 
             $priceSell = number_format($price - 200);
             $priceBuy = number_format($price + 200);

@@ -50,6 +50,7 @@ $(document).ready(function () {
             } else {
                 bonus = discount * value * 2;
                 result = value * price + fee * price - bonus;
+
                 if (value - max > 0) {
                     if (min == 3) fee = max * 0.5 / 100;
                     else {
@@ -59,6 +60,7 @@ $(document).ready(function () {
                     value = max;
                     bonus = discount * value * 2;
                     result = value * price + fee * price - bonus;
+
                     document.getElementById("inputValidam").value = value;
                 }
                 if (Number.isInteger(Number(value))) {
@@ -73,6 +75,7 @@ $(document).ready(function () {
                 $('#showinputValidam').html("Tổng thanh toán: " + commaSeparatedNumber(result.toFixed(0)) + "VND");
                 $('#infoshowinputValidam').html("Thông tin: " + commaSeparatedNumber(price) + " x (" + value + "+" + commaSeparatedNumber(fee.toFixed(2)) + ") - " + commaSeparatedNumber(bonus) + " = " + commaSeparatedNumber(result.toFixed(0)) + " VND | Công thức: Price*(Amount+Fee) - Bonus = Total");
                 flagam = 1;
+                console.log(flagbank,flagam,flagbankd);
                 if ((flagbank == 1) && (flagam == 1) && (flagbankd == 1)) {
                     submit.disabled = false;
                     $("#shownoti").html("<u>Chú ý:</u> <i>Hãy kiểm tra kỹ lại các thông tin của bạn trước khi Tiếp Tục!</i>");
@@ -178,8 +181,16 @@ $(document).ready(function () {
         let text = this.value;
         if ((text.length > 11 && text.charAt(0) == '+' && !isNaN(text.substring(1))) || (text.length > 9 && !isNaN(text.substring(1)))) {
             sdt.className = 'form-control is-valid';
+            flagbank = 1
+            if ((flagbank == 1) && (flagam == 1) && (flagbankd == 1)) {
+                submit.disabled = false;
+                $("#shownoti").html("<u>Chú ý:</u> <i>Hãy kiểm tra kỹ lại các thông tin của bạn trước khi Tiếp Tục!</i>");
+            }
         } else {
             sdt.className = 'form-control is-invalid';
+
+            submit.disabled = true;
+
             $('#infoshowinputValid').html('Lỗi: Định dạng số điện thoại không đúng');
         }
     });
@@ -209,6 +220,8 @@ $(document).ready(function () {
                         $("#showinputValidpm").html("(" + data['result']['name'] + ")");
                         document.getElementById('discount').value = data['result']['discount'];
                         flagbankd = 1;
+                console.log(flagbank,flagam,flagbankd);
+
                         if ((flagbank == 1) && (flagam == 1) && (flagbankd == 1)) {
                             submit.disabled = false;
                             $("#shownoti").html("<u>Chú ý:</u> <i>Hãy kiểm tra kỹ lại các thông tin của bạn trước khi Tiếp Tục!</i>");
@@ -232,6 +245,8 @@ $(document).ready(function () {
             inputValidusdt.className = 'form-control is-valid';
             $('#infoshowinputValid').html('');
             flagbankd = 1;
+            console.log(flagbank,flagam,flagbankd);
+
             if ((flagbank == 1) && (flagam == 1) && (flagbankd == 1)) submit.disabled = false;
         } else {
             inputValidusdt.className = 'form-control is-invalid';
