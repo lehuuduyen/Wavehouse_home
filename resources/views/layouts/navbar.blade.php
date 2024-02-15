@@ -7,10 +7,13 @@
             <?php
             if(Auth::user()->role == 1){?>
             <li>
-                <a> <i class="fas fa-cube"></i>Hàng hóa</a>
+                <a> <i class="fas fa-cube"></i>Trang chủ</a>
                 <ul class="sub">
                     <li>
-                        <a href="/admin/products"> <i class="fa-fw fa fa-th"></i>Danh mục</a>
+                        <a href="/admin/history/"> <i class="fa-fw fa fa-th"></i>Lịch sử mua</a>
+                    </li>
+                    <li>
+                        <a href="/admin/history/sell"> <i class="fa-fw fa fa-th"></i>Lịch sử bán</a>
                     </li>
                     {{-- <li>
                         <a><i class="fa-fw fa fa-tags"></i>Thiết lập giá</a>
@@ -24,13 +27,7 @@
                 </ul>
             </li>
             <?php }?>
-            <li class="active">
-                <a href="/admin/customer"><i class="fas fa-warehouse"></i>Khách hàng</a>
-            </li>
 
-            <li>
-                <a href="/admin/kho"><i class="fas fa-warehouse"></i>Kho</a>
-            </li>
             {{-- <li>
                 <a><i class="fas fa-user-friends"></i>Nhân viên</a>
             </li>

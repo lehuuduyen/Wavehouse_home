@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateSupplierRequest;
+use App\Models\History;
 use App\Models\Products;
 use App\Models\ProductsImport;
 use App\Models\Supplier;
@@ -24,15 +25,15 @@ class ProductController extends BaseController
     {
         $param = (isset($_GET['s'])) ? $_GET['s'] : "";
         if ($param) {
-            $products = Products::where('name', 'like', '%' . $param . '%')->orWhere('code', 'like', '%' . $param . '%')->orWhere('barcode', 'like', '%' . $param . '%')->get();
+            $History = History::where('name', 'like', '%' . $param . '%')->orWhere('code', 'like', '%' . $param . '%')->orWhere('barcode', 'like', '%' . $param . '%')->get();
         } else {
-            $products = Products::get();
+            $History = History::get();
         }
 
         return response()->json(
             array(
                 'status' => 'success',
-                'data' => $products
+                'data' => $History
             ),
             200
         );

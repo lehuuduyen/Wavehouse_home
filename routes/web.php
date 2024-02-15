@@ -28,7 +28,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         return view('products');
     })->middleware('role:2');
 
-    Route::get('/products', function () {
+    Route::get('/history', function () {
         return view('products');
     })->middleware('role:2');
     Route::get('/coupon', function () {

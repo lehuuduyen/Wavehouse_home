@@ -26,7 +26,7 @@ Route::post('signin', 'App\Http\Controllers\Auth\LoginController@signIn');
 Route::post('register', 'App\Http\Controllers\Auth\RegisterController@registerApi');
 
 Route::apiResource('supplier', SupplierController::class);
-Route::apiResource('product', ProductController::class);
+Route::apiResource('buy', ProductController::class);
 Route::apiResource('coupon', CouponController::class);
 Route::apiResource('kho', KhoController::class);
 Route::apiResource('customer', CustomerController::class);
