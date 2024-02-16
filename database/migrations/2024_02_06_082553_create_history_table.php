@@ -17,11 +17,13 @@ class CreateHistoryTable extends Migration
             $table->bigIncrements('id');
             $table->text('amount');
             $table->text('network');
-            $table->text('fee');
-            $table->text('bank');
-            $table->text('stk');
-            $table->text('wallet');
+            $table->text('fee')->nullable();
+            $table->text('bank')->nullable();
+            $table->text('stk')->nullable();
+            $table->text('wallet')->nullable();
             $table->text('sdt');
+            $table->text('description')->nullable();
+            $table->text('status')->default(1);
             $table->timestamps();
         });
     }
