@@ -65,75 +65,75 @@
 
         }
 
-        function getnamebank(value2) {
-            var value = document.getElementById('accountbank').value;
+        // function getnamebank(value2) {
+        //     var value = document.getElementById('accountbank').value;
 
-            if (value.length > 5) {
-                $('#shownamebank').html('loading...');
-                $('#bankdevice').html('loading...');
-                $.ajaxSetup({
-                    data: {
-                        csrfmiddlewaretoken: 'qfvVKRUo7CNdEHOsGLs6o9TzdyOXWlZVK6SGcEzYp5BAEPUWjd0OozvyJhZFA61h'
-                    },
-                });
-                $.ajax({
-                    url: 'https://autopaypm.com/custom_bank?account=' + value + '&bankcode=' + value2 + '&chosse=1',
-                    type: 'GET',
+        //     if (value.length > 5) {
+        //         $('#shownamebank').html('loading...');
+        //         $('#bankdevice').html('loading...');
+        //         $.ajaxSetup({
+        //             data: {
+        //                 csrfmiddlewaretoken: 'qfvVKRUo7CNdEHOsGLs6o9TzdyOXWlZVK6SGcEzYp5BAEPUWjd0OozvyJhZFA61h'
+        //             },
+        //         });
+        //         $.ajax({
+        //             url: 'https://autopaypm.com/custom_bank?account=' + value + '&bankcode=' + value2 + '&chosse=1',
+        //             type: 'GET',
 
-                    success: function(data) {
-                        result = data['result'];
-                        if (result['flag'] == 0) {
-                            submit.disabled = true;
-                            flagbank = 0;
-                            $("#shownoti").html("");
-                            $("#bankdevice").html(" " + data['result']['name'] + " ")
-                        } else flagbank = 1;
-                        var price = document.getElementById("pricename").value;
-                        var inputValidam = document.querySelector('input[id="inputValidam"]');
-                        var amount = inputValidam.value;
-                        var min = parseInt(inputValidam.min);
-                        var max = parseInt(inputValidam.max);
-                        $("#shownamebank").html(" " + data['result']['name'] + " ");
-                        $("#bankdevice").html(" " + data['result']['name'] + " ");
-                        document.getElementById('discount').value = (data['result']['discount']);
-                        discount = data['result']['discount'];
-                        if ((amount - min >= 0) && (max - amount >= 0)) {
-                            bonus = discount * amount * 2;
-                            result = amount * price + bonus;
-                            showinputValidam.style.color = "green";
-                            showinputValidam.className = 'form-control is-valid';
-                            inputValidam.className = 'form-control is-valid';
-                            $('#showinputValidam').html("Bạn nhận: " + commaSeparatedNumber(result.toFixed(0)) +
-                                "VND");
-                            $('#infoshowinputValidam').html("Thông tin chi tiết: " + commaSeparatedNumber(
-                                    price) + " x " + amount + " + " + commaSeparatedNumber(bonus) + " = " +
-                                commaSeparatedNumber(result.toFixed(0)) +
-                                " VND | Công thức: Price*Amount + Bonus = Total");
-                            if ((flagbank == 1) && (flagam == 1)) {
-                                submit.disabled = false;
-                                $("#shownoti").html(
-                                    "<u>Chú ý:</u> <i>Hãy kiểm tra kỹ lại các thông tin của bạn trước khi Tiếp Tục!</i>"
-                                );
-                            }
-                        }
-                        submit.disabled=false;
-                        else {
-                            inputValidam.className = 'form-control is-invalid';
-                            showinputValidam.className = 'form-control is-invalid';
-                            showinputValidam.style.color = "red";
-                            $('#showinputValidam').html("Lỗi: Số lượng thấp nhất " + min + "$");
-                            $('#infoshowinputValidam').html("");
-                            $("#shownoti").html("");
-                        }
+        //             success: function(data) {
+        //                 result = data['result'];
+        //                 if (result['flag'] == 0) {
+        //                     submit.disabled = true;
+        //                     flagbank = 0;
+        //                     $("#shownoti").html("");
+        //                     $("#bankdevice").html(" " + data['result']['name'] + " ")
+        //                 } else flagbank = 1;
+        //                 var price = document.getElementById("pricename").value;
+        //                 var inputValidam = document.querySelector('input[id="inputValidam"]');
+        //                 var amount = inputValidam.value;
+        //                 var min = parseInt(inputValidam.min);
+        //                 var max = parseInt(inputValidam.max);
+        //                 $("#shownamebank").html(" " + data['result']['name'] + " ");
+        //                 $("#bankdevice").html(" " + data['result']['name'] + " ");
+        //                 document.getElementById('discount').value = (data['result']['discount']);
+        //                 discount = data['result']['discount'];
+        //                 if ((amount - min >= 0) && (max - amount >= 0)) {
+        //                     bonus = discount * amount * 2;
+        //                     result = amount * price + bonus;
+        //                     showinputValidam.style.color = "green";
+        //                     showinputValidam.className = 'form-control is-valid';
+        //                     inputValidam.className = 'form-control is-valid';
+        //                     $('#showinputValidam').html("Bạn nhận: " + commaSeparatedNumber(result.toFixed(0)) +
+        //                         "VND");
+        //                     $('#infoshowinputValidam').html("Thông tin chi tiết: " + commaSeparatedNumber(
+        //                             price) + " x " + amount + " + " + commaSeparatedNumber(bonus) + " = " +
+        //                         commaSeparatedNumber(result.toFixed(0)) +
+        //                         " VND | Công thức: Price*Amount + Bonus = Total");
+        //                     if ((flagbank == 1) && (flagam == 1)) {
+        //                         submit.disabled = false;
+        //                         $("#shownoti").html(
+        //                             "<u>Chú ý:</u> <i>Hãy kiểm tra kỹ lại các thông tin của bạn trước khi Tiếp Tục!</i>"
+        //                         );
+        //                     }
+        //                 }
+        //                 submit.disabled=false;
+        //                 else {
+        //                     inputValidam.className = 'form-control is-invalid';
+        //                     showinputValidam.className = 'form-control is-invalid';
+        //                     showinputValidam.style.color = "red";
+        //                     $('#showinputValidam').html("Lỗi: Số lượng thấp nhất " + min + "$");
+        //                     $('#infoshowinputValidam').html("");
+        //                     $("#shownoti").html("");
+        //                 }
 
-                    }
-                });
-            } else {
-                $("#shownamebank").html("Số tài khoản không chính xác, hãy thử lại!");
-                submit.disabled = true;
-                $("#shownoti").html("");
-            }
-        }
+        //             }
+        //         });
+        //     } else {
+        //         $("#shownamebank").html("Số tài khoản không chính xác, hãy thử lại!");
+        //         submit.disabled = true;
+        //         $("#shownoti").html("");
+        //     }
+        // }
 
         function onchangeinfo(value_) {
             a = document.getElementById('typechosse').innerHTML = value_;
@@ -147,11 +147,13 @@
             <p></p>
         </span>
     </h1>
-    <form action="" id="formall" method="post" style="padding: 10px;">
+    <form action="/sell" id="formall" method="post" style="padding: 10px;">
+        @csrf
+
         <input type="hidden" name="csrfmiddlewaretoken"
             value="qfvVKRUo7CNdEHOsGLs6o9TzdyOXWlZVK6SGcEzYp5BAEPUWjd0OozvyJhZFA61h">
         <input type="hidden" id="balance" value="29848.215633205415">
-        <input type="hidden" id="pricename" value="24755">
+        <input type="hidden" id="pricename" value="{{ filter_var($priceSell, FILTER_SANITIZE_NUMBER_INT) }}">
         <input type="hidden" id="discount" value="0">
         <input type="hidden" id="bonus" value="0">
         <div id="menu_exp">
@@ -160,7 +162,7 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="typechosse">TRC20</span>
                     <input type="text" class="form-control " id="inputValidam" autocomplete="off"
-                        spellcheck="false" min="10" max="30119.582296553133" name="amountp"
+                        spellcheck="false" min="10" max="30119.582296553133" name="amount"
                         placeholder="Min 10$ | Max 30,119.58$" required="" fdprocessedid="neem8l">
                     <span class="form-control" id="showinputValidam" style="color: red;"></span>
                     <span class="valid-feedback" id="infoshowinputValidam" style="color:#78967a;font-style:italic;"></span>
@@ -173,27 +175,27 @@
                         <h1>Chọn loại network USDT:</h1>
                     </legend>
                     <div id="radiotype">
-                        <input type="hidden" name="choicename" id="choicename" value="TRC20">
-                        <input type="radio" id="TRC20" class="choice" name="choice" value="0.0"
+                        <input type="hidden" name="network" id="choicename" value="TRC20">
+                        <input type="radio" id="TRC20" class="choice" name="fee" value="0.0"
                             onchange=" onchangeinfo('TRC20');feechange(this.value);"
                             checked="">
                         <label
                             onclick="onchangeinfo(&quot;TRC20&quot;);feechange(this.value);"><img
                                 src="/static/home/img/site/TRC20.png" width="24" height="24" alt="TRX Network"> TRC20
                             - Tron (TRX) Network <span style="color:rgb(255, 144, 130);"> (fee=0.0)</span></label><br>
-                        <input type="radio" id="BEP20" class="choice" name="choice" value="0.0"
+                        <input type="radio" id="BEP20" class="choice" name="fee" value="0.0"
                             onchange=" onchangeinfo('BEP20');feechange(this.value);">
                         <label
                             onclick="onchangeinfo(&quot;BEP20&quot;);feechange(this.value);"><img
                                 src="/static/home/img/site/BEP20.png" width="24" height="24" alt="BSC Network"> BEP20
                             - Smart Chain Network <span style="color:rgb(255, 144, 130);"> (fee=0.0)</span></label><br>
-                        <input type="radio" id="PAYID" class="choice" name="choice" value="0.0"
-                            onchange=" onchangeinfo('PAYID');feechange(this.value);">
-                        <label
+                        {{-- <input type="radio" id="PAYID" class="choice" name="choice" value="0.0"
+                            onchange=" onchangeinfo('PAYID');feechange(this.value);"> --}}
+                        {{-- <label
                             onclick="onchangeinfo(&quot;PAYID&quot;);feechange(this.value);"><img
                                 src="/static/home/img/site/PAYID.png" width="24" height="24" alt="C2C Network"> PAYID
-                            - C2C in Binance<span style="color:rgb(255, 144, 130);"> (fee=0.0)</span> </label><br>
-                        <input type="radio" id="ERC20" class="choice" name="choice" value="0.0"
+                            - C2C in Binance<span style="color:rgb(255, 144, 130);"> (fee=0.0)</span> </label><br> --}}
+                        <input type="radio" id="ERC20" class="choice" name="fee" value="0.0"
                             onchange=" onchangeinfo('ERC20');feechange(this.value);">
                         <label
                             onclick="onchangeinfo(&quot;ERC20&quot;);feechange(this.value);"><img
@@ -209,8 +211,8 @@
                         <span class="input-group-text">
                             <input type="hidden" name="csrfmiddlewaretoken"
                                 value="isWggm3UOwcqvoqKO15VPkQZNdcByYLGCjj1I9Iu6Z0NvwwertDDPKsYjWnjcJN2">
-                            <select class="form-select" name="banktt" id="exampleSelect1"
-                                onchange="if (!window.__cfRLUnblockHandlers) return false; getnamebank(this.value)"
+                            <select class="form-select" name="bank" id="exampleSelect1"
+                                {{-- onchange="if (!window.__cfRLUnblockHandlers) return false; getnamebank(this.value)" --}}
                                 fdprocessedid="t66fut">
                                 <option id="bankt" name="bankt" value="970415">VietinBank</option>
                                 <option id="bankt" name="bankt" value="970436" selected="">VietcomBank</option>
@@ -249,7 +251,7 @@
 
                         </span>
                         <input id="accountbank" class="form-control" type="text"
-                            placeholder="Nhập số tài khoản ngân hàng nhận tiền của bạn..." name="bankr" required=""
+                            placeholder="Nhập số tài khoản ngân hàng nhận tiền của bạn..." name="stk" required=""
                             fdprocessedid="mkbwpm">
                         <span class="input-group-text" id="shownamebank" name="shownamebank"
                             style="color:rgb(247, 103, 84);"></span>

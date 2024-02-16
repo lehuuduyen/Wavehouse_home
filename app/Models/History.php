@@ -10,15 +10,18 @@ class History extends Model
     use HasFactory;
     protected $table = 'history';
     protected $fillable = [
-    "amount",	
-   "network",    
-   "fee",    
-   "bank",    
-   "stk",    
-   "wallet",    
-   "sdt",    
-   "description",    
+    "amount",
+   "network",
+   "fee",
+   "price",
+   "total",
+   "bank",
+   "stk",
+   "wallet",
+   "sdt",
+   "description",
     "status",
+    "status_process",
     "created_at",
     "updated_at",
     ];

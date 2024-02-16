@@ -21,6 +21,9 @@
                 document.getElementById('inputValidam').placeholder = "Min 10$ | Max " + balance + "$";
                 document.getElementById('inputValidusdt').placeholder = 'Nhập địa chỉ ví ' + value_ + ' nhận của bạn...';
             }
+            $('#inputValidusdt').trigger("change");
+            $('#sdt').trigger("change");
+
             document.getElementById('choicename').value = value_;
 
         }
@@ -138,6 +141,7 @@
         // }
     </script>
 
+
     <h1 style="border: 1px dashed #eaeaea;font-size: 16px; padding: 3px; width:100%; text-align: center;">
         Mua USDT BEP20 - TRC20 - ERC20 - PayID/BinaceID
         <span style="color:rgb(255, 144, 130);" id="inffo">| Giá: {{ $priceBuy }} $| Tối Đa:
@@ -150,13 +154,35 @@
         @csrf
         <input type="hidden" name="csrfmiddlewaretoken"
             value="9EbIS3K7GY9kOa9Dj0AhVZKhLEC5UJbutvytkQpHYrXHOif7Ws8ZVpmghnNNyudQ">
+        @foreach ($errors->all() as $error)
+            <div style="color: red">{{ $error }}</div>
+        @endforeach
+        <?php
+        if(session('result')){
+            $result = session('result');
+            ?>
+                <h1 style="color: #21b72f">Mua thành công</h1>
+                <h4 style=""><b style="color: blanchedalmond">Số lượng mua:</b> <span><?=$result['amount']?></span></h4>
+                <h4 style=""><b style="color: blanchedalmond">Network:</b> <span><?=$result['network']?></span></h4>
+                <h4 style=""><b style="color: blanchedalmond">Fee:</b> <span><?=$result['fee']?></span></h4>
+                <h4 style=""><b style="color: blanchedalmond">Tên ngân hàng:</b> <span><?=$result['bank']?></span></h4>
+                <h4 style=""><b style="color: blanchedalmond">Stk:</b> <span><?=$result['stk']?></span></h4>
+                <h4 style=""><b style="color: blanchedalmond">Địa chỉ ví:</b> <span><?=$result['wallet']?></span></h4>
+                <h4 style=""><b style="color: blanchedalmond">SĐT:</b> <span><?=$result['sdt']?></span></h4>
+                <h4 style=""><b style="color: blanchedalmond">Price:</b> <span><?=$result['price']?></span></h4>
+                <h4 style=""><b style="color: blanchedalmond">Total:</b> <span><?=$result['total']?></span></h4>
+            <?php
+
+
+        }else{
+        ?>
         <div id="menu_exp">
             <div class="row" id="row-amount">
                 <div class="label" id="label-amount">Nhập số lượng USDT bạn muốn mua:</div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="typechosse">TRC20</span>
                     <input type="text" class="form-control " id="inputValidam" autocomplete="off" spellcheck="false"
-                        min="10" max="<?= $max ?>" name="amountr"
+                        min="10" max="<?= $max ?>" name="amount"
                         placeholder="Min 10$ | Max <?= number_format($max) ?>$" required="" fdprocessedid="hboe2a">
                     <span class="form-control" id="showinputValidam" style="color: green;"></span>
                     <span class="valid-feedback" id="infoshowinputValidam" style="color:#78967a;font-style:italic;"></span>
@@ -169,20 +195,20 @@
                         <h1>Chọn loại network USDT:</h1>
                     </legend>
                     <div id="radiotype">
-                        <input type="hidden" name="choicename" id="choicename" value="TRC20">
-                        <input type="radio" id="TRC20" class="choice" name="choice" value="1.0"
+                        <input type="hidden" name="network" id="choicename" value="TRC20">
+                        <input type="radio" id="TRC20" class="choice" name="fee" value="1.0"
                             onchange=" onchangeinfo('TRC20');feechange(this.value);" checked="">
                         <label
                             onclick=" document.getElementById(&quot;TRC20&quot;).checked = true;onchangeinfo(&quot;TRC20&quot;);feechange(&quot;1.0&quot;);"><img
                                 src="/static/home/img/site/TRC20.png" width="24" height="24" alt="TRX Network"> TRC20
                             - Tron (TRX) Network<span style="color:rgb(255, 144, 130);"> (fee=1.0)</span></label><br>
-                        <input type="radio" id="BEP20" class="choice" name="choice" value="0.19"
+                        <input type="radio" id="BEP20" class="choice" name="fee" value="0.19"
                             onchange=" onchangeinfo('BEP20');feechange(this.value);">
                         <label
                             onclick=" document.getElementById(&quot;BEP20&quot;).checked = true;onchangeinfo(&quot;BEP20&quot;);feechange(&quot;0.19&quot;);"><img
                                 src="/static/home/img/site/BEP20.png" width="24" height="24" alt="BSC Network"> BEP20
                             - Smart Chain Network<span style="color:rgb(255, 144, 130);"> (fee=0.19)</span></label><br>
-                        <input type="radio" id="ERC20" class="choice" name="choice" value="6.0"
+                        <input type="radio" id="ERC20" class="choice" name="fee" value="6.0"
                             onchange=" onchangeinfo('ERC20');feechange(this.value); ">
                         <label
                             onclick=" document.getElementById(&quot;ERC20&quot;).checked = true;onchangeinfo(&quot;ERC20&quot;);feechange(&quot;6.0&quot;);"><img
@@ -198,7 +224,7 @@
                     <div class="input-group mb-3">
                         <span class="input-group-text">
 
-                            <select class="form-select" name="banktt" id="exampleSelect1" {{-- onchange=" getnamebank(this.value)" fdprocessedid="edi0o" --}}>
+                            <select class="form-select" name="bank" id="exampleSelect1" {{-- onchange=" getnamebank(this.value)" fdprocessedid="edi0o" --}}>
                                 <option id="bankt" name="bankt" value="VietinBank">VietinBank</option>
                                 <option id="bankt" name="bankt" value="VietcomBank" selected> VietcomBank</option>
                                 <option id="bankt" name="bankt" value="Vietbank">Vietbank</option>
@@ -236,7 +262,7 @@
 
                         </span>
                         <input id="accountbank" class="form-control" type="text"
-                            placeholder="Nhập số tài khoản ngân hàng bạn thanh toán..." name="bankp" required=""
+                            placeholder="Nhập số tài khoản ngân hàng bạn thanh toán..." name="stk" required=""
                             fdprocessedid="ukhh9">
                         <span class="input-group-text" id="shownamebank" name="shownamebank"
                             style="color:rgb(248, 121, 104);"> </span>
@@ -246,7 +272,7 @@
             </div>
             <div class="row" id="row-to">
                 <div class="input-group mb-3">@csrf
-                    <input type="text" class="form-control" id="inputValidusdt" name="walletr"
+                    <input type="text" class="form-control" id="inputValidusdt" name="wallet"
                         placeholder="Nhập địa chỉ ví TRC20 nhận của bạn..." required="" fdprocessedid="3agd8j">
                     <input id="sdt" type="text" class="form-control"
                         placeholder="Nhập số điện thoại của bạn..." name="sdt" required=""
@@ -275,6 +301,10 @@
             </div>
             <span id="shownoti" style="color:rgb(247, 244, 114); text-align: center;"> </span>
         </div>
+        <?php
+        }
+        ?>
+
     </form>
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">

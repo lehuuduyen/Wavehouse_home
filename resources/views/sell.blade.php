@@ -197,7 +197,7 @@
         function getProducts(s = "") {
             let html = ``;
             $.ajax({
-                url: "/api/buy?s=" + s,
+                url: "/api/sell?s=" + s,
                 type: "get",
                 success: function(response) {
                     let data = response.data
@@ -215,7 +215,6 @@
                                 <td>
                                     <p>Ngân hàng: ${val.bank}</p>
                                     <p>STK: ${val.stk}</p>
-                                    <p>Địa chỉ ví: ${val.wallet}</p>
                                     <p>SĐT: ${val.sdt}</p>
                                     </td>
                                 <td><textarea id="textarea${val.id}" class="form-control">${(val.description)?val.description:""}</textarea></td>

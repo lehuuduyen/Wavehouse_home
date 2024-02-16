@@ -27,7 +27,7 @@ $(document).ready(function () {
         var max = parseInt(inputValidam.max);
         if (min < 10) fee = value * 0.5 / 100;
         else {
-            checked = document.querySelector('input[name="choice"]:checked').value;
+            checked = document.querySelector('input[name="fee"]:checked').value;
             fee = parseFloat(checked)
         }
         if ((isNaN(value) == true)) {
@@ -54,7 +54,7 @@ $(document).ready(function () {
                 if (value - max > 0) {
                     if (min == 3) fee = max * 0.5 / 100;
                     else {
-                        checked = document.querySelector('input[name="choice"]:checked').value;
+                        checked = document.querySelector('input[name="fee"]:checked').value;
                         fee = parseFloat(checked)
                     }
                     value = max;
@@ -182,6 +182,8 @@ $(document).ready(function () {
         if ((text.length > 11 && text.charAt(0) == '+' && !isNaN(text.substring(1))) || (text.length > 9 && !isNaN(text.substring(1)))) {
             sdt.className = 'form-control is-valid';
             flagbank = 1
+            console.log(flagbank,flagam,flagbankd);
+
             if ((flagbank == 1) && (flagam == 1) && (flagbankd == 1)) {
                 submit.disabled = false;
                 $("#shownoti").html("<u>Chú ý:</u> <i>Hãy kiểm tra kỹ lại các thông tin của bạn trước khi Tiếp Tục!</i>");

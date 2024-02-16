@@ -18,7 +18,8 @@
     <script src="{{ asset('assets/js/toastr.min.js') }}" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://kit.fontawesome.com/a60e3c87cb.js" crossorigin="anonymous"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
     <script>
         function BtnLoading(elem) {
             $(elem).attr("data-original-text", $(elem).html());
@@ -63,7 +64,7 @@
             // original length
             var original_len = input_val.length;
 
-            // initial caret position 
+            // initial caret position
             var caret_pos = input.prop("selectionStart");
 
             // check for decimal
