@@ -17,6 +17,25 @@ class HomeController extends BaseController
     public function __construct()
     {
     }
+
+    public function index()
+    {
+        $priceSell = 0;
+        $priceBuy = 0;
+
+        $gia_usd = $this->getGiaUsd();
+
+        $price  = file_get_contents('https://api.binance.com/api/v3/ticker/price?symbol=FDUSDUSDT');
+
+        if ($price) {
+            $giaCoint =  json_decode($price)->price;
+            $price = floor($giaCoint * $gia_usd);
+            $priceSell = number_format($this->calPriceSell($price));
+
+            $priceBuy = number_format($this->calPriceBuy($price));
+        }
+        return view('page.home', ['priceSell' => $priceSell, 'priceBuy' => $priceBuy]);
+    }
     public function getGiaUsd()
     {
         $price  = file_get_contents('https://open.er-api.com/v6/latest/USD');
@@ -91,6 +110,7 @@ class HomeController extends BaseController
             //throw $th;
         }
     }
+
     public function create_sell(Request $request)
     {
 
