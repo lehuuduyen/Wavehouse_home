@@ -29,6 +29,8 @@
         }
 
         function feechange(fee) {
+        var submit = document.getElementById("submit");
+
             var min = document.getElementById("inputValidam").min;
             var value = document.getElementById("inputValidam").value;
             var valueusd = document.querySelector('input[id="inputValidusdt"]');
@@ -43,6 +45,7 @@
                 discount = document.getElementById('discount').value;
                 // discount=data['result']['discount'];
                 if ((amount >= min) && (amount <= max)) {
+                    console.log(submit);
                     bonus = discount * amount * 2;
                     result = amount * price + bonus;
                     showinputValidam.style.color = "green";
@@ -202,18 +205,18 @@
                             onclick=" document.getElementById(&quot;TRC20&quot;).checked = true;onchangeinfo(&quot;TRC20&quot;);feechange(&quot;1.0&quot;);"><img
                                 src="/static/home/img/site/TRC20.png" width="24" height="24" alt="TRX Network"> TRC20
                             - Tron (TRX) Network<span style="color:rgb(255, 144, 130);"> (fee=1.0)</span></label><br>
-                        <input type="radio" id="BEP20" class="choice" name="fee" value="0.19"
+                        <input type="radio" id="BEP20" class="choice" name="fee" value="0.2"
                             onchange=" onchangeinfo('BEP20');feechange(this.value);">
                         <label
-                            onclick=" document.getElementById(&quot;BEP20&quot;).checked = true;onchangeinfo(&quot;BEP20&quot;);feechange(&quot;0.19&quot;);"><img
+                            onclick=" document.getElementById(&quot;BEP20&quot;).checked = true;onchangeinfo(&quot;BEP20&quot;);feechange(&quot;0.2&quot;);"><img
                                 src="/static/home/img/site/BEP20.png" width="24" height="24" alt="BSC Network"> BEP20
-                            - Smart Chain Network<span style="color:rgb(255, 144, 130);"> (fee=0.19)</span></label><br>
-                        <input type="radio" id="ERC20" class="choice" name="fee" value="6.0"
+                            - Smart Chain Network<span style="color:rgb(255, 144, 130);"> (fee=0.2)</span></label><br>
+                        <input type="radio" id="ERC20" class="choice" name="fee" value="13.0"
                             onchange=" onchangeinfo('ERC20');feechange(this.value); ">
                         <label
-                            onclick=" document.getElementById(&quot;ERC20&quot;).checked = true;onchangeinfo(&quot;ERC20&quot;);feechange(&quot;6.0&quot;);"><img
+                            onclick=" document.getElementById(&quot;ERC20&quot;).checked = true;onchangeinfo(&quot;ERC20&quot;);feechange(&quot;13.0&quot;);"><img
                                 src="/static/home/img/site/ERC20.png" width="24" height="24" alt="ETH Network"> ERC20
-                            - Ethereum Network<span style="color:rgb(255, 144, 130);"> (fee=6.0)</span></label><br>
+                            - Ethereum Network<span style="color:rgb(255, 144, 130);"> (fee=13.0)</span></label><br>
                     </div>
                 </fieldset>
             </div>
