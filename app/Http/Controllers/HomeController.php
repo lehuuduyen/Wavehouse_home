@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\BaseController;
 use App\Models\History;
+use DateTime;
 
 class HomeController extends BaseController
 {
@@ -17,7 +18,29 @@ class HomeController extends BaseController
     public function __construct()
     {
     }
+    function formatDate($date) {
+        // Create DateTime objects for the given date and current date
+        $date = new DateTime($date);
+        $now = new DateTime();
 
+        // Calculate the difference between the dates
+        $diff = $now->diff($date);
+
+        // Format the output based on the difference
+        if ($diff->y > 0) {
+            return $diff->y . " năm trước";
+        } elseif ($diff->m > 0) {
+            return $diff->m . " tháng trước";
+        } elseif ($diff->d > 0) {
+            return $diff->d . " ngày trước";
+        } elseif ($diff->h > 0) {
+            return $diff->h . " giờ trước";
+        } elseif ($diff->i > 0) {
+            return $diff->i . " phút trước";
+        } else {
+            return "Vừa xong";
+        }
+    }
     public function index()
     {
         $priceSell = 0;
@@ -26,7 +49,10 @@ class HomeController extends BaseController
         $gia_usd = $this->getGiaUsd();
 
         $price  = file_get_contents('https://api.binance.com/api/v3/ticker/price?symbol=FDUSDUSDT');
-
+        $history = History::where('status_process',2)->orderBy('created_at','DESC')->limit(12)->get();
+        foreach($history as $key => $val){
+            $history[$key]['time']= $this->formatDate($val['created_at']);
+        }
         if ($price) {
             $giaCoint =  json_decode($price)->price;
             $price = floor($giaCoint * $gia_usd);
@@ -34,7 +60,7 @@ class HomeController extends BaseController
 
             $priceBuy = number_format($this->calPriceBuy($price));
         }
-        return view('page.home', ['priceSell' => $priceSell, 'priceBuy' => $priceBuy]);
+        return view('page.home', ['priceSell' => $priceSell, 'priceBuy' => $priceBuy,'history' => $history]);
     }
     public function getGiaUsd()
     {
@@ -110,12 +136,21 @@ class HomeController extends BaseController
             //throw $th;
         }
     }
+    public function Diachivi($addr){
+        $address = [
+            'TRC20'=>'129210983921890281098321021',
+            'BEP20 '=>'129210983921890281098321021',
+            'ERC20 '=>'129210983921890281098321021',
+        ];
+        return $address[$addr];
+    }
 
     public function create_sell(Request $request)
     {
 
         try {
             $data = $request->all();
+
 
             $rules = array(
                 'sdt' => 'required|string|max:255',
@@ -149,9 +184,12 @@ class HomeController extends BaseController
 
                 $result = History::create($data);
 
+                $result['address'] = $this->Diachivi($data['network']);
+
 
                 return redirect()->back()->with('result', $result);
             }
+
         } catch (\Throwable $th) {
 
             return redirect()->back()->withErrors($th->getMessage())->withInput();

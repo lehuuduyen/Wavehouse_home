@@ -59,7 +59,6 @@
                     $("#shownoti").html(
                         "<u>Chú ý:</u> <i>Hãy kiểm tra kỹ lại các thông tin của bạn trước khi Tiếp Tục!</i>");
                 }
-                // submit.disabled=false;
                 else {
                     inputValidam.className = 'form-control is-invalid';
                     showinputValidam.className = 'form-control is-invalid';

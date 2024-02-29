@@ -116,25 +116,44 @@
                         <div class="header"
                             style="background-color: #0b1f39;color: #e6e5e5;border: 0px;    padding: 14px 10px;">
                             Lịch sử giao dịch khách hàng:</div>
+                        <?php
 
+
+                        foreach($history as $val){
+
+
+                            if($val['status'] == 2){
+                                ?>
                         <div class="item" style="border: 0.5px solid #7d7d7d;">
-                            <div> <span style="color: rgb(6, 201, 94);">Bán 180.0 USD » VietinBank </span>
+                            <div> <span style="color: rgb(6, 201, 94);">Bán <?=$val['amount']?> USDT » <?=$val['bank']?> </span>
                                 <span id="comment" style="color:aliceblue;float:right;"> ... <span style="color:#ffc400">
                                         <i class="fa fa-star "></i> </span></span>
                             </div>
-                            <span style="color:rgb(209, 209, 209);float:right;margin-right:30px ;"> 10880… </span>
-                            <time class="timer" title="2024/01/29 16:45:51" datetime="16:45:51">2 phút
-                                trước</time>
+                            <span style="color:rgb(209, 209, 209);float:right;margin-right:30px ;"> <?=substr($val['stk'],0,4)?>... </span>
+                            <time class="timer" title="2024/01/29 16:45:51" datetime="16:45:51"><?=$val['time']?></time>
                         </div>
-
+                        <?php
+                            }else{
+                                ?>
                         <div class="item" style="border: 0.5px solid #7d7d7d;">
-                            <div> <span style="color: rgb(255, 80, 80);"> ACB » Mua 711.0 USDT </span>
-                                <span id="comment" style="color:aliceblue;float:right;"> ... <span
-                                        style="color:#ffc400">5 <i class="fa fa-star "></i> </span></span>
+                            <div> <span style="color: rgb(255, 80, 80);"> <?=$val['bank']?> » Mua <?=$val['amount']?> USDT </span>
+                                <span id="comment" style="color:aliceblue;float:right;"> ... <span style="color:#ffc400">5
+                                        <i class="fa fa-star "></i> </span></span>
                             </div>
-                            <span style="color:rgb(209, 209, 209);float:right;margin-right:30px ;"> 21062… </span>
-                            <time title="2024/01/29 16:37:55" datetime="16:37:55">10 phút trước</time>
+                            <span style="color:rgb(209, 209, 209);float:right;margin-right:30px ;"> <?=substr($val['stk'],0,4)?>... </span>
+                            <time title="2024/01/29 16:37:55" datetime="16:37:55"><?=$val['time']?></time>
                         </div>
+                        <?php
+                            }
+
+
+                        }
+
+
+                        ?>
+
+
+
 
                     </div>
                 </div>

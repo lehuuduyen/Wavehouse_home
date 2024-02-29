@@ -6,6 +6,14 @@ function commaSeparatedNumber(number) {
 var flagbank;
 var flagam;
 $(document).ready(function () {
+    function onchangeinfo(value_) {
+        console.log(value_);
+        a = document.getElementById('typechosse').innerHTML = value_;
+        b = document.getElementById('choicename').value = value_;
+
+    }
+    var submit = document.getElementById("submit");
+
     // $("#accountbank").on("change", function () {
     //     var value = $(this).val();
     //     var select = document.getElementById('exampleSelect1');
