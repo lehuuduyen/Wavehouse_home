@@ -8,6 +8,7 @@
             if(Auth::user()->role == 1){?>
             <li>
                 <a> <i class="fas fa-cube"></i>Trang chủ</a>
+                <a> <i class="fas fa-cube"></i>Trang chủ</a>
                 <ul class="sub">
                     <li>
                         <a href="/admin/history/"> <i class="fa-fw fa fa-th"></i>Lịch sử mua</a>

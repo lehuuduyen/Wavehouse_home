@@ -17,6 +17,8 @@ class CreateHistoryTable extends Migration
             $table->bigIncrements('id');
             $table->text('amount');
             $table->text('network');
+            $table->text('price')->nullable();
+            $table->text('total')->nullable();
             $table->text('fee')->nullable();
             $table->text('bank')->nullable();
             $table->text('stk')->nullable();
@@ -24,6 +26,7 @@ class CreateHistoryTable extends Migration
             $table->text('sdt');
             $table->text('description')->nullable();
             $table->text('status')->default(1);
+            $table->text('status_process')->default(1);
             $table->timestamps();
         });
     }

@@ -21,13 +21,30 @@ class ProductController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function buy()
     {
-        $param = (isset($_GET['s'])) ? $_GET['s'] : "";
+        $param = (isset($_GET['s'])) ? $_GET['s'] : "" ;
         if ($param) {
-            $History = History::where('name', 'like', '%' . $param . '%')->orWhere('code', 'like', '%' . $param . '%')->orWhere('barcode', 'like', '%' . $param . '%')->get();
+            $History = History::where('sdt', 'like', '%' . $param . '%')->where('status',1)->orderBy('created_at','DESC')->get();
         } else {
-            $History = History::get();
+            $History = History::where('status',1)->orderBy('created_at','DESC')->get();
+        }
+
+        return response()->json(
+            array(
+                'status' => 'success',
+                'data' => $History
+            ),
+            200
+        );
+    }
+    public function sell()
+    {
+        $param = (isset($_GET['s'])) ? $_GET['s'] : "" ;
+        if ($param) {
+            $History = History::where('sdt', 'like', '%' . $param . '%')->where('status',2)->orderBy('created_at','DESC')->get();
+        } else {
+            $History = History::where('status',2)->orderBy('created_at','DESC')->get();
         }
 
         return response()->json(
@@ -50,6 +67,14 @@ class ProductController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function update_history(Request $request)
+    {
+        $data = $request->all();
+
+
+        $result = History::where('id',$data['id'])->update(['status_process'=>$data['select'],'description'=>$data['textArea']]);
+        return $this->responseSuccess($data,'');
+    }
     public function store(Request $request)
     {
         //
