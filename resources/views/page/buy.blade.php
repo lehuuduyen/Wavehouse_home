@@ -196,26 +196,31 @@
                     <legend>
                         <h1>Chọn loại network USDT:</h1>
                     </legend>
+                    <?php
+                    $feeTRC20 = '1.0';
+                    $feeBEP20 = '0.22';
+                    $feeERC20 = '15.0';
+                    ?>
                     <div id="radiotype">
                         <input type="hidden" name="network" id="choicename" value="TRC20">
-                        <input type="radio" id="TRC20" class="choice" name="fee" value="1.0"
+                        <input type="radio" id="TRC20" class="choice" name="fee" value="<?=$feeTRC20?>"
                             onchange=" onchangeinfo('TRC20');feechange(this.value);" checked="">
                         <label
-                            onclick=" document.getElementById(&quot;TRC20&quot;).checked = true;onchangeinfo(&quot;TRC20&quot;);feechange(&quot;1.0&quot;);"><img
+                            onclick=" document.getElementById(&quot;TRC20&quot;).checked = true;onchangeinfo(&quot;TRC20&quot;);feechange(&quot;<?=$feeTRC20?>&quot;);"><img
                                 src="/static/home/img/site/TRC20.png" width="24" height="24" alt="TRX Network"> TRC20
-                            - Tron (TRX) Network<span style="color:rgb(255, 144, 130);"> (fee=1.0)</span></label><br>
-                        <input type="radio" id="BEP20" class="choice" name="fee" value="0.2"
+                            - Tron (TRX) Network<span style="color:rgb(255, 144, 130);"> (fee=<?=$feeTRC20?>)</span></label><br>
+                        <input type="radio" id="BEP20" class="choice" name="fee" value="<?=$feeBEP20?>"
                             onchange=" onchangeinfo('BEP20');feechange(this.value);">
                         <label
-                            onclick=" document.getElementById(&quot;BEP20&quot;).checked = true;onchangeinfo(&quot;BEP20&quot;);feechange(&quot;0.2&quot;);"><img
+                            onclick=" document.getElementById(&quot;BEP20&quot;).checked = true;onchangeinfo(&quot;BEP20&quot;);feechange(&quot;<?=$feeBEP20?>&quot;);"><img
                                 src="/static/home/img/site/BEP20.png" width="24" height="24" alt="BSC Network"> BEP20
-                            - Smart Chain Network<span style="color:rgb(255, 144, 130);"> (fee=0.2)</span></label><br>
-                        <input type="radio" id="ERC20" class="choice" name="fee" value="13.0"
+                            - Smart Chain Network<span style="color:rgb(255, 144, 130);"> (fee=<?=$feeBEP20?>)</span></label><br>
+                        <input type="radio" id="ERC20" class="choice" name="fee" value="<?=$feeERC20?>"
                             onchange=" onchangeinfo('ERC20');feechange(this.value); ">
                         <label
-                            onclick=" document.getElementById(&quot;ERC20&quot;).checked = true;onchangeinfo(&quot;ERC20&quot;);feechange(&quot;13.0&quot;);"><img
+                            onclick=" document.getElementById(&quot;ERC20&quot;).checked = true;onchangeinfo(&quot;ERC20&quot;);feechange(&quot;<?=$feeERC20?>&quot;);"><img
                                 src="/static/home/img/site/ERC20.png" width="24" height="24" alt="ETH Network"> ERC20
-                            - Ethereum Network<span style="color:rgb(255, 144, 130);"> (fee=13.0)</span></label><br>
+                            - Ethereum Network<span style="color:rgb(255, 144, 130);"> (fee=<?=$feeERC20?>)</span></label><br>
                     </div>
                 </fieldset>
             </div>

@@ -64,7 +64,7 @@
         <section class="clb main main-content ng-scope" ng-view="">
             <section class="mainRight ng-scope">
                 <section class="mainWrap fll w100">
-                    <h1>Giao dịch mua</h1>
+                    <h1>Giao dịch bán</h1>
 
                     <article class="header-filter header-filter-product headerContent columnViewTwo">
                         @include('layouts.add_product')
@@ -73,7 +73,7 @@
                         @include('layouts.add_position')
                         <div class="header-filter-search">
 
-                            <form action="/admin/history" id="formall" method="get">
+                            <form action="/admin/history/sell" id="formall" method="get">
                                 <div class="input-group">
 
                                     <input type="text" name="s" kv-filter-search="" ng-model="filterQuickSearch"

@@ -272,7 +272,7 @@
         }
 
         #k20a6lc3q6ao1706521717620.widget-visible {
-            display: block !important;
+            display: none !important;
         }
 
         @media print {
@@ -387,6 +387,13 @@
                         <a class="nav-link active" href="/">Trang Chủ
                             <span class="visually-hidden">(hiện tại)</span>
                         </a>
+                    </li>
+                    <li class="nav-item">
+                        <form class="d-flex" method="POST">
+                            <input type="hidden" name="csrfmiddlewaretoken" value="H3OjRbCJmaQ0uedmRh9EkufzUBjrKw8BLEgVsOQOKdyrLuLHn88HpLL2pO85RZcE">
+                            <input class="form-control me-sm-2" type="text" placeholder="Điền mã đơn hàng..." name="search" id="search">
+                            <button class="btn btn-secondary my-2 my-sm-0" id="btnsearch" type="submit">Search</button>
+                            </form>
                     </li>
                     {{-- <li class="nav-item">
                         <a class="nav-link" href="/verify">Xác Minh</a>

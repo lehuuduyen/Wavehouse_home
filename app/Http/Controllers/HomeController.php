@@ -191,10 +191,10 @@ class HomeController extends BaseController
             }
 
         } catch (\Throwable $th) {
+            throw $th;
 
             return redirect()->back()->withErrors($th->getMessage())->withInput();
 
-            //throw $th;
         }
     }
 
