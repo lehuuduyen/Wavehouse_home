@@ -103,7 +103,7 @@ class HomeController extends BaseController
 
             $gia_usd = $this->getGiaUsd();
             $max_usd = $this->getMaxUsd($gia_usd);
-            $price  = file_get_contents('https://api.binance.com/api/v3/ticker/price?symbol=FDUSDUSDT');
+            $price  = file_get_contents('https://www.kucoin.com/_api/otc/ad/list?status=PUTUP&currency=USDT&legal=VND&page=1&pageSize=1&side=SELL&amount=&payTypeCodes=&c=599a192864b44432897171ea659df91b&lang=vi_VN');
 
             if ($price) {
                 $giaCoint =  json_decode($price)->price;
@@ -166,7 +166,7 @@ class HomeController extends BaseController
             $data = $request->all();
 
             $gia_usd = $this->getGiaUsd();
-            $price  = file_get_contents('https://api.binance.com/api/v3/ticker/price?symbol=FDUSDUSDT');
+            $price  = file_get_contents('https://www.kucoin.com/_api/otc/ad/list?status=PUTUP&currency=USDT&legal=VND&page=1&pageSize=1&side=BUY&amount=&payTypeCodes=&c=599a192864b44432897171ea659df91b&lang=vi_VN');
 
             if ($price) {
                 $giaCoint =  json_decode($price)->price;
@@ -206,12 +206,12 @@ class HomeController extends BaseController
 
     public function calPriceBuy($price)
     {
-        $priceSell =  (float)  $price + 200;
+        $priceSell =  $price + 200;
         return $priceSell;
     }
     public function calPriceSell($price)
     {
-        $priceSell =  (float)  $price - 200;
+        $priceSell =  $price - 200;
         return $priceSell;
     }
     public function getMaxUsd($gia_usd)
@@ -233,12 +233,15 @@ class HomeController extends BaseController
 
         $max_usd = $this->getMaxUsd($gia_usd);
 
-        $price  = file_get_contents('https://api.binance.com/api/v3/ticker/price?symbol=FDUSDUSDT');
+        $price  = file_get_contents('https://www.kucoin.com/_api/otc/ad/list?status=PUTUP&currency=USDT&legal=VND&page=1&pageSize=1&side=SELL&amount=&payTypeCodes=&c=599a192864b44432897171ea659df91b&lang=vi_VN');
 
         if ($price) {
-            $giaCoint =  json_decode($price)->price;
-            $price = floor($giaCoint * $gia_usd);
-            $max = $max_usd * $giaCoint;
+            $price = json_decode($price);
+
+            $price = $price->items[0]->premium;
+
+
+            $max = $max_usd * $price;
             $priceSell = number_format($this->calPriceSell($price));
 
             $priceBuy = number_format($this->calPriceBuy($price));
@@ -250,7 +253,7 @@ class HomeController extends BaseController
     {
         $priceSell = 0;
         $priceBuy = 0;
-        $price  = file_get_contents('https://api.binance.com/api/v3/ticker/price?symbol=FDUSDUSDT');
+        $price  = file_get_contents('https://www.kucoin.com/_api/otc/ad/list?status=PUTUP&currency=USDT&legal=VND&page=1&pageSize=1&side=BUY&amount=&payTypeCodes=&c=599a192864b44432897171ea659df91b&lang=vi_VN');
         $gia_usd = $this->getGiaUsd();
 
         if ($price) {
