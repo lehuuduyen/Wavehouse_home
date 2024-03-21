@@ -17,6 +17,7 @@ class History extends Model
    "total",
    "bank",
    "stk",
+    "code",
    "wallet",
    "sdt",
    "description",

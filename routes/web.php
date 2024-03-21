@@ -18,6 +18,7 @@ Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/buy/{name}', [HomeController::class, 'buy']);
 Route::get('/sell/{name}', [HomeController::class, 'sell']);
+Route::get('/{name}', [HomeController::class, 'transacsion']);
 Route::post('/buy', [HomeController::class, 'create_buy']);
 Route::post('/sell', [HomeController::class, 'create_sell']);
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {

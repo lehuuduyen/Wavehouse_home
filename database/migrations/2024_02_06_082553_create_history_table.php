@@ -16,6 +16,7 @@ class CreateHistoryTable extends Migration
         Schema::create('history', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('amount');
+            $table->text('code');
             $table->text('network');
             $table->text('price')->nullable();
             $table->text('total')->nullable();

@@ -18,7 +18,8 @@ class HomeController extends BaseController
     public function __construct()
     {
     }
-    function formatDate($date) {
+    function formatDate($date)
+    {
         // Create DateTime objects for the given date and current date
         $date = new DateTime($date);
         $now = new DateTime();
@@ -49,9 +50,9 @@ class HomeController extends BaseController
         $gia_usd = $this->getGiaUsd();
 
         $price  = file_get_contents('https://api.binance.com/api/v3/ticker/price?symbol=FDUSDUSDT');
-        $history = History::where('status_process',2)->orderBy('created_at','DESC')->limit(12)->get();
-        foreach($history as $key => $val){
-            $history[$key]['time']= $this->formatDate($val['created_at']);
+        $history = History::where('status_process', 2)->orderBy('created_at', 'DESC')->limit(12)->get();
+        foreach ($history as $key => $val) {
+            $history[$key]['time'] = $this->formatDate($val['created_at']);
         }
         if ($price) {
             $giaCoint =  json_decode($price)->price;
@@ -60,7 +61,7 @@ class HomeController extends BaseController
 
             $priceBuy = number_format($this->calPriceBuy($price));
         }
-        return view('page.home', ['priceSell' => $priceSell, 'priceBuy' => $priceBuy,'history' => $history]);
+        return view('page.home', ['priceSell' => $priceSell, 'priceBuy' => $priceBuy, 'history' => $history]);
     }
     public function getGiaUsd()
     {
@@ -82,6 +83,7 @@ class HomeController extends BaseController
         }
         return $usd_to_vnd;
     }
+
     public function create_buy(Request $request)
     {
 
@@ -106,15 +108,16 @@ class HomeController extends BaseController
             $price  = file_get_contents('https://www.kucoin.com/_api/otc/ad/list?status=PUTUP&currency=USDT&legal=VND&page=1&pageSize=1&side=SELL&amount=&payTypeCodes=&c=599a192864b44432897171ea659df91b&lang=vi_VN');
 
             if ($price) {
-                $giaCoint =  json_decode($price)->price;
-                $price = floor($giaCoint * $gia_usd);
-                $max = $max_usd * $giaCoint;
+                $price = json_decode($price);
+                $price = $price->items[0]->premium;
+                $max = $max_usd * $price;
                 settype($data['amount'], 'float');
                 if ($data['amount'] < $max) {
                     //false
                     $priceBuy =  (int) $this->calPriceBuy($price);
 
                     $data['price'] = $priceBuy;
+                    $data['code'] = $this->generateRandomString(15);
 
                     $data['total'] = $priceBuy * ($data['amount'] + $data['fee']);
 
@@ -123,7 +126,7 @@ class HomeController extends BaseController
                     $result = History::create($data);
 
 
-                    return redirect()->back()->with('result', $result);
+                    return redirect();
                 } else {
 
                     return redirect()->back()->withErrors("Giá không được vướt quá " . $max)->withInput();
@@ -136,15 +139,50 @@ class HomeController extends BaseController
             //throw $th;
         }
     }
-    public function Diachivi($addr){
+    public function Diachivi($addr)
+    {
         $address = [
-            'TRC20'=>'129210983921890281098321021',
-            'BEP20 '=>'129210983921890281098321021',
-            'ERC20 '=>'129210983921890281098321021',
+            'TRC20' => '129210983921890281098321021',
+            'BEP20 ' => '129210983921890281098321021',
+            'ERC20 ' => '129210983921890281098321021',
         ];
         return $address[$addr];
     }
+    public function generateRandomString($length = 10)
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[random_int(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+    public function transacsion($code)
+    {
+        $history = History::where('code', $code)->first();
+        $priceSell = 0;
+        $priceBuy = 0;
+        $price  = file_get_contents('https://www.kucoin.com/_api/otc/ad/list?status=PUTUP&currency=USDT&legal=VND&page=1&pageSize=1&side=BUY&amount=&payTypeCodes=&c=599a192864b44432897171ea659df91b&lang=vi_VN');
 
+        if ($price) {
+            $price = json_decode($price);
+
+            $price = $price->items[0]->premium;
+            $priceSell = number_format($this->calPriceSell($price));
+
+            $priceBuy = number_format($this->calPriceBuy($price));
+        }
+        if ($history) {
+            $fullPath =  $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/'.$history->code;
+            $result['address'] = $this->Diachivi($history->network);
+
+
+            return view('page.transacsion', ['history'=> $history,'priceSell' => $priceSell, 'priceBuy' => $priceBuy,'fullPath'=>$fullPath,'result'=>$result]);
+        }
+        return view('page.sell', ['priceSell' => $priceSell, 'priceBuy' => $priceBuy]);
+
+    }
     public function create_sell(Request $request)
     {
 
@@ -169,16 +207,19 @@ class HomeController extends BaseController
             $price  = file_get_contents('https://www.kucoin.com/_api/otc/ad/list?status=PUTUP&currency=USDT&legal=VND&page=1&pageSize=1&side=BUY&amount=&payTypeCodes=&c=599a192864b44432897171ea659df91b&lang=vi_VN');
 
             if ($price) {
-                $giaCoint =  json_decode($price)->price;
-                $price = floor($giaCoint * $gia_usd);
+                $price = json_decode($price);
+
+                $price = $price->items[0]->premium;
                 settype($data['amount'], 'float');
                 //false
                 $priceSell =  (int) $this->calPriceSell($price);
 
                 $data['price'] = $priceSell;
                 $data['status'] = 2;
+                $data['code'] = $this->generateRandomString(15);
 
                 $data['total'] = $priceSell * ($data['amount'] + $data['fee']);
+
 
 
 
@@ -187,14 +228,12 @@ class HomeController extends BaseController
                 $result['address'] = $this->Diachivi($data['network']);
 
 
-                return redirect()->back()->with('result', $result);
+                return redirect($data['code']);
             }
-
         } catch (\Throwable $th) {
             throw $th;
 
             return redirect()->back()->withErrors($th->getMessage())->withInput();
-
         }
     }
 
@@ -254,11 +293,11 @@ class HomeController extends BaseController
         $priceSell = 0;
         $priceBuy = 0;
         $price  = file_get_contents('https://www.kucoin.com/_api/otc/ad/list?status=PUTUP&currency=USDT&legal=VND&page=1&pageSize=1&side=BUY&amount=&payTypeCodes=&c=599a192864b44432897171ea659df91b&lang=vi_VN');
-        $gia_usd = $this->getGiaUsd();
 
         if ($price) {
-            $price = floor(json_decode($price)->price *  $gia_usd);
+            $price = json_decode($price);
 
+            $price = $price->items[0]->premium;
             $priceSell = number_format($this->calPriceSell($price));
 
             $priceBuy = number_format($this->calPriceBuy($price));

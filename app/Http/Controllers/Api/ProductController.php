@@ -21,6 +21,22 @@ class ProductController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
+    public function custom_bank(Request $request){
+        try {
+            //code...
+            $data = $request->all();
+            $account = $data['account'];
+            $bank = $data['bankcode'];
+            $fetch = file_get_contents("https://autopaypm.com/custom_bank?account=$account&bankcode=$bank&csrfmiddlewaretoken=%7B%7B%20csrf_token%20%7D%7D");
+            return response()->json(
+                json_decode($fetch),
+                200
+            );
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+    }
     public function buy()
     {
         $param = (isset($_GET['s'])) ? $_GET['s'] : "" ;

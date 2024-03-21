@@ -28,6 +28,6 @@ Route::post('register', 'App\Http\Controllers\Auth\RegisterController@registerAp
 Route::apiResource('supplier', SupplierController::class);
 Route::get('buy', 'App\Http\Controllers\Api\ProductController@buy');
 Route::get('sell', 'App\Http\Controllers\Api\ProductController@sell');
+Route::get('custom_bank', 'App\Http\Controllers\Api\ProductController@custom_bank');
 Route::post('update_history', 'App\Http\Controllers\Api\ProductController@update_history');
-
 
